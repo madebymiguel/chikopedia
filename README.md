@@ -1,1 +1,1 @@
-# chikopedia
+chikopedia
