@@ -1,12 +1,14 @@
 import React from "react";
 import "../scss/App.scss";
-import Test from "./Test";
+import PokedexEntry from "./PokedexEntry";
+import TestApi from "./TestApi";
 
 const App = () => {
   return (
     <div className="App">
-      <div>Hello Chikopedia</div>
-      <Test />
+      <div>Chikopedia</div>
+      {/* <PokedexEntry /> */}
+      <TestApi />
     </div>
   );
 };
