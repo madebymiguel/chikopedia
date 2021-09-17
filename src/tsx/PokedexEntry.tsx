@@ -1,5 +1,4 @@
-import React from "react";
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import { PokemonData } from "./ApiResponseTypes";
 
 const PokedexEntry: FunctionComponent<PokemonData> = (props) => {

@@ -3,10 +3,12 @@ import { PokemonData } from "./ApiResponseTypes";
 import PokedexEntry from "./PokedexEntry";
 
 const Search: FunctionComponent = () => {
-  const [pokemon, setPokemon] = useState({});
+  // doesnt woek with pokemon higher than 649
+  const pokemonNum: number = 649;
+  const [pokemon, setPokemon] = useState({} as PokemonData);
 
   useEffect(() => {
-    void fetchPokemon(152);
+    void fetchPokemon(pokemonNum);
   }, []);
 
   async function fetchPokemon(index: number) {
@@ -20,8 +22,6 @@ const Search: FunctionComponent = () => {
     console.log(json.types[0].type.name);
     console.log(json.game_indices[0].version.name);
 
-    // setPokemon(json.pokemon);
-
     const jsonObject = {
       name: json.name,
       index: json.id,
@@ -30,9 +30,8 @@ const Search: FunctionComponent = () => {
       region: json.game_indices[0].version.name,
     };
 
-    setPokemon(jsonObject); // Miguel broke this
+    setPokemon(jsonObject);
 
-    console.log(pokemon);
     console.log(jsonObject);
   }
 
@@ -41,7 +40,7 @@ const Search: FunctionComponent = () => {
       <p>ApiCall</p>
       <button onClick={() => fetchPokemon(152)}>Get Pokemon</button>
 
-      {/* <PokedexEntry pokemon={pokemon}/> */}
+      <PokedexEntry {...pokemon} />
     </div>
   );
 };
