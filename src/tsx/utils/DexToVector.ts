@@ -9,14 +9,24 @@ import PokemonList from "./PokemonList";
 
 export default class DexToVector {
   // Number of bits in an int in js.  If more are needed this class should be updated, requiring multiple characters per pokemon.
-  static MAX_FORMS = 32;
+  static MAX_FORMS = 16;
+  private static ALL_FORMS_FOUND = 0b1111_1111_1111_1111;
+
+  private static LOCAL_STORAGE_KEY: string = "livingdexRecord";
 
   private static instance: DexToVector;
 
   private vector: number[];
 
   private constructor() {
-    this.vector = Array(PokemonList.getList().size).fill(0);
+    const recordedVector = window.localStorage.getItem(
+      DexToVector.LOCAL_STORAGE_KEY
+    );
+    if (recordedVector) {
+      this.vector = recordedVector.split("").map((c) => c.charCodeAt(0));
+    } else {
+      this.vector = Array(PokemonList.getList().size).fill(0);
+    }
   }
 
   static getInstance(): DexToVector {
@@ -32,7 +42,33 @@ export default class DexToVector {
     const dexNumber =
       typeof id === "number" ? id : PokemonList.getList().getNumFromName(id);
     if (dexNumber < this.vector.length) {
-      if (form < PokemonList.getList().getFormCount(dexNumber)) [];
+      if (form < PokemonList.getList().getFormCount(dexNumber)) {
+        const mask = 1 << (form - 1);
+        this.vector[dexNumber] |= mask;
+      } else if (form <= 0) {
+        this.vector[dexNumber] = DexToVector.ALL_FORMS_FOUND;
+      }
     }
+  }
+
+  markPokemonAsUncaught(id: number | string, form: number = 1) {
+    const dexNumber =
+      typeof id === "number" ? id : PokemonList.getList().getNumFromName(id);
+    if (dexNumber < this.vector.length) {
+      if (form < PokemonList.getList().getFormCount(dexNumber)) {
+        let mask = 1 << (form - 1);
+        mask ^= DexToVector.ALL_FORMS_FOUND;
+        this.vector[dexNumber] &= mask;
+      } else if (form <= 0) {
+        this.vector[dexNumber] = 0;
+      }
+    }
+  }
+
+  save() {
+    const vectorAsString = this.vector
+      .map((p) => String.fromCharCode(p))
+      .join("");
+    window.localStorage.setItem(DexToVector.LOCAL_STORAGE_KEY, vectorAsString);
   }
 }
