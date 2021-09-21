@@ -4,7 +4,7 @@ import TestApi from "./TestApi";
 
 const App = () => {
   return (
-    <div className="App">
+    <div id="page">
       <div>Chikopedia</div>
       <TestApi />
     </div>

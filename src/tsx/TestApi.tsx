@@ -4,14 +4,15 @@ import PokedexEntry from "./PokedexEntry";
 
 const Search: FunctionComponent = () => {
   // doesnt woek with pokemon higher than 649
-  const pokemonNum: number = 649;
+  // const pokemonNum: number = 649;
+  const [search, setSearch] = useState("");
   const [pokemon, setPokemon] = useState({} as PokemonData);
 
   useEffect(() => {
-    void fetchPokemon(pokemonNum);
+    void fetchPokemon(search);
   }, []);
 
-  async function fetchPokemon(index: number) {
+  async function fetchPokemon(index: string) {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}`);
 
     const json = await res.json();
@@ -38,7 +39,15 @@ const Search: FunctionComponent = () => {
   return (
     <div>
       <p>ApiCall</p>
-      <button onClick={() => fetchPokemon(152)}>Get Pokemon</button>
+      <input
+        type="text"
+        id="search-input"
+        value={search}
+        onChange={(e) => {
+          setSearch(e.target.value);
+        }}
+      ></input>
+      <button onClick={() => fetchPokemon(search)}>Get Pokemon</button>
 
       <PokedexEntry {...pokemon} />
     </div>
