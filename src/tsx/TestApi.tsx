@@ -46,7 +46,7 @@ const Search: FunctionComponent = () => {
   }
 
   function parseStats(statsJson: any) {
-    const stats: PokemonStats[] = statsJson.map((statData: any) => {name: statData.stat.name, stat: statData.base_stat});
+    const stats: PokemonStats[] = statsJson.map((statData: any) => statData.stat.name + " " + statData.base_stat + ". ");
     return stats;
   }
 
