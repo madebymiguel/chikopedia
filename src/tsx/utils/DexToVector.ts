@@ -42,7 +42,7 @@ export default class DexToVector {
     const dexNumber =
       typeof id === "number" ? id : PokemonList.getList().getNumFromName(id);
     if (dexNumber < this.vector.length) {
-      if (form < PokemonList.getList().getFormCount(dexNumber)) {
+      if (form < PokemonList.getList().getFormCount(dexNumber) && form > 0) {
         const mask = 1 << (form - 1);
         this.vector[dexNumber] |= mask;
       } else if (form <= 0) {
@@ -55,7 +55,7 @@ export default class DexToVector {
     const dexNumber =
       typeof id === "number" ? id : PokemonList.getList().getNumFromName(id);
     if (dexNumber < this.vector.length) {
-      if (form < PokemonList.getList().getFormCount(dexNumber)) {
+      if (form < PokemonList.getList().getFormCount(dexNumber) && form > 0) {
         let mask = 1 << (form - 1);
         mask ^= DexToVector.ALL_FORMS_FOUND;
         this.vector[dexNumber] &= mask;
@@ -63,6 +63,19 @@ export default class DexToVector {
         this.vector[dexNumber] = 0;
       }
     }
+  }
+
+  checkIfPokemonIsCaught(id: number | string, form: number = 1): boolean {
+    const dexNumber =
+      typeof id === "number" ? id : PokemonList.getList().getNumFromName(id);
+    if (dexNumber < this.vector.length) {
+      if (form < PokemonList.getList().getFormCount(dexNumber) && form > 0) {
+        const bitVector = this.vector[dexNumber];
+
+        return (bitVector >> (form - 1)) % 2 === 1;
+      }
+    }
+    return false;
   }
 
   save() {
