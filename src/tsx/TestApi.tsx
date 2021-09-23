@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
-import { PokemonData } from "./ApiResponseTypes";
+import { PokemonAbilities, PokemonData, PokemonStats, PokemonTypes } from "./ApiResponseTypes";
 import PokedexEntry from "./PokedexEntry";
 
 const Search: FunctionComponent = () => {
@@ -17,37 +17,58 @@ const Search: FunctionComponent = () => {
 
     const json = await res.json();
 
-    console.log(json.name);
-    console.log(json.id);
-    console.log(json.sprites.front_default);
-    console.log(json.types[0].type.name);
-    console.log(json.game_indices[0].version.name);
+    // console.log(json.name);
+    // console.log(json.id);
+    // console.log(json.sprites.front_default);
+    // console.log(json.types);
+    // console.log(json.game_indices[0].version.name);
+    // console.log(json.stats);
+    
 
     const jsonObject = {
       name: json.name,
       index: json.id,
       image: json.sprites.front_default,
-      type: json.types[0].type.name,
+      types: parseTypes(json.types),
       region: json.game_indices[0].version.name,
+      stats: parseStats(json.stats),
+      weight: json.weight,
+      height: json.height,
+      abilities: parseAbilities(json.abilities),
     };
-
-    setPokemon(jsonObject);
-
     console.log(jsonObject);
+    setPokemon(jsonObject);
   }
 
+  function parseTypes(typesJson: any) {
+    const types: PokemonTypes = typesJson.map((el: any) => el.type.name + " "); // space???
+    return types;
+  }
+
+  function parseStats(statsJson: any) {
+    const stats: PokemonStats[] = statsJson.map((statData: any) => {name: statData.stat.name, stat: statData.base_stat});
+    return stats;
+  }
+
+  function parseAbilities(abilitiesJson: any) {
+    const abilities: PokemonAbilities[] = abilitiesJson.map((abilityData: any) => abilityData.ability.name + " " + abilityData.is_hidden + ". ");
+    return abilities;
+  }
   return (
     <div>
-      <p>ApiCall</p>
-      <input
-        type="text"
-        id="search-input"
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-        }}
-      ></input>
-      <button onClick={() => fetchPokemon(search)}>Get Pokemon</button>
+      <p>Pokedex Search</p>
+
+      <form onSubmit={(e) => {e.preventDefault(); void fetchPokemon(search)} }>
+        <input
+          type="text"
+          id="search-input"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+        ></input>
+        <button>Get Pokemon</button>
+      </form>
 
       <PokedexEntry {...pokemon} />
     </div>

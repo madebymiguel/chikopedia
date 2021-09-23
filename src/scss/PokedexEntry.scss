@@ -5,15 +5,8 @@
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   grid-template-areas:
-    "header header header"
     "...... screen ......"
     "...... details ......";
-
-  .pokedex-header {
-    grid-area: header;
-    // display: flex;
-    // justify-content: space-between;
-  }
 
   .pokedex-screen {
     grid-area: screen;
@@ -30,8 +23,8 @@
     .sprite {
       //   grid-area: sprite;
       width: 100%;
-      justify-self: center;
-
+      display: flex;
+      justify-content: center;
       .sprite-image {
         object-fit: cover;
         width: 100%;
