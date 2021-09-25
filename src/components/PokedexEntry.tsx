@@ -1,9 +1,28 @@
 import "../scss/PokedexEntry.scss";
-import React, { FunctionComponent } from "react";
-import { PokemonData } from "../types/ApiResponseTypes";
+import React from "react";
+import { PokemonType } from '../types/PokemonType';
+import { PokemonStat } from "../types/PokemonStat";
+import { PokemonAbility } from "../types/PokemonAbility";
+import PokemonTypes from './PokemonTypes';
 
-const PokedexEntry: FunctionComponent<PokemonData> = (props) => {
-  const { name, index, image, types, region, stats, weight, height, abilities } = props;
+
+export interface PokedexEntryProps {
+  name: string;
+  index: number;
+  image: string;
+  types: PokemonType[];
+  region: string;
+  stats: PokemonStat[];
+  weight: number;
+  height: number;
+  abilities: PokemonAbility[];
+  //   dexEntry: string;
+  //   evolution?: number[];
+}
+
+
+
+export default function PokedexEntry({ name, index, image, types, region, stats, weight, height, abilities }: PokedexEntryProps) {
   // const pokeImage =
   //   "https://assets.pokemon.com/assets/cms2/img/pokedex/full/152.png";
   return (
@@ -23,14 +42,12 @@ const PokedexEntry: FunctionComponent<PokemonData> = (props) => {
       </section>
 
       <section className="pokedex-detailed-info">
-        <p>{types}</p> {/* second optional type */}
+        <PokemonTypes types={types} />
         <p>{region}</p>
         <p> weight: {weight * 0.1} kg, height: {height * 0.1} m </p>
-        <p>{stats}</p>
-        <p>{abilities}</p>
+        <p>{JSON.stringify(stats)}</p>
+        <p>{JSON.stringify(abilities)}</p>
       </section>
     </div>
   );
-};
-
-export default PokedexEntry;
+}

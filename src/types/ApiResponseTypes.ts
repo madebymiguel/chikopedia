@@ -1,32 +1,24 @@
-export interface PokemonData {
-  name: string;
-  index: number;
-  image: string;
-  types: PokemonTypes;
-  region: string;
-  stats: PokemonStats[];
-  weight: number;
+import { PokemonAbility } from "./PokemonAbility";
+import { PokemonStat } from "./PokemonStat";
+import { PokemonType } from "./PokemonType";
+
+export interface Pokemon {
+  abilities: PokemonAbility[]; // Ability[];
+  base_experience: number;
+  forms: any[]; // Form[];
+  game_indices: any; // GameIndex;
   height: number;
-  abilities: PokemonAbilities[];
-  //   dexEntry: string;
-  //   evolution?: number[];
-}
-
-export interface PokemonStats {
-  [name: string]: {stat: number};
-  // hp: number;
-  // attack: number;
-  // defence: number;
-  // "special-attack": number;
-  // "special-defence": number;
-  // speed: number;
-}
-
-export interface PokemonTypes {
-  type1: string;
-  type2?: string;
-}
-
-export interface PokemonAbilities {
-  [ability: string]: {is_hidden: string};
+  held_items: any[]; // Item[];
+  id: number;
+  is_default: boolean;
+  location_area_encounters: string;
+  moves: any[]; //Move[]
+  name: string;
+  order: number;
+  past_types: unknown[]
+  species: any; // Specie
+  sprites: any; // Sprite
+  stats: PokemonStat[]; // Stat[]
+  types: PokemonType[];
+  weight: number;
 }
