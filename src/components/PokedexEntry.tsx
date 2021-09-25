@@ -1,10 +1,9 @@
 import "../scss/PokedexEntry.scss";
 import React from "react";
-import { PokemonType } from '../types/PokemonType';
+import { PokemonType } from "../types/PokemonType";
 import { PokemonStat } from "../types/PokemonStat";
 import { PokemonAbility } from "../types/PokemonAbility";
-import PokemonTypes from './PokemonTypes';
-
+import PokemonTypes from "./PokemonTypes";
 
 export interface PokedexEntryProps {
   name: string;
@@ -20,9 +19,17 @@ export interface PokedexEntryProps {
   //   evolution?: number[];
 }
 
-
-
-export default function PokedexEntry({ name, index, image, types, region, stats, weight, height, abilities }: PokedexEntryProps) {
+export default function PokedexEntry({
+  name,
+  index,
+  image,
+  types,
+  region,
+  stats,
+  weight,
+  height,
+  abilities,
+}: PokedexEntryProps) {
   // const pokeImage =
   //   "https://assets.pokemon.com/assets/cms2/img/pokedex/full/152.png";
   return (
@@ -44,7 +51,10 @@ export default function PokedexEntry({ name, index, image, types, region, stats,
       <section className="pokedex-detailed-info">
         <PokemonTypes types={types} />
         <p>{region}</p>
-        <p> weight: {weight * 0.1} kg, height: {height * 0.1} m </p>
+        <p>
+          {" "}
+          weight: {weight * 0.1} kg, height: {height * 0.1} m{" "}
+        </p>
         <p>{JSON.stringify(stats)}</p>
         <p>{JSON.stringify(abilities)}</p>
       </section>

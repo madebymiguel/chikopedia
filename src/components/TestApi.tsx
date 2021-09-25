@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchPokemon } from "../apis/fetchPokemon";
-import { Pokemon } from '../types/ApiResponseTypes';
+import { Pokemon } from "../types/Pokemon";
 import PokedexEntry from "./PokedexEntry";
 
 export default function Search() {
@@ -9,15 +9,15 @@ export default function Search() {
   const [search, setSearch] = useState("pikachu");
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
 
-  console.log('pokemon state is: ', pokemon)
+  console.log("pokemon state is: ", pokemon);
 
   // Function for fetching pokemon
   const getPokemon = () => {
     const res = fetchPokemon(search);
     res.then((pokemon) => {
       setPokemon(pokemon);
-    })
-  }
+    });
+  };
 
   // On the first load, get the stock pokemon, which is Pikachu
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Search() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     getPokemon();
-  }
+  };
 
   return (
     <div>
@@ -45,7 +45,7 @@ export default function Search() {
         <button>Get Pokemon</button>
       </form>
 
-      {pokemon !== null &&
+      {pokemon !== null && (
         <PokedexEntry
           name={pokemon.name}
           index={pokemon.id}
@@ -57,9 +57,7 @@ export default function Search() {
           height={pokemon.height}
           abilities={pokemon.abilities}
         />
-      }
+      )}
     </div>
   );
-};
-
-
+}
