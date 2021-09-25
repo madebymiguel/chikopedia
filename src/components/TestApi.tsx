@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
-import { PokemonAbilities, PokemonData, PokemonStats, PokemonTypes } from "./ApiResponseTypes";
+import { PokemonAbilities, PokemonData, PokemonStats, PokemonTypes } from "../types/ApiResponseTypes";
 import PokedexEntry from "./PokedexEntry";
 
 const Search: FunctionComponent = () => {
@@ -23,7 +23,7 @@ const Search: FunctionComponent = () => {
     // console.log(json.types);
     // console.log(json.game_indices[0].version.name);
     // console.log(json.stats);
-    
+
 
     const jsonObject = {
       name: json.name,
@@ -58,7 +58,7 @@ const Search: FunctionComponent = () => {
     <div>
       <p>Pokedex Search</p>
 
-      <form onSubmit={(e) => {e.preventDefault(); void fetchPokemon(search)} }>
+      <form onSubmit={(e) => { e.preventDefault(); void fetchPokemon(search) }}>
         <input
           type="text"
           id="search-input"
