@@ -1,9 +1,9 @@
 import "../scss/PokedexEntry.scss";
 import React, { FunctionComponent } from "react";
-import { PokemonData } from "./ApiResponseTypes";
+import { PokemonData } from "../types/ApiResponseTypes";
 
 const PokedexEntry: FunctionComponent<PokemonData> = (props) => {
-  const { name, index, image, types, region, stats, weight, height, abilities} = props;
+  const { name, index, image, types, region, stats, weight, height, abilities } = props;
   // const pokeImage =
   //   "https://assets.pokemon.com/assets/cms2/img/pokedex/full/152.png";
   return (
