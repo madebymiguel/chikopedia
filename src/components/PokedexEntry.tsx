@@ -4,6 +4,8 @@ import { PokemonType } from "../types/PokemonType";
 import { PokemonStat } from "../types/PokemonStat";
 import { PokemonAbility } from "../types/PokemonAbility";
 import PokemonTypes from "./PokemonTypes";
+import PokemonStats from "./PokemonStats";
+import PokemonAbilities from "./PokemonAbilities";
 
 export interface PokedexEntryProps {
   name: string;
@@ -50,13 +52,13 @@ export default function PokedexEntry({
 
       <section className="pokedex-detailed-info">
         <PokemonTypes types={types} />
-        <p>{region}</p>
+        <p>Found In: {region}</p>
         <p>
           {" "}
           weight: {weight * 0.1} kg, height: {height * 0.1} m{" "}
         </p>
-        <p>{JSON.stringify(stats)}</p>
-        <p>{JSON.stringify(abilities)}</p>
+        <PokemonStats stats={stats} />
+        <PokemonAbilities abilities={abilities} />
       </section>
     </div>
   );

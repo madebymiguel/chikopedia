@@ -1,6 +1,6 @@
 import React from "react";
 import "../scss/App.scss";
-import TestApi from "./TestApi";
+import TestApi from "./SearchApi";
 
 export default function App() {
   return (
