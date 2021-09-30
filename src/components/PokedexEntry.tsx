@@ -51,7 +51,9 @@ export default function PokedexEntry({
       </section>
 
       <section className="pokedex-detailed-info">
-        <PokemonTypes types={types} />
+        <div className="pokemon-type-container">
+          <PokemonTypes types={types} />
+        </div>
         <p>Found In: {region}</p>
         <p>
           {" "}
