@@ -1,26 +1,6 @@
-import PokemonTypes from "../components/PokemonTypes";
+type PokemonTypeNames = { [index: string]: string};
 
-export type PokemonTypeName =
-  | "normal"
-  | "fire"
-  | "water"
-  | "electric"
-  | "grass"
-  | "ice"
-  | "fighting"
-  | "poison"
-  | "ground"
-  | "flying"
-  | "psychic"
-  | "bug"
-  | "rock"
-  | "ghost"
-  | "dragon"
-  | "dark"
-  | "steel"
-  | "fairy";
-
-const colors = {
+const colors: PokemonTypeNames = {
   normal: "#A8A77A",
   fire: "#EE8130",
   water: "#6390F0",

@@ -1,15 +1,10 @@
 import React from "react";
 import { PokemonType } from "../types/PokemonType";
-import Colors, { PokemonTypeName } from "../types/PokemonTypeColorScheme";
+import Colors from "../types/PokemonTypeColorScheme";
 import "../scss/PokemonTypes.scss";
 
-function extractType(name: String): PokemonTypeName {
-  return name as PokemonTypeName;
-}
-
 function PokemonTypeComponent({ name }: { name: string }) {
-  const currentPokemonType: PokemonTypeName = extractType(name);
-  const currentPokemonTypeColor = Colors[currentPokemonType];
+  const currentPokemonTypeColor = Colors[name];
   return (
     <div
       className="pokemon-type"
