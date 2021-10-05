@@ -1,0 +1,17 @@
+.carousel-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  #prev {
+    left: 0;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+  }
+
+  #next {
+    right: 0;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+  }
+}

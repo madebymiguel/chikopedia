@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchPokemon } from "../apis/fetchPokemon";
 import { Pokemon } from "../types/Pokemon";
-import PokedexEntry from "./PokedexEntry";
+import Carousel from "./Carousel";
 
 export default function Search() {
   // doesnt work with pokemon higher than 649
@@ -45,19 +45,7 @@ export default function Search() {
         <button>Get Pokemon</button>
       </form>
 
-      {pokemon !== null && (
-        <PokedexEntry
-          name={pokemon.name}
-          index={pokemon.id}
-          image={pokemon.sprites.front_default}
-          types={pokemon.types}
-          region={pokemon.game_indices[0].version.name}
-          stats={pokemon.stats}
-          weight={pokemon.weight}
-          height={pokemon.height}
-          abilities={pokemon.abilities}
-        />
-      )}
+      {pokemon !== null && <Carousel {...pokemon} />}
     </div>
   );
 }
