@@ -57,7 +57,7 @@ export default function PokedexEntry({
         <p>Found In: {region}</p>
         <p>
           {" "}
-          weight: {weight * 0.1} kg, height: {height * 0.1} m{" "}
+          weight: {(weight * 0.1).toFixed(1)} kg, height: {(height * 0.1).toFixed(1)} m{" "}
         </p>
         <PokemonStats stats={stats} />
         <PokemonAbilities abilities={abilities} />
