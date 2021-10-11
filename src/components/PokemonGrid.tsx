@@ -1,50 +1,64 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { fetchPokemon } from "../apis/fetchPokemon";
+import { fetchPokemonLimit } from "../apis/fetchPokemonLimit";
 import { Pokemon } from "../types/Pokemon";
-import PokemonGridItem, { PokemonGridItemProps } from "./PokemonGridItem";
+import { PokemonGridComponent} from "../types/PokemonGridComponent"
+import { PokemonGridItem } from "../types/PokemonGridItem";
+import PokemonGridItems from "./PokemonGridItems";
 import "../scss/PokemonGrid.scss";
+import {PokemonLimit} from "../types/PokemonLimit"
 
 export default function PokemonGrid() {
-  const POKEMON_LIMIT = 30;
+  const POKEMON_LIMIT = 10;
+
+  const [allPokemons, setAllPokemons] = useState<PokemonLimit>();
+  const [pokemonGrid, setPokemonGrid] = useState<PokemonGridComponent>();
+ // const [pokemonGridItems, setPokemonGridItems] = useState<PokemonGridItems>();
 
   const [pokemons, setPokemons] = useState<Pokemon>();
+  const allPokemonData = [] as Pokemon[];
 
-  const getPokemon = (index: number) => {
-    const res = fetchPokemon(index);
-    res.then((pokemonObject) => {
-      setPokemons(pokemonObject);
+  const getAllPokemon = () => {
+    const res = fetchPokemonLimit(POKEMON_LIMIT);
+    res.then((allPokemon) => {
+      allPokemon.results.forEach((pokemonLimitItem) => {
+        const pokemonData = fetchPokemonData(pokemonLimitItem.url);
+        pokemonData.then((pokemon) => {
+          allPokemonData.push(pokemon);
+        })
+      });
+
     });
-    gridItem();
+    console.log(allPokemonData);
   };
 
-  console.log(pokemons);
+  const getPokemonGridResults = () => {
+    getAllPokemon();
+    console.log(allPokemonData);
+    allPokemonData.map((pokemon) => {
+      
+      return(
+        <PokemonGridItems name={pokemon.name} index={pokemon.id} image={pokemon.sprites.front_default} />
+      )
+    })
+  }
 
-  const pokemonIteration = () => {
-    for (let i = 1; i < POKEMON_LIMIT; i++) {
-      getPokemon(i);
-    }
-  };
+  //const allPokemonGridData = getPokemonGridResults();
 
-  const gridItem = () => {
-    const gridContainer = document.getElementById("inner");
-    const item = pokemons !== undefined && pokemons !== null && (
-      <PokemonGridItem
-        name={pokemons.name}
-        index={pokemons.id}
-        image={pokemons.sprites.front_default}
-      />
-    );
-    if (item) {
-      ReactDOM.render(item, gridContainer);
-    }
-  };
+  const fetchPokemonData = async (pokemonUrl: string) => {
+    const res = await fetch(pokemonUrl);
+    const pokemonResult: Pokemon = await res.json();
+    return pokemonResult;
+  }
+
 
   return (
     <div id="pokemon-grid">
       Pokemon Grid
-      <button onClick={() => pokemonIteration()}>Don't Click This!!</button>
+      <button onClick={() => getPokemonGridResults()}>Don't Click This!!</button>
       <div id="inner"></div>
+      {/* <PokemonGridComponent /> */}
     </div>
   );
 }

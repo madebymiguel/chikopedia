@@ -1,17 +1,17 @@
 import React from "react";
 import "../scss/PokemonGridItem.scss";
 
-export interface PokemonGridItemProps {
+export interface PokemonGridItemsProps {
   name: string;
   index: number;
   image: string;
 }
 
-export default function PokemonGridItem({
+export default function PokemonGridItems({
   name,
   index,
   image,
-}: PokemonGridItemProps) {
+}: PokemonGridItemsProps) {
   return (
     <div className="grid-item-container">
       <h3>{name}</h3>

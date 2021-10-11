@@ -7,7 +7,7 @@ export default function App() {
   return (
     <div id="page">
       <div>Chikopedia</div>
-      <Search />
+      {/* <Search /> */}
       <div id="main-section">
         <PokemonGrid />
       </div>
