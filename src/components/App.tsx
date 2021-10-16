@@ -1,5 +1,6 @@
 import React from "react";
 import "../scss/App.scss";
+import "../scss/Header.scss";
 import Search from "./Search";
 import PokemonGrid from "./PokemonGrid";
 import Menu from "./Menu";

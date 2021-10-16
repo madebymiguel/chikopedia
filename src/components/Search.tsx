@@ -31,7 +31,7 @@ export default function Search() {
 
   return (
     <div>
-      <p>Pokedex Search</p>
+      {/* <p>Pokedex Search</p> */}
 
       <form onSubmit={handleSubmit}>
         <input
@@ -45,7 +45,7 @@ export default function Search() {
         <button>Get Pokemon</button>
       </form>
 
-      {pokemon !== null && <Carousel {...pokemon} />}
+      {/* {pokemon !== null && <Carousel {...pokemon} />} */}
     </div>
   );
 }

@@ -1,0 +1,67 @@
+.menu-container {
+  .drop-down {
+    background: #cfdfaa;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    border: none;
+    vertical-align: middle;
+    transition: box-shadow 0.4s ease;
+    margin-left: auto;
+    font-size: 16px;
+
+    &:hover {
+      background: #67a066;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .menu-contents {
+    background: #ffffff;
+    border-radius: 8px;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 300px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+    font-size: 18px;
+    padding: 16px;
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    #scroll-grid {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 8px;
+
+      .radio-label {
+        .radio-button {
+          padding-right: 16px;
+        }
+      }
+    }
+
+    #livingdex-switch {
+      border-top: black 2px solid;
+      padding-top: 16px;
+      display: flex;
+      align-items: center;
+      .toggle-switch {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+      .switch-label {
+      }
+    }
+  }
+}
