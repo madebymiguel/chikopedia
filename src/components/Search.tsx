@@ -45,7 +45,7 @@ export default function Search() {
         <button>Get Pokemon</button>
       </form>
 
-      {/* {pokemon !== null && <Carousel {...pokemon} />} */}
+      {pokemon !== null && <Carousel {...pokemon} />}
     </div>
   );
 }

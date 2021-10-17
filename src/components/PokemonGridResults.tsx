@@ -3,26 +3,24 @@ import { Pokemon } from "../types/Pokemon";
 import PokemonGridItems from "./PokemonGridItems";
 
 export interface PokemonGridResultsProps {
-  Pokemon: Pokemon[];
+  pokemon: Pokemon[];
 }
 
 export default function PokemonGridResults(
-  allPokemon: PokemonGridResultsProps
+  {pokemon}: PokemonGridResultsProps
 ) {
-  console.log(allPokemon);
-  console.log("allPokemonResults^^^");
-
-  const mapped = allPokemon.Pokemon.map((pokemon: Pokemon) => {
+  // return <div> {JSON.stringify(pokemon)} </div>
+  console.log("pokemon Prop value: " , pokemon);
+  const mapped = pokemon.map((pokemonObject: Pokemon) => {
     return (
       <PokemonGridItems
-        name={pokemon.name}
-        index={pokemon.id}
-        image={pokemon.sprites.front_default}
+        name={pokemonObject.name}
+        index={pokemonObject.id}
+        image={pokemonObject.sprites.front_default}
       />
     );
   });
-  console.log(mapped);
-  console.log("mapped^^");
+  console.log("all Pokemon actual value: ", mapped);
 
   return <div>{mapped}</div>;
 }
