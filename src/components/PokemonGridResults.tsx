@@ -6,11 +6,11 @@ export interface PokemonGridResultsProps {
   pokemon: Pokemon[];
 }
 
-export default function PokemonGridResults(
-  {pokemon}: PokemonGridResultsProps
-) {
+export default function PokemonGridResults({
+  pokemon,
+}: PokemonGridResultsProps) {
   // return <div> {JSON.stringify(pokemon)} </div>
-  console.log("pokemon Prop value: " , pokemon);
+  console.log("pokemon Prop value: ", pokemon);
   const mapped = pokemon.map((pokemonObject: Pokemon) => {
     return (
       <PokemonGridItems
@@ -22,5 +22,5 @@ export default function PokemonGridResults(
   });
   console.log("all Pokemon actual value: ", mapped);
 
-  return <div>{mapped}</div>;
+  return <div id="pokemon-grid">{mapped}</div>;
 }

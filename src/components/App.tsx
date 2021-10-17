@@ -8,14 +8,12 @@ import Menu from "./Menu";
 export default function App() {
   return (
     <div id="page">
-      <div id = "header">
-        <Search />
-        <Menu />
+      <div id="header">
+        {/* <Search />
+        <Menu /> */}
       </div>
-      
-      <div id="main-section">
-        <PokemonGrid />
-      </div>
+
+      <PokemonGrid />
     </div>
   );
 }

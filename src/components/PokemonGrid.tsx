@@ -5,7 +5,7 @@ import { fetchPokemon } from "../apis/fetchPokemon";
 import PokemonGridResults from "./PokemonGridResults";
 import sortPokemon from "../utils/sortPokemon";
 
-const POKEMON_LIMIT = 30;
+const POKEMON_LIMIT = 600;
 
 export default function PokemonGrid() {
   const [allPokemon, setallPokemon] = useState<Pokemon[]>([]);
@@ -23,27 +23,29 @@ export default function PokemonGrid() {
       allPokemonToFetch.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`));
     }
 
-    Promise.all(
-      allPokemonToFetch
-    ).then(function (responses) {
-      return Promise.all(responses.map(function (response) {
-        return response.json();
-      }));
-    }).then(function (data) {      
-      const sortedPokemonData = sortPokemon(data);
-      setallPokemon(sortedPokemonData);
-      setFinishedFetching(true);
-    })
+    Promise.all(allPokemonToFetch)
+      .then(function (responses) {
+        return Promise.all(
+          responses.map(function (response) {
+            return response.json();
+          })
+        );
+      })
+      .then(function (data) {
+        const sortedPokemonData = sortPokemon(data);
+        setallPokemon(sortedPokemonData);
+        setFinishedFetching(true);
+      });
   };
 
   return (
-    <div id="pokemon-grid">
-      Pokemon Grid
-      <div id="inner">
-        {
-          finishedFetching ? <PokemonGridResults pokemon={allPokemon} /> : <span> Loading ... </span>
-        }
-      </div>
+    <div>
+      {/* Pokemon Grid */}
+      {finishedFetching ? (
+        <PokemonGridResults pokemon={allPokemon} />
+      ) : (
+        <span> Loading ... </span>
+      )}
     </div>
   );
 }
