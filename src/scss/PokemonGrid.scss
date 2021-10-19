@@ -1,4 +1,9 @@
+* {
+  box-sizing: border-box;
+}
+
 #pokemon-grid {
-  display: flex;
-  flex-flow: row wrap;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
 }

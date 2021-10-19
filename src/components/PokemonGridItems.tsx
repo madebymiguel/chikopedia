@@ -14,9 +14,14 @@ export default function PokemonGridItems({
 }: PokemonGridItemsProps) {
   return (
     <div className="grid-item-container">
-      <h3>{name}</h3>
-      <h4>{index}</h4>
-      <img src={image} />
+      <span className="pokemon-index">#{index}</span>
+      <img className="pokemon-sprite" src={image} />
+      <h3 className="pokemon-name">{upperCaseFirstLetter(name)}</h3>
     </div>
   );
 }
+
+const upperCaseFirstLetter = (word: string) => {
+  const firstLetter = word[0].toLocaleUpperCase();
+  return firstLetter + word.substring(1);
+};

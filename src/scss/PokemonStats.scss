@@ -1,5 +1,9 @@
 @import "./_variables.scss";
 
+* {
+  box-sizing: border-box;
+}
+
 .pokemon-stat-container {
   display: flex;
   justify-content: center;

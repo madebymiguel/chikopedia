@@ -1,5 +1,9 @@
 @import "_variables";
 
+* {
+  box-sizing: border-box;
+}
+
 .pokedex-entry-container {
   background-color: $secondary_background_color;
   display: grid;

@@ -5,7 +5,7 @@ import { fetchPokemon } from "../apis/fetchPokemon";
 import PokemonGridResults from "./PokemonGridResults";
 import sortPokemon from "../utils/sortPokemon";
 
-const POKEMON_LIMIT = 600;
+const POKEMON_LIMIT = 151;
 
 export default function PokemonGrid() {
   const [allPokemon, setallPokemon] = useState<Pokemon[]>([]);
