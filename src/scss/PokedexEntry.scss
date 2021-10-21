@@ -5,7 +5,7 @@
 }
 
 .pokedex-entry-container {
-  background-color: $secondary_background_color;
+  background-color: $color5;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   grid-template-areas:
@@ -41,21 +41,5 @@
   .pokedex-detailed-info {
     grid-area: details;
     width: 100%;
-  }
-
-  .type {
-    color: magenta;
-  }
-
-  .yellow {
-    background-color: yellow;
-  }
-
-  .green {
-    background-color: green;
-  }
-
-  .blue {
-    background-color: blue;
   }
 }

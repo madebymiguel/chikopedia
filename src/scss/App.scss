@@ -4,8 +4,11 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: $color4;
+}
+
 #page {
-  background-color: $primary_background_color;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
 }

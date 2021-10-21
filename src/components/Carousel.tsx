@@ -4,61 +4,77 @@ import { Pokemon } from "../types/Pokemon";
 import PokedexEntry from "./PokedexEntry";
 import { fetchPokemon } from "../apis/fetchPokemon";
 
-export default function Carousel(pokemon: Pokemon) {
-  const [newPokemon, setNewPokemon] = useState<Pokemon>(pokemon);
+export interface PokemonNameProps {
+  pokemonName: string | number
+}
 
-  console.log("pokemon state from search is: ", pokemon);
-  console.log("pokemon state from carousel is: ", newPokemon);
-
+export default function Carousel({pokemonName}: PokemonNameProps) {
+  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+  const [finishedFetching, setFinishedFetching] = useState(false);
   // Function for fetching pokemon
-  const getPokemon = (index: number) => {
+  const getPokemon = (index: string | number) => {
     const res = fetchPokemon(index);
     res.then((pokemon) => {
-      setNewPokemon(pokemon);
+      setPokemon(pokemon);
+      setFinishedFetching(true);
     });
   };
 
+
   // On the first load, get the stock pokemon, which is Pikachu
   useEffect(() => {
-    getPokemon(pokemon.id);
-  }, [pokemon]);
+    if(pokemonName !== "") {
+      getPokemon(pokemonName);
+    }
+  }, [pokemonName]);
 
+  // previous and next button with current version of code might collide with router implementation.
   return (
-    <div className="carousel-container">
-      <button
-        id="prev"
-        onClick={() => {
-          if (newPokemon.id > 1) {
-            getPokemon(newPokemon.id - 1);
-          }
-        }}
-      >
-        prev
-      </button>
-
-      <div className="carousel-content">
-        <PokedexEntry
-          name={newPokemon.name}
-          index={newPokemon.id}
-          image={newPokemon.sprites.front_default}
-          types={newPokemon.types}
-          region={newPokemon.game_indices[0].version.name}
-          stats={newPokemon.stats}
-          weight={newPokemon.weight}
-          height={newPokemon.height}
-          abilities={newPokemon.abilities}
-        />
+    <div>
+      
+      {finishedFetching ? (
+        <div className="carousel-container">
+        <button
+          id="prev"
+          onClick={() => {
+            if (pokemon !== null && pokemon.id > 1) {
+              setFinishedFetching(false);
+              getPokemon(pokemon.id - 1);
+            }
+          }}
+        >
+          prev
+        </button>
+  
+        <div className="carousel-content">
+          {pokemon !== null && <PokedexEntry
+            name={pokemon.name}
+            index={pokemon.id}
+            image={pokemon.sprites.front_default}
+            types={pokemon.types}
+            region={pokemon.game_indices[0].version.name}
+            stats={pokemon.stats}
+            weight={pokemon.weight}
+            height={pokemon.height}
+            abilities={pokemon.abilities}
+          />}       
+        </div>
+        <button
+          id="next"
+          onClick={() => {
+            if (pokemon !== null && pokemon.id < 649) {
+              setFinishedFetching(false);
+              getPokemon(pokemon.id + 1);
+            }
+          }}
+        >
+          next
+        </button>
       </div>
-      <button
-        id="next"
-        onClick={() => {
-          if (newPokemon.id < 649) {
-            getPokemon(newPokemon.id + 1);
-          }
-        }}
-      >
-        next
-      </button>
+        
+      ) : (<span> Type Pokemon above </span>)
+      }
     </div>
+    
   );
 }

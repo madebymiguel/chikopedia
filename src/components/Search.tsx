@@ -3,49 +3,34 @@ import { fetchPokemon } from "../apis/fetchPokemon";
 import { Pokemon } from "../types/Pokemon";
 import Carousel from "./Carousel";
 
-export default function Search() {
-  // doesnt work with pokemon higher than 649
-  // const pokemonNum: number = 649;
-  const [search, setSearch] = useState("pikachu");
-  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+export interface SearchProps {
+  search: string | number,
+  setSearch: React.Dispatch<React.SetStateAction<string | number>>
+};
 
-  console.log("pokemon state is: ", pokemon);
+export default function Search({search, setSearch}: SearchProps) {
 
-  // Function for fetching pokemon
-  const getPokemon = () => {
-    const res = fetchPokemon(search);
-    res.then((pokemon) => {
-      setPokemon(pokemon);
-    });
-  };
-
-  // On the first load, get the stock pokemon, which is Pikachu
-  useEffect(() => {
-    getPokemon();
-  }, []);
+  const [tempSearch, setTempSearch] = useState(search);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    getPokemon();
+    setSearch(tempSearch);
   };
 
   return (
     <div>
-      {/* <p>Pokedex Search</p> */}
-
       <form onSubmit={handleSubmit}>
         <input
+          placeholder="search pokemon"
           type="text"
           id="search-input"
-          value={search}
+          value={tempSearch}
           onChange={(e) => {
-            setSearch(e.target.value);
+            setTempSearch(e.target.value);
           }}
         ></input>
-        <button>Get Pokemon</button>
+        <button>Find Pokemon</button>
       </form>
-
-      {pokemon !== null && <Carousel {...pokemon} />}
     </div>
   );
 }
