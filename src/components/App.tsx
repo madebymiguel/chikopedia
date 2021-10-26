@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "../scss/App.scss";
 import "../scss/Header.scss";
 import Search from "./Search";
@@ -10,15 +11,22 @@ export default function App() {
   const [search, setSearch] = useState("" as string | number);
   //const search = useState("");
   return (
-    <div id="page">
-      <div id="header">
-        <Search search={search} setSearch={setSearch} />
-        <Menu />
+    <BrowserRouter>
+      <div id="page">
+        <div id="header">
+          <Search search={search} setSearch={setSearch} />
+          <Menu />
+        </div>
+        <Switch>
+          <Route path="/">
+            <PokemonGrid />
+          </Route>
+          <Route path={`pokemon/${search}`}>
+            <div>hello</div>
+            {/* <Carousel pokemonName={search} /> */}
+          </Route>
+        </Switch>
       </div>
-
-      {/* <PokemonGrid /> */}
-
-      <Carousel pokemonName={search} />
-    </div>
+    </BrowserRouter>
   );
 }

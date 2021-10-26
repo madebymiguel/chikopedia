@@ -1,6 +1,7 @@
 import React from "react";
 import { Pokemon } from "../types/Pokemon";
 import PokemonGridItems from "./PokemonGridItems";
+import "../scss/PokemonGrid.scss";
 
 export interface PokemonGridResultsProps {
   pokemon: Pokemon[];

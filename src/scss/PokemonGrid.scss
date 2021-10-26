@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+#pokemon-grid-container {
+  grid-area: main;
+  // justify-content: center;
+}
+
 #pokemon-grid {
   width: 100%;
   display: grid;

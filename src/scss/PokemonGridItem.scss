@@ -11,6 +11,13 @@
   background-color: whitesmoke;
   border-radius: 8px;
   width: 120px;
+  transform: translate(0px, 0px);
+  transition: all 0.333333s ease-out;
+  cursor: pointer;
+  &:hover {
+    transform: translate(0px, -8px);
+    box-shadow: 0 10px 15px -3px gray;
+  }
 
   .pokemon-index {
     text-align: left;

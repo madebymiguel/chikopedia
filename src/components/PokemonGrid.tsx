@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Pokemon } from "../types/Pokemon";
-import "../scss/PokemonGrid.scss";
-import { fetchPokemon } from "../apis/fetchPokemon";
+import "../scss/pokemonGrid.scss";
+// import { fetchPokemon } from "../apis/fetchPokemon";
 import PokemonGridResults from "./PokemonGridResults";
 import sortPokemon from "../utils/sortPokemon";
 
-const POKEMON_LIMIT = 151;
+const POKEMON_LIMIT = 100;
 
 export default function PokemonGrid() {
   const [allPokemon, setallPokemon] = useState<Pokemon[]>([]);
@@ -16,7 +16,7 @@ export default function PokemonGrid() {
   }, []);
 
   const getAllPokemon = () => {
-    const allPokemonData: Pokemon[] = [];
+    // const allPokemonData: Pokemon[] = [];
 
     const allPokemonToFetch = [];
     for (let i = 1; i <= POKEMON_LIMIT; i++) {
@@ -39,8 +39,7 @@ export default function PokemonGrid() {
   };
 
   return (
-    <div>
-      {/* Pokemon Grid */}
+    <div id="pokemon-grid-container">
       {finishedFetching ? (
         <PokemonGridResults pokemon={allPokemon} />
       ) : (

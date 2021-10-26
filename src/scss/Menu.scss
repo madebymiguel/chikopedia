@@ -3,6 +3,7 @@
 }
 
 .menu-container {
+  margin-top: 0px;
   .drop-down {
     background: #cfdfaa;
     border-radius: 8px;
@@ -38,6 +39,8 @@
     transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
     font-size: 18px;
     padding: 16px;
+    z-index: 10;
+
     &.active {
       opacity: 1;
       visibility: visible;
