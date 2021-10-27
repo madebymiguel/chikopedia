@@ -1,5 +1,5 @@
 import React from "react";
-// import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { fetchPokemon } from "../apis/fetchPokemon";
 import "../scss/PokemonGridItem.scss";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
@@ -15,16 +15,13 @@ export default function PokemonGridItems({
   index,
   image,
 }: PokemonGridItemsProps) {
-  function redirect() {
-    fetchPokemon(index);
-    // console.log(history.pushState("pokemon", `pokemon/${index}`));
-  }
-
   return (
-    <div className="grid-item-container" onClick={redirect}>
-      <span className="pokemon-index">#{index}</span>
-      <img className="pokemon-sprite" src={image} />
-      <h3 className="pokemon-name">{upperCaseFirstLetter(name)}</h3>
-    </div>
+    <Link to={`/pokemon/${index}`}>
+      <div className="grid-item-container">
+        <span className="pokemon-index">#{index}</span>
+        <img className="pokemon-sprite" src={image} />
+        <h3 className="pokemon-name">{upperCaseFirstLetter(name)}</h3>
+      </div>
+    </Link>
   );
 }

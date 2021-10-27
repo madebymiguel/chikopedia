@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
 import "../scss/App.scss";
 import "../scss/Header.scss";
 import Search from "./Search";
@@ -9,24 +16,27 @@ import Carousel from "./Carousel";
 
 export default function App() {
   const [search, setSearch] = useState("" as string | number);
-  //const search = useState("");
+  console.log("app search", search);
   return (
-    <BrowserRouter>
+    <Router>
       <div id="page">
         <div id="header">
+          <Link to="/">
+            <h1>Chikopedia</h1>
+          </Link>
           <Search search={search} setSearch={setSearch} />
           <Menu />
         </div>
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <PokemonGrid />
           </Route>
-          <Route path={`pokemon/${search}`}>
-            <div>hello</div>
-            {/* <Carousel pokemonName={search} /> */}
-          </Route>
+          <Route
+            path="/pokemon/:pokemonName"
+            render={(props) => <Carousel {...props} />}
+          />
         </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }

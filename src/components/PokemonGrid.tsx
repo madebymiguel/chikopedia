@@ -5,7 +5,7 @@ import "../scss/pokemonGrid.scss";
 import PokemonGridResults from "./PokemonGridResults";
 import sortPokemon from "../utils/sortPokemon";
 
-const POKEMON_LIMIT = 100;
+const POKEMON_LIMIT = 10;
 
 export default function PokemonGrid() {
   const [allPokemon, setallPokemon] = useState<Pokemon[]>([]);

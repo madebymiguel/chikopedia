@@ -3,6 +3,7 @@
 }
 
 .carousel-container {
+  grid-area: main;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
