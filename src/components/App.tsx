@@ -16,13 +16,16 @@ import Carousel from "./Carousel";
 import sortPokemon from "../utils/sortPokemon";
 import { Pokemon } from "../types/Pokemon";
 import { fetchPokemon } from "../apis/fetchPokemon";
+import useSessionStorage, { SimplePokemon} from "../utils/UseSessionStorage";
 
-const POKEMON_LIMIT = 10;
+const POKEMON_LIMIT = 151;
 
 export default function App() {
   const [search, setSearch] = useState<string | number>("");
 
   const [allPokemon, setallPokemon] = useState<Pokemon[]>([]);
+  
+  const [pokemonStorage, setPokemonStorage] = useSessionStorage(displayPokemon(allPokemon));
   const [finishedFetching, setFinishedFetching] = useState<boolean>(false);
 
   // {
@@ -41,6 +44,7 @@ export default function App() {
       allPokemonToFetch.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`));
     }
 
+
     Promise.all(allPokemonToFetch)
       .then(function (responses) {
         return Promise.all(
@@ -52,9 +56,21 @@ export default function App() {
       .then(function (data) {
         const sortedPokemonData = sortPokemon(data);
         setallPokemon(sortedPokemonData);
+        const simplifiedPokemon: SimplePokemon[] = displayPokemon(sortedPokemonData);
+        setPokemonStorage(JSON.stringify(simplifiedPokemon));
         setFinishedFetching(true);
       });
   };
+
+  function displayPokemon(pokemonArray: Pokemon[]) {
+    const simplifiedPokemon: SimplePokemon[] = pokemonArray.map((pokemon) => {
+      const name = pokemon.name;
+      const id = pokemon.id;
+      const sprite = pokemon.sprites.front_default;
+      return({name, id, sprite });
+    })
+    return simplifiedPokemon;
+  }
 
   return (
     <Router>
