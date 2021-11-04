@@ -1,6 +1,18 @@
 * {
   box-sizing: border-box;
 }
+.link {
+  text-decoration: none;
+  color: black;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+}
 
 .grid-item-container {
   display: flex;

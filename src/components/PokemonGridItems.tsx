@@ -16,7 +16,7 @@ export default function PokemonGridItems({
   image,
 }: PokemonGridItemsProps) {
   return (
-    <Link to={`/pokemon/${index}`}>
+    <Link to={`/pokemon/${index}`} className="link">
       <div className="grid-item-container">
         <span className="pokemon-index">#{index}</span>
         <img className="pokemon-sprite" src={image} />

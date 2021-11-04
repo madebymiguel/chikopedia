@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Route } from "react-router-dom";
 import { Pokemon } from "../types/Pokemon";
 import Carousel from "./Carousel";
 
@@ -18,7 +19,7 @@ export default function Search({ search, setSearch }: SearchProps) {
     <div>
       <form onSubmit={handleSubmit}>
         <input
-          placeholder="search pokemon"
+          placeholder="search pokemon by name or id"
           type="text"
           id="search-input"
           value={search}
