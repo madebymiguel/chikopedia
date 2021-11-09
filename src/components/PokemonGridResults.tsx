@@ -2,9 +2,10 @@ import React from "react";
 import { Pokemon } from "../types/Pokemon";
 import PokemonGridItems from "./PokemonGridItems";
 import "../scss/PokemonGrid.scss";
+import { SimplePokemon } from "../utils/UseSessionStorage";
 
 export interface PokemonGridResultsProps {
-  pokemon: Pokemon[];
+  pokemon: SimplePokemon[];
 }
 
 export default function PokemonGridResults({
@@ -12,12 +13,12 @@ export default function PokemonGridResults({
 }: PokemonGridResultsProps) {
   // return <div> {JSON.stringify(pokemon)} </div>
   console.log("pokemon Prop value: ", pokemon);
-  const mapped = pokemon.map((pokemonObject: Pokemon) => {
+  const mapped = pokemon.map((pokemonObject: SimplePokemon) => {
     return (
       <PokemonGridItems
         name={pokemonObject.name}
         index={pokemonObject.id}
-        image={pokemonObject.sprites.front_default}
+        image={pokemonObject.sprite}
       />
     );
   });

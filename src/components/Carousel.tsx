@@ -5,10 +5,17 @@ import PokedexEntry from "./PokedexEntry";
 import { fetchPokemon } from "../apis/fetchPokemon";
 import { Link, RouteComponentProps, useParams } from "react-router-dom";
 
-export default function Carousel(
-  props: RouteComponentProps<{ pokemonName: string }>
-) {
-  const { pokemonName } = props.match.params;
+// {
+//   match,
+// }: RouteComponentProps<{ pokemonName: string }>
+// const { pokemonid }: MatchParams = match.params;
+
+interface MatchParams {
+  pokemonName: string;
+}
+
+export default function Carousel({ pokemonName }: MatchParams) {
+  // const { pokemonName } = match.params;
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [finishedFetching, setFinishedFetching] = useState(false);
   // Function for fetching pokemon

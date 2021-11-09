@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  RouteComponentProps,
-  match,
-} from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import "../scss/App.scss";
 import "../scss/Header.scss";
 import Search from "./Search";
@@ -16,34 +9,30 @@ import Carousel from "./Carousel";
 import sortPokemon from "../utils/sortPokemon";
 import { Pokemon } from "../types/Pokemon";
 import { fetchPokemon } from "../apis/fetchPokemon";
-import useSessionStorage, { SimplePokemon} from "../utils/UseSessionStorage";
+import useSessionStorage, { SimplePokemon } from "../utils/UseSessionStorage";
 
-const POKEMON_LIMIT = 151;
+// 898 pokemon
+const POKEMON_LIMIT = 800;
 
 export default function App() {
   const [search, setSearch] = useState<string | number>("");
 
   const [allPokemon, setallPokemon] = useState<Pokemon[]>([]);
-  
-  const [pokemonStorage, setPokemonStorage] = useSessionStorage(displayPokemon(allPokemon));
-  const [finishedFetching, setFinishedFetching] = useState<boolean>(false);
 
-  // {
-  //   match,
-  // }: RouteComponentProps<{ pokemonName: string }>
-  // const { pokemonid }: MatchParams = match.params;
+  const [pokemonStorage, setPokemonStorage] = useSessionStorage(
+    displayPokemon(allPokemon)
+  );
+  const [finishedFetching, setFinishedFetching] = useState<boolean>(false);
 
   useEffect(() => {
     getAllPokemon();
   }, []);
 
   const getAllPokemon = () => {
-    // const allPokemonData: Pokemon[] = [];
     const allPokemonToFetch = [];
     for (let i = 1; i <= POKEMON_LIMIT; i++) {
       allPokemonToFetch.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`));
     }
-
 
     Promise.all(allPokemonToFetch)
       .then(function (responses) {
@@ -56,8 +45,10 @@ export default function App() {
       .then(function (data) {
         const sortedPokemonData = sortPokemon(data);
         setallPokemon(sortedPokemonData);
-        const simplifiedPokemon: SimplePokemon[] = displayPokemon(sortedPokemonData);
+        const simplifiedPokemon: SimplePokemon[] =
+          displayPokemon(sortedPokemonData);
         setPokemonStorage(JSON.stringify(simplifiedPokemon));
+        console.log("simplifiedPokemon", simplifiedPokemon);
         setFinishedFetching(true);
       });
   };
@@ -67,8 +58,8 @@ export default function App() {
       const name = pokemon.name;
       const id = pokemon.id;
       const sprite = pokemon.sprites.front_default;
-      return({name, id, sprite });
-    })
+      return { name, id, sprite };
+    });
     return simplifiedPokemon;
   }
 
@@ -86,12 +77,14 @@ export default function App() {
           <Route exact path="/">
             <PokemonGrid
               finishedFetching={finishedFetching}
-              allPokemon={allPokemon}
+              allPokemon={JSON.parse(pokemonStorage)}
             />
           </Route>
           <Route
             path="/pokemon/:pokemonName"
-            render={(props) => <Carousel {...props} />}
+            render={({ match }) => (
+              <Carousel pokemonName={match.params.pokemonName} />
+            )}
           />
         </Switch>
       </div>

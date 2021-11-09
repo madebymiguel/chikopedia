@@ -4,10 +4,11 @@ import "../scss/pokemonGrid.scss";
 // import { fetchPokemon } from "../apis/fetchPokemon";
 import PokemonGridResults from "./PokemonGridResults";
 import sortPokemon from "../utils/sortPokemon";
+import { SimplePokemon } from "../utils/UseSessionStorage";
 
 export interface PokemonGridProps {
   finishedFetching: boolean;
-  allPokemon: Pokemon[];
+  allPokemon: SimplePokemon[];
 }
 
 export default function PokemonGrid({
