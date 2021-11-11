@@ -11,7 +11,7 @@ import { Link, RouteComponentProps, useParams } from "react-router-dom";
 // const { pokemonid }: MatchParams = match.params;
 
 interface MatchParams {
-  pokemonName: string;
+  pokemonName: string | number;
 }
 
 export default function Carousel({ pokemonName }: MatchParams) {

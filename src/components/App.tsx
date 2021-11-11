@@ -12,7 +12,7 @@ import { fetchPokemon } from "../apis/fetchPokemon";
 import useSessionStorage, { SimplePokemon } from "../utils/UseSessionStorage";
 
 // 898 pokemon
-const POKEMON_LIMIT = 800;
+const POKEMON_LIMIT = 50;
 
 export default function App() {
   const [search, setSearch] = useState<string | number>("");
@@ -84,6 +84,12 @@ export default function App() {
             path="/pokemon/:pokemonName"
             render={({ match }) => (
               <Carousel pokemonName={match.params.pokemonName} />
+            )}
+          />
+          <Route
+            path="/pokemon/:pokemonName"
+            render={() => (
+              <Carousel pokemonName={search} />
             )}
           />
         </Switch>

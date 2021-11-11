@@ -23,12 +23,11 @@ export default function UseSessionStorage(
   const [pokemonStorage, setPokemonStorage] = useState<string>(
     getSessionStorage(key, allSimplePokemon)
   );
-  console.log("allSimplePokemon", allSimplePokemon);
   useEffect(() => {
     sessionStorage.setItem(key, pokemonStorage);
+    console.log("stored", JSON.parse(pokemonStorage));
   }, [pokemonStorage]);
 
-  console.log("stored", JSON.parse(pokemonStorage));
 
   return [pokemonStorage, setPokemonStorage];
 }

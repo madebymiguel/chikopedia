@@ -24,7 +24,7 @@ export default function PokemonTypes({ types }: PokemonTypesProps) {
   const typeComponents = types.map((typeObj) => {
     const { type } = typeObj;
     const { name } = type;
-    return <PokemonTypeComponent name={name} />;
+    return <PokemonTypeComponent key={name} name={name} />;
   });
 
   return <>{typeComponents.map((typeComponent) => typeComponent)}</>;
