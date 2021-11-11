@@ -22,10 +22,18 @@ export default function App() {
   const [pokemonStorage, setPokemonStorage] = useSessionStorage(
     displayPokemon(allPokemon)
   );
-  const [finishedFetching, setFinishedFetching] = useState<boolean>(false);
+  const [finishedFetching, setFinishedFetching] = useState<boolean>(true);
 
   useEffect(() => {
-    getAllPokemon();
+    const allSimplePokemon = sessionStorage.getItem("allSimplePokemon");
+    // console.log(allSimplePokemon, "allSimplePokemon");
+    if (
+      allSimplePokemon !== null &&
+      JSON.parse(allSimplePokemon).length === 0
+    ) {
+      setFinishedFetching(false);
+      getAllPokemon();
+    }
   }, []);
 
   const getAllPokemon = () => {
@@ -86,12 +94,10 @@ export default function App() {
               <Carousel pokemonName={match.params.pokemonName} />
             )}
           />
-          <Route
+          {/* <Route
             path="/pokemon/:pokemonName"
-            render={() => (
-              <Carousel pokemonName={search} />
-            )}
-          />
+            render={() => <Carousel pokemonName={search} />}
+          /> */}
         </Switch>
       </div>
     </Router>

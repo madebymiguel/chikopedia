@@ -18,21 +18,24 @@ export default function Search({ search, setSearch }: SearchProps) {
     setSearch(searchIndex);
     console.log("search", search);
   };
-  
-  // some function to get pokemon from session storage 
-  // if not exist in session storage, pokemon should be retrieved directly from fetch 
+
+  // some function to get pokemon from session storage
+  // if not exist in session storage, pokemon should be retrieved directly from fetch
   // if still not found, throw an error
   // Use information from SimplePokemon to retrieve what to fetch
-  // parameter: 
+  // parameter:
   function getPokemonIndexFromStorage(search: string | number) {
-    if(search !== "") {
+    console.log("search is: ", search);
+    if (search !== "") {
       const stored = sessionStorage.getItem("allSimplePokemon");
-      if(stored !== null) {
-        const storedData:SimplePokemon[] = JSON.parse(stored);
-        const filteredStoredData = storedData.filter((e: SimplePokemon) => e.name === search);
+      if (stored !== null) {
+        const storedData: SimplePokemon[] = JSON.parse(stored);
+        const filteredStoredData = storedData.filter(
+          (e: SimplePokemon) => e.name === search
+        );
         console.log("searched value is " + search);
         console.log(filteredStoredData, " is filtered");
-        if(filteredStoredData.length > 0) {
+        if (filteredStoredData.length > 0) {
           return filteredStoredData[0].id;
         }
       }
@@ -43,7 +46,10 @@ export default function Search({ search, setSearch }: SearchProps) {
   // switch form into "link"
   return (
     <div>
-      <Link to={`/pokemon/${getPokemonIndexFromStorage(search)}`} className="link">
+      <Link
+        to={`/pokemon/${getPokemonIndexFromStorage(search)}`}
+        className="link"
+      >
         <form onSubmit={handleSubmit}>
           <input
             placeholder="search pokemon by name or id"
