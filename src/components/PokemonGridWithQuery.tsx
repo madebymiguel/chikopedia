@@ -1,39 +1,31 @@
 import React, { useEffect, useState } from "react";
 import sortPokemon from "../utils/sortPokemon";
 import PokemonGrid from "./PokemonGrid";
-import useSessionStorage from "../utils/UseSessionStorage";
 import getAllPokemon from "../apis/getAllPokemon";
-import simplifyPokemon from "../utils/SimplifyPokemon";
+import simplifyPokemon from "../utils/simplifyPokemon";
+import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
 
 export default function PokemonGridWithQuery() {
   const [finishedFetching, setFinishedFetching] = useState<boolean>(true);
-  const [pokemonStorage, setPokemonStorage] = useSessionStorage(
-    simplifyPokemon([])
+  const [allSimplePokemon, setPokemonStorage] = useSimplePokemonSessionStorage(
+    []
   );
 
   // 898 pokemon
   const POKEMON_LIMIT = 50;
 
   useEffect(() => {
-    const allSimplePokemon = sessionStorage.getItem("allSimplePokemon");
-    if (
-      allSimplePokemon !== null &&
-      JSON.parse(allSimplePokemon).length === 0
-    ) {
+    if (allSimplePokemon.length === 0) {
       setFinishedFetching(false);
       getAllPokemon(POKEMON_LIMIT).then((data) => {
         const sortedPokemonData = sortPokemon(data);
         const simplifiedPokemon = simplifyPokemon(sortedPokemonData);
-        setPokemonStorage(JSON.stringify(simplifiedPokemon));
+        setPokemonStorage(simplifiedPokemon);
         setFinishedFetching(true);
       });
     }
   }, []);
-
   return (
-    <PokemonGrid
-      isLoading={!finishedFetching}
-      allPokemon={JSON.parse(pokemonStorage)}
-    />
+    <PokemonGrid isLoading={!finishedFetching} allPokemon={allSimplePokemon} />
   );
 }
