@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { fetchPokemon } from "../apis/fetchPokemon";
 import "../scss/PokemonGridItem.scss";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 

@@ -1,8 +1,7 @@
 import React from "react";
-import { Pokemon } from "../types/Pokemon";
-import PokemonGridItems from "./PokemonGridItems";
 import "../scss/PokemonGrid.scss";
-import { SimplePokemon } from "../utils/UseSessionStorage";
+import PokemonGridItems from "./PokemonGridItems";
+import { SimplePokemon } from "../types/SimplePokemon";
 
 export interface PokemonGridResultsProps {
   pokemon: SimplePokemon[];

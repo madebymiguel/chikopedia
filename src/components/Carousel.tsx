@@ -3,19 +3,13 @@ import "../scss/Carousel.scss";
 import { Pokemon } from "../types/Pokemon";
 import PokedexEntry from "./PokedexEntry";
 import { fetchPokemon } from "../apis/fetchPokemon";
-import { Link, RouteComponentProps, useParams } from "react-router-dom";
-
-// {
-//   match,
-// }: RouteComponentProps<{ pokemonName: string }>
-// const { pokemonid }: MatchParams = match.params;
+import { Link } from "react-router-dom";
 
 interface MatchParams {
   pokemonName: string | number;
 }
 
 export default function Carousel({ pokemonName }: MatchParams) {
-  // const { pokemonName } = match.params;
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [finishedFetching, setFinishedFetching] = useState(false);
   // Function for fetching pokemon

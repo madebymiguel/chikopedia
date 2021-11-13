@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Pokemon } from "../types/Pokemon";
+import React from "react";
 import "../scss/pokemonGrid.scss";
-// import { fetchPokemon } from "../apis/fetchPokemon";
 import PokemonGridResults from "./PokemonGridResults";
-import sortPokemon from "../utils/sortPokemon";
 import { SimplePokemon } from "../types/SimplePokemon";
 
 export interface PokemonGridProps {

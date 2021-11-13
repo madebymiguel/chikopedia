@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Pokemon } from "../types/Pokemon";
 import sortPokemon from "../utils/sortPokemon";
 import PokemonGrid from "./PokemonGrid";
 import useSessionStorage from "../utils/UseSessionStorage";
 import getAllPokemon from "../apis/getAllPokemon";
-import { SimplePokemon } from "../types/SimplePokemon";
 import simplifyPokemon from "../utils/SimplifyPokemon";
 
 export default function PokemonGridWithQuery() {
@@ -13,6 +11,7 @@ export default function PokemonGridWithQuery() {
     simplifyPokemon([])
   );
 
+  // 898 pokemon
   const POKEMON_LIMIT = 50;
 
   useEffect(() => {

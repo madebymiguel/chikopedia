@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link, Route } from "react-router-dom";
-import { Pokemon } from "../types/Pokemon";
-import { SimplePokemon } from "../utils/UseSessionStorage";
-import Carousel from "./Carousel";
+import React from "react";
+import { Link } from "react-router-dom";
+import { SimplePokemon } from "../types/SimplePokemon";
 
 export interface SearchProps {
   search: string | number;
