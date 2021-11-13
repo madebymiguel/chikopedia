@@ -10,66 +10,12 @@ import sortPokemon from "../utils/sortPokemon";
 import { Pokemon } from "../types/Pokemon";
 import { fetchPokemon } from "../apis/fetchPokemon";
 import useSessionStorage, { SimplePokemon } from "../utils/UseSessionStorage";
+import PokemonGridWithQuery from "./PokemonGridWithQuery";
 
 // 898 pokemon
-const POKEMON_LIMIT = 50;
 
 export default function App() {
   const [search, setSearch] = useState<string | number>("");
-
-  const [allPokemon, setallPokemon] = useState<Pokemon[]>([]);
-
-  const [pokemonStorage, setPokemonStorage] = useSessionStorage(
-    displayPokemon(allPokemon)
-  );
-  const [finishedFetching, setFinishedFetching] = useState<boolean>(true);
-
-  useEffect(() => {
-    const allSimplePokemon = sessionStorage.getItem("allSimplePokemon");
-    // console.log(allSimplePokemon, "allSimplePokemon");
-    if (
-      allSimplePokemon !== null &&
-      JSON.parse(allSimplePokemon).length === 0
-    ) {
-      setFinishedFetching(false);
-      getAllPokemon();
-    }
-  }, []);
-
-  const getAllPokemon = () => {
-    const allPokemonToFetch = [];
-    for (let i = 1; i <= POKEMON_LIMIT; i++) {
-      allPokemonToFetch.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`));
-    }
-
-    Promise.all(allPokemonToFetch)
-      .then(function (responses) {
-        return Promise.all(
-          responses.map(function (response) {
-            return response.json();
-          })
-        );
-      })
-      .then(function (data) {
-        const sortedPokemonData = sortPokemon(data);
-        setallPokemon(sortedPokemonData);
-        const simplifiedPokemon: SimplePokemon[] =
-          displayPokemon(sortedPokemonData);
-        setPokemonStorage(JSON.stringify(simplifiedPokemon));
-        console.log("simplifiedPokemon", simplifiedPokemon);
-        setFinishedFetching(true);
-      });
-  };
-
-  function displayPokemon(pokemonArray: Pokemon[]) {
-    const simplifiedPokemon: SimplePokemon[] = pokemonArray.map((pokemon) => {
-      const name = pokemon.name;
-      const id = pokemon.id;
-      const sprite = pokemon.sprites.front_default;
-      return { name, id, sprite };
-    });
-    return simplifiedPokemon;
-  }
 
   return (
     <Router>
@@ -83,10 +29,7 @@ export default function App() {
         </div>
         <Switch>
           <Route exact path="/">
-            <PokemonGrid
-              finishedFetching={finishedFetching}
-              allPokemon={JSON.parse(pokemonStorage)}
-            />
+            <PokemonGridWithQuery />
           </Route>
           <Route
             path="/pokemon/:pokemonName"

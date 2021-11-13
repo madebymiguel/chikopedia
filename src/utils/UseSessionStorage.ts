@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
 import { Pokemon } from "../types/Pokemon";
+import { SimplePokemon } from "../types/SimplePokemon";
 
 const key = "allSimplePokemon";
-
-export interface SimplePokemon {
-  name: string;
-  id: number;
-  sprite: string;
-}
 
 function getSessionStorage(key: string, allSimplePokemon?: SimplePokemon[]) {
   const stored = sessionStorage.getItem(key);
@@ -27,7 +22,6 @@ export default function UseSessionStorage(
     sessionStorage.setItem(key, pokemonStorage);
     console.log("stored", JSON.parse(pokemonStorage));
   }, [pokemonStorage]);
-
 
   return [pokemonStorage, setPokemonStorage];
 }

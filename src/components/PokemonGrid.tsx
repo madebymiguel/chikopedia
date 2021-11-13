@@ -4,20 +4,20 @@ import "../scss/pokemonGrid.scss";
 // import { fetchPokemon } from "../apis/fetchPokemon";
 import PokemonGridResults from "./PokemonGridResults";
 import sortPokemon from "../utils/sortPokemon";
-import { SimplePokemon } from "../utils/UseSessionStorage";
+import { SimplePokemon } from "../types/SimplePokemon";
 
 export interface PokemonGridProps {
-  finishedFetching: boolean;
+  isLoading: boolean;
   allPokemon: SimplePokemon[];
 }
 
 export default function PokemonGrid({
-  finishedFetching,
+  isLoading,
   allPokemon,
 }: PokemonGridProps) {
   return (
     <div id="pokemon-grid-container">
-      {finishedFetching ? (
+      {!isLoading ? (
         <PokemonGridResults pokemon={allPokemon} />
       ) : (
         <span> Loading ... </span>
