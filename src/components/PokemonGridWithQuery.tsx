@@ -6,7 +6,7 @@ import simplifyPokemon from "../utils/simplifyPokemon";
 import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
 
 export default function PokemonGridWithQuery() {
-  const [finishedFetching, setFinishedFetching] = useState<boolean>(true);
+  const [isFetchingPokemon, setIsFetchingPokemon] = useState<boolean>(false);
   const [allSimplePokemon, setPokemonStorage] = useSimplePokemonSessionStorage(
     []
   );
@@ -16,16 +16,16 @@ export default function PokemonGridWithQuery() {
 
   useEffect(() => {
     if (allSimplePokemon.length === 0) {
-      setFinishedFetching(false);
+      setIsFetchingPokemon(true);
       getAllPokemon(POKEMON_LIMIT).then((data) => {
         const sortedPokemonData = sortPokemon(data);
         const simplifiedPokemon = simplifyPokemon(sortedPokemonData);
         setPokemonStorage(simplifiedPokemon);
-        setFinishedFetching(true);
+        setIsFetchingPokemon(false);
       });
     }
   }, []);
   return (
-    <PokemonGrid isLoading={!finishedFetching} allPokemon={allSimplePokemon} />
+    <PokemonGrid isLoading={isFetchingPokemon} allPokemon={allSimplePokemon} />
   );
 }

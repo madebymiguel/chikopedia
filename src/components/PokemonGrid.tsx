@@ -14,10 +14,10 @@ export default function PokemonGrid({
 }: PokemonGridProps) {
   return (
     <div id="pokemon-grid-container">
-      {!isLoading ? (
-        <PokemonGridResults pokemon={allPokemon} />
-      ) : (
+      {isLoading ? (
         <span> Loading ... </span>
+      ) : (
+        <PokemonGridResults pokemon={allPokemon} />
       )}
     </div>
   );
