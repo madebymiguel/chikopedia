@@ -2,39 +2,21 @@ import React, { useEffect, useState } from "react";
 import "../scss/Carousel.scss";
 import { Pokemon } from "../types/Pokemon";
 import PokedexEntry from "./PokedexEntry";
-import { fetchPokemon } from "../apis/fetchPokemon";
 import { Link } from "react-router-dom";
+import { MAX_POKEMON } from "../Variables/globalVariables";
 
-interface MatchParams {
-  pokemonName: string | number;
+export interface CarouselProps{
+  pokemon: Pokemon | null,
+  pokemonName: string | number
 }
 
-export default function Carousel({ pokemonName }: MatchParams) {
-  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
-  const [finishedFetching, setFinishedFetching] = useState(false);
-  // Function for fetching pokemon
-  const getPokemon = (index: string | number) => {
-    const res = fetchPokemon(index);
-    res.then((pokemon) => {
-      setPokemon(pokemon);
-      setFinishedFetching(true);
-    });
-  };
-
-  // On the first load, get the stock pokemon, which is Pikachu
-  useEffect(() => {
-    if (pokemonName !== "") {
-      getPokemon(pokemonName);
-    }
-  }, [pokemonName]);
-
-  // previous and next button with current version of code might collide with router implementation.
+export default function Carousel({pokemon, pokemonName}: CarouselProps) {
   return (
     <div className="carousel-container">
       <div className="nav-buttons">
-        <Link to={`/pokemon/${+pokemonName - 1}`} className="nav-buttons prev">
+        {pokemonName > 1 && <Link to={`/pokemon/${+pokemonName - 1}`} className="nav-buttons prev">
           prev
-        </Link>
+        </Link>}
       </div>
       <div className="carousel-content">
         {pokemon !== null && (
@@ -43,7 +25,7 @@ export default function Carousel({ pokemonName }: MatchParams) {
             index={pokemon.id}
             image={pokemon.sprites.front_default}
             types={pokemon.types}
-            region={pokemon.game_indices[0].version.name}
+            region={pokemon.id > 649 ? "unknown" : pokemon.game_indices[0].version.name}
             stats={pokemon.stats}
             weight={pokemon.weight}
             height={pokemon.height}
@@ -52,9 +34,9 @@ export default function Carousel({ pokemonName }: MatchParams) {
         )}
       </div>
       <div className="nav-buttons">
-        <Link to={`/pokemon/${+pokemonName + 1}`} className="nav-buttons next">
+        {pokemonName < MAX_POKEMON && <Link to={`/pokemon/${+pokemonName + 1}`} className="nav-buttons next">
           next
-        </Link>
+        </Link>}
       </div>
     </div>
   );

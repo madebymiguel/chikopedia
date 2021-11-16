@@ -3,6 +3,8 @@ import Switch from "react-switch";
 import "../scss/Menu.scss";
 // import DetectOutsideClick from "../utils/detectOutsideClick"
 
+
+// there is a bug where if you click the toggle, the radio buttons reset
 export default function Menu() {
   const dropdownRef: React.MutableRefObject<any> = useRef(null);
   // const [menu, setMenu] = DetectOutsideClick(dropdownRef, false); // menu pops or not

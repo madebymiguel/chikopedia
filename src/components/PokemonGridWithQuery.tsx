@@ -4,15 +4,13 @@ import PokemonGrid from "./PokemonGrid";
 import getAllPokemon from "../apis/getAllPokemon";
 import simplifyPokemon from "../utils/simplifyPokemon";
 import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
+import { POKEMON_LIMIT } from "../Variables/globalVariables";
 
 export default function PokemonGridWithQuery() {
   const [isFetchingPokemon, setIsFetchingPokemon] = useState<boolean>(false);
   const [allSimplePokemon, setPokemonStorage] = useSimplePokemonSessionStorage(
     []
   );
-
-  // 898 pokemon
-  const POKEMON_LIMIT = 50;
 
   useEffect(() => {
     if (allSimplePokemon.length === 0) {

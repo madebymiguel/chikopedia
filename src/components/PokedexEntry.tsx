@@ -6,6 +6,7 @@ import { PokemonAbility } from "../types/PokemonAbility";
 import PokemonTypes from "./PokemonTypes";
 import PokemonStats from "./PokemonStats";
 import PokemonAbilities from "./PokemonAbilities";
+import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 
 export interface PokedexEntryProps {
   name: string;
@@ -36,13 +37,9 @@ export default function PokedexEntry({
   //   "https://assets.pokemon.com/assets/cms2/img/pokedex/full/152.png";
   return (
     <div className="pokedex-entry-container">
-      {/* <header className="pokedex-header">
-        <input type="text"></input>
-      </header> */}
-
       <section className="pokedex-screen">
         <div className="title">
-          <h2>{name}</h2>
+          <h2>{upperCaseFirstLetter(name)}</h2>
           <p>{index}</p>
         </div>
         <div className="sprite">
@@ -54,7 +51,7 @@ export default function PokedexEntry({
         <div className="pokemon-type-container">
           <PokemonTypes types={types} />
         </div>
-        <p>Found In: {region}</p>
+        <p>Found In: {region === undefined ? "unknown" : region}</p>
         <p>
           {" "}
           weight: {(weight * 0.1).toFixed(1)} kg, height: {(height * 0.1).toFixed(1)} m{" "}

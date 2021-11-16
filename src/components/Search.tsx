@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { SimplePokemon } from "../types/SimplePokemon";
+import getPokemonIndexFromStorage from "../utils/getPokemonIndexFromStorage";
 
 export interface SearchProps {
   search: string | number;
@@ -8,40 +8,15 @@ export interface SearchProps {
 }
 
 export default function Search({ search, setSearch }: SearchProps) {
+  
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const searchIndex = getPokemonIndexFromStorage(search);
-
-    console.log("index is " + searchIndex);
     setSearch(searchIndex);
+    console.log("index is " + searchIndex);
     console.log("search", search);
   };
 
-  // some function to get pokemon from session storage
-  // if not exist in session storage, pokemon should be retrieved directly from fetch
-  // if still not found, throw an error
-  // Use information from SimplePokemon to retrieve what to fetch
-  // parameter:
-  function getPokemonIndexFromStorage(search: string | number) {
-    console.log("search is: ", search);
-    if (search !== "") {
-      const stored = sessionStorage.getItem("allSimplePokemon");
-      if (stored !== null) {
-        const storedData: SimplePokemon[] = JSON.parse(stored);
-        const filteredStoredData = storedData.filter(
-          (e: SimplePokemon) => e.name === search
-        );
-        console.log("searched value is " + search);
-        console.log(filteredStoredData, " is filtered");
-        if (filteredStoredData.length > 0) {
-          return filteredStoredData[0].id;
-        }
-      }
-    }
-    return search;
-  }
-
-  // switch form into "link"
   return (
     <div>
       <Link

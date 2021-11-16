@@ -6,6 +6,7 @@ import Search from "./Search";
 import Menu from "./Menu";
 import Carousel from "./Carousel";
 import PokemonGridWithQuery from "./PokemonGridWithQuery";
+import CarouselWithQuery from "./CarouselWithQuery";
 
 export default function App() {
   const [search, setSearch] = useState<string | number>("");
@@ -27,7 +28,7 @@ export default function App() {
           <Route
             path="/pokemon/:pokemonName"
             render={({ match }) => (
-              <Carousel pokemonName={match.params.pokemonName} />
+              <CarouselWithQuery pokemonName={match.params.pokemonName} />
             )}
           />
         </Switch>
