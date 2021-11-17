@@ -9,21 +9,21 @@ export interface SearchProps {
 
 export default function Search({ search, setSearch }: SearchProps) {
   
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const searchIndex = getPokemonIndexFromStorage(search);
-    setSearch(searchIndex);
-    console.log("index is " + searchIndex);
-    console.log("search", search);
-  };
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const searchIndex = getPokemonIndexFromStorage(search);
+  //   setSearch(searchIndex);
+  //   console.log("index is " + searchIndex);
+  //   console.log("search", search);
+  // };
 
   return (
     <div>
       <Link
-        to={`/pokemon/${getPokemonIndexFromStorage(search)}`}
+        to={search !== "" ? `/pokemon/${getPokemonIndexFromStorage(search)}` : '/'}
         className="link"
       >
-        <form onSubmit={handleSubmit}>
+        <form>
           <input
             placeholder="search pokemon by name or id"
             type="text"
