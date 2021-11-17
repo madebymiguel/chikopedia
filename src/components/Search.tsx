@@ -27,7 +27,7 @@ export default function Search({ search, setSearch }: SearchProps) {
         to={searchIndex !== "" ? `/pokemon/${searchIndex}` : `${location.pathname}`}
         className="link"
       >
-        <form>
+        <form >
           <input
             placeholder="search pokemon by name or id"
             type="text"
@@ -37,7 +37,7 @@ export default function Search({ search, setSearch }: SearchProps) {
               setSearch(e.target.value);
             }}
           ></input>
-          <button>Find Pokemon</button>
+          <button onClick={() => setSearch("")}>Find Pokemon</button>
         </form>
       </Link>
     </div>
