@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import getPokemonIndexFromStorage from "../utils/getPokemonIndexFromStorage";
 
 export interface SearchProps {
@@ -17,10 +17,14 @@ export default function Search({ search, setSearch }: SearchProps) {
   //   console.log("search", search);
   // };
 
+  // will refactor later
+  const searchIndex = getPokemonIndexFromStorage(search);
+  const location = useLocation();
+  
   return (
     <div>
       <Link
-        to={search !== "" ? `/pokemon/${getPokemonIndexFromStorage(search)}` : '/'}
+        to={searchIndex !== "" ? `/pokemon/${searchIndex}` : `${location.pathname}`}
         className="link"
       >
         <form>

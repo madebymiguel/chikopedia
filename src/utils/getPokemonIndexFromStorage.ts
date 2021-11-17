@@ -16,6 +16,7 @@ export default function getPokemonIndexFromStorage(search: string | number) {
           return filteredStoredData[0].id;
         }
       }
+      return "";
     }
     return search;
   }
