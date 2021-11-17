@@ -8,10 +8,8 @@ export default function getPokemonIndexFromStorage(search: string | number) {
       if (stored !== null) {
         const storedData: SimplePokemon[] = JSON.parse(stored);
         const filteredStoredData = storedData.filter(
-          (e: SimplePokemon) => e.name === search
+          (e: SimplePokemon) => e.name === search || e.id == search
         );
-        console.log("searched value is " + search);
-        console.log(filteredStoredData, " is filtered");
         if (filteredStoredData.length > 0) {
           return filteredStoredData[0].id;
         }
