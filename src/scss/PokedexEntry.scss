@@ -11,17 +11,30 @@
   grid-template-areas:
     "...... screen ......"
     "...... details ......";
+  padding: 20px;
+  border-radius: 8px;
 
   .pokedex-screen {
     grid-area: screen;
     width: 100%;
 
-    .title {
-      //   grid-area: title;
+    .header {
       width: 100%;
       display: flex;
-      flex-direction: row;
       justify-content: center;
+      text-align: center;
+
+      .title {
+        //   grid-area: title;
+        margin: 0px;
+        padding: 0px;
+        padding-right: 40px;
+      }
+
+      .index {
+        margin: 0px;
+        padding: 0px;
+      }
     }
 
     .sprite {
@@ -29,10 +42,17 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      padding-top: 8px;
+      margin-bottom: 12px;
+
       .sprite-image {
         object-fit: cover;
         width: 100%;
         max-width: 250px;
+        background-color: whitesmoke;
+        border-radius: 16px;
+        border: black 1px solid;
+        box-shadow: 0 10px 15px -3px gray;
         // height: 250px;
       }
     }
@@ -41,5 +61,12 @@
   .pokedex-detailed-info {
     grid-area: details;
     width: 100%;
+
+    .description {
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
   }
 }

@@ -38,9 +38,9 @@ export default function PokedexEntry({
   return (
     <div className="pokedex-entry-container">
       <section className="pokedex-screen">
-        <div className="title">
-          <h2>{upperCaseFirstLetter(name)}</h2>
-          <p>{index}</p>
+        <div className="header">
+          <h2 className="title">{upperCaseFirstLetter(name)}</h2>
+          <h3 className="index">#{index}</h3>
         </div>
         <div className="sprite">
           <img src={image} className="sprite-image"></img>
@@ -48,14 +48,12 @@ export default function PokedexEntry({
       </section>
 
       <section className="pokedex-detailed-info">
-        <div className="pokemon-type-container">
-          <PokemonTypes types={types} />
+        <PokemonTypes types={types} />
+        {/* <span>Found In: {region === undefined ? "unknown" : region}</span> */}
+        <div className="description">
+          <span>WEIGHT: {(weight * 0.1).toFixed(1)} kg</span>
+          <span>HEIGHT: {(height * 0.1).toFixed(1)} m </span>
         </div>
-        <p>Found In: {region === undefined ? "unknown" : region}</p>
-        <p>
-          {" "}
-          weight: {(weight * 0.1).toFixed(1)} kg, height: {(height * 0.1).toFixed(1)} m{" "}
-        </p>
         <PokemonStats stats={stats} />
         <PokemonAbilities abilities={abilities} />
       </section>

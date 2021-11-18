@@ -27,5 +27,9 @@ export default function PokemonTypes({ types }: PokemonTypesProps) {
     return <PokemonTypeComponent key={name} name={name} />;
   });
 
-  return <>{typeComponents.map((typeComponent) => typeComponent)}</>;
+  return (
+    <div className="pokemon-type-container">
+      {typeComponents.map((typeComponent) => typeComponent)}
+    </div>
+  );
 }
