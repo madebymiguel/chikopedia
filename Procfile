@@ -1,1 +1,1 @@
-web: node components/main.tsx
+web: npm run dev
