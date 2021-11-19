@@ -1,5 +1,5 @@
 import React from "react";
-import "../scss/pokemonGrid.scss";
+import "../scss/PokemonGrid.scss";
 import PokemonGridResults from "./PokemonGridResults";
 import { SimplePokemon } from "../types/SimplePokemon";
 
