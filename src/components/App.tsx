@@ -14,13 +14,13 @@ export default function App() {
   return (
     <Router>
       <div id="page">
-        <div id="header">
+        <header id="header">
           <Link to="/">
             <h1>Chikopedia</h1>
           </Link>
           <Search search={search} setSearch={setSearch} />
           <Menu />
-        </div>
+        </header>
         <Switch>
           <Route exact path="/">
             <PokemonGridWithQuery />

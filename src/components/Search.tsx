@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import getPokemonIndexFromStorage from "../utils/getPokemonIndexFromStorage";
+import "../scss/Search.scss"
 
 export interface SearchProps {
   search: string | number;
@@ -27,7 +28,7 @@ export default function Search({ search, setSearch }: SearchProps) {
         to={searchIndex !== "" ? `/pokemon/${searchIndex}` : `${location.pathname}`}
         className="link"
       >
-        <form >
+        <form onClick={() => setSearch("")} className="search">
           <input
             placeholder="search pokemon by name or id"
             type="text"
@@ -37,7 +38,7 @@ export default function Search({ search, setSearch }: SearchProps) {
               setSearch(e.target.value);
             }}
           ></input>
-          <button onClick={() => setSearch("")}>Find Pokemon</button>
+          <button id="search-button">Find Pokemon</button>
         </form>
       </Link>
     </div>

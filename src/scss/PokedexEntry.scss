@@ -21,17 +21,16 @@
     .header {
       width: 100%;
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
       text-align: center;
+
+      .index {
+        margin: 0px;
+        padding: 0px;
+      }
 
       .title {
         //   grid-area: title;
-        margin: 0px;
-        padding: 0px;
-        padding-right: 40px;
-      }
-
-      .index {
         margin: 0px;
         padding: 0px;
       }

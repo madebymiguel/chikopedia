@@ -1,4 +1,6 @@
+import { fetchPokemon } from "../apis/fetchPokemon";
 import { SimplePokemon } from "../types/SimplePokemon";
+import simplifyPokemon from "./simplifyPokemon";
 
 
 export default function getPokemonIndexFromStorage(search: string | number) {
@@ -12,7 +14,7 @@ export default function getPokemonIndexFromStorage(search: string | number) {
         );
         if (filteredStoredData.length > 0) {
           return filteredStoredData[0].id;
-        }
+        } 
       }
       return "";
     }
