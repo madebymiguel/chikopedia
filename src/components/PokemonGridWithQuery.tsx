@@ -5,6 +5,7 @@ import getAllPokemon from "../apis/getAllPokemon";
 import simplifyPokemon from "../utils/simplifyPokemon";
 import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
 import { POKEMON_LIMIT } from "../Variables/globalVariables";
+import replacePokemonNamesFromArray from "../utils/replacePokemonNamesFromArray";
 
 export default function PokemonGridWithQuery() {
   const [isFetchingPokemon, setIsFetchingPokemon] = useState<boolean>(false);
@@ -18,7 +19,9 @@ export default function PokemonGridWithQuery() {
       getAllPokemon(POKEMON_LIMIT).then((data) => {
         const sortedPokemonData = sortPokemon(data);
         const simplifiedPokemon = simplifyPokemon(sortedPokemonData);
-        setPokemonStorage(simplifiedPokemon);
+        const fixedSimplifiedPokemon =
+          replacePokemonNamesFromArray(simplifiedPokemon);
+        setPokemonStorage(fixedSimplifiedPokemon);
         setIsFetchingPokemon(false);
       });
     }

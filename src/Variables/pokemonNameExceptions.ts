@@ -1,8 +1,8 @@
 //Pokemon names without the hyphen and other info
 export const pokemonNameExceptions = [
-  { id: 29, name: "Nidoran♂" },
-  { id: 32, name: "Nidoran♀" },
-  { id: 122, name: "Mr.Mime" },
+  { id: 29, name: "Nidoran♀" },
+  { id: 32, name: "Nidoran♂" },
+  { id: 122, name: "Mr. Mime" },
   { id: 386, name: "Deoxys" },
   { id: 413, name: "Wormadam" },
   { id: 439, name: "Mime Jr." },
@@ -30,7 +30,7 @@ export const pokemonNameExceptions = [
   { id: 787, name: "Tapu Bulu" },
   { id: 788, name: "Tapu Fini" },
   { id: 849, name: "Toxtricity" },
-  { id: 886, name: "Mr. Rime" },
+  { id: 866, name: "Mr. Rime" },
   { id: 875, name: "Eiscue" },
   { id: 876, name: "Indeedee" },
   { id: 888, name: "Zacian" },

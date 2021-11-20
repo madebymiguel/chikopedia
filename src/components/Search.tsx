@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import getPokemonIndexFromStorage from "../utils/getPokemonIndexFromStorage";
-import "../scss/Search.scss"
+import "../scss/Search.scss";
 
 export interface SearchProps {
   search: string | number;
@@ -9,23 +9,17 @@ export interface SearchProps {
 }
 
 export default function Search({ search, setSearch }: SearchProps) {
-  
-  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   const searchIndex = getPokemonIndexFromStorage(search);
-  //   setSearch(searchIndex);
-  //   console.log("index is " + searchIndex);
-  //   console.log("search", search);
-  // };
-
-  // will refactor later
   const searchIndex = getPokemonIndexFromStorage(search);
   const location = useLocation();
-  
+
   return (
     <div>
       <Link
-        to={searchIndex !== "" ? `/pokemon/${searchIndex}` : `${location.pathname}`}
+        to={
+          searchIndex !== ""
+            ? `/pokemon/${searchIndex}`
+            : `${location.pathname}`
+        }
         className="link"
       >
         <form onClick={() => setSearch("")} className="search">

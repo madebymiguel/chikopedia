@@ -39,8 +39,8 @@ export default function PokedexEntry({
     <div className="pokedex-entry-container">
       <section className="pokedex-screen">
         <div className="header">
-          <h2 className="index">#{index}</h2>
           <h2 className="title">{upperCaseFirstLetter(name)}</h2>
+          <h2 className="index">#{index}</h2>
         </div>
         <div className="sprite">
           <img src={image} className="sprite-image"></img>

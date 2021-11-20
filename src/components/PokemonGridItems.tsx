@@ -19,7 +19,7 @@ export default function PokemonGridItems({
       <div className="grid-item-container">
         <span className="pokemon-index">#{index}</span>
         <img className="pokemon-sprite" src={image} />
-        <h3 className="pokemon-name">{upperCaseFirstLetter(name)}</h3>
+        <h4 className="pokemon-name">{upperCaseFirstLetter(name)}</h4>
       </div>
     </Link>
   );
