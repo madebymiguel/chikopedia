@@ -4,7 +4,6 @@ import "../scss/App.scss";
 import "../scss/Header.scss";
 import Search from "./Search";
 import Menu from "./Menu";
-import Carousel from "./Carousel";
 import PokemonGridWithQuery from "./PokemonGridWithQuery";
 import CarouselWithQuery from "./CarouselWithQuery";
 
