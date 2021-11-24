@@ -3,9 +3,15 @@ import Switch from "react-switch";
 import "../scss/Menu.scss";
 // import DetectOutsideClick from "../utils/detectOutsideClick"
 
+export interface MenuProps {
+  pokedexStyle: string;
+  setPokedexStyle: React.Dispatch<React.SetStateAction<string>>
+  livingDex: boolean;
+  setLivingDex: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 // there is a bug where if you click the toggle, the radio buttons reset
-export default function Menu() {
+export default function Menu({pokedexStyle, setPokedexStyle, livingDex, setLivingDex}: MenuProps) {
   const dropdownRef: React.MutableRefObject<any> = useRef(null);
   // const [menu, setMenu] = DetectOutsideClick(dropdownRef, false); // menu pops or not
 
@@ -34,14 +40,12 @@ export default function Menu() {
 
   const handleMenu = () => setMenu(!menu);
 
-  const [pokedexStyle, setPokedexStyle] = useState("scroll"); // scroll or grid
-
   const onChangeStyle = (event: React.FormEvent<HTMLDivElement>) => {
     setPokedexStyle(event.currentTarget.innerText);
+    console.log("event text is ", event.currentTarget.innerText);
   };
 
-  const [livingdex, setLivingdex] = useState(false); // living dex on or off
-  const handleSwitchChange = () => setLivingdex(!livingdex);
+  const handleSwitchChange = () => setLivingDex(!livingDex);
 
   return (
     <div className="menu-container">
@@ -79,7 +83,7 @@ export default function Menu() {
           <Switch
             className="toggle-switch"
             onChange={handleSwitchChange}
-            checked={livingdex}
+            checked={livingDex}
           />
           <span className="switch-label">Living Dex</span>
         </div>

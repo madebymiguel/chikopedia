@@ -9,7 +9,8 @@ import CarouselWithQuery from "./CarouselWithQuery";
 
 export default function App() {
   const [search, setSearch] = useState<string | number>("");
-
+  const [pokedexStyle, setPokedexStyle] = useState<string>("grid");
+  const [livingDex, setLivingDex] = useState<boolean>(false);
   return (
     <Router>
       <div id="page">
@@ -18,7 +19,7 @@ export default function App() {
             <h1>Chikopedia</h1>
           </Link>
           <Search search={search} setSearch={setSearch} />
-          <Menu />
+          <Menu pokedexStyle={pokedexStyle} setPokedexStyle = {setPokedexStyle} livingDex={livingDex} setLivingDex={setLivingDex} />
         </header>
         <Switch>
           <Route exact path="/">
