@@ -7,7 +7,11 @@ import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStor
 import { POKEMON_LIMIT } from "../Variables/globalVariables";
 import replacePokemonNamesFromArray from "../utils/replacePokemonNamesFromArray";
 
-export default function PokemonGridWithQuery() {
+export interface PokemonGridWithQueryProps {
+  livingDex: boolean;
+}
+
+export default function PokemonGridWithQuery({livingDex}: PokemonGridWithQueryProps) {
   const [isFetchingPokemon, setIsFetchingPokemon] = useState<boolean>(false);
   const [allSimplePokemon, setPokemonStorage] = useSimplePokemonSessionStorage(
     []
@@ -27,6 +31,6 @@ export default function PokemonGridWithQuery() {
     }
   }, []);
   return (
-    <PokemonGrid isLoading={isFetchingPokemon} allPokemon={allSimplePokemon} />
+    <PokemonGrid isLoading={isFetchingPokemon} allPokemon={allSimplePokemon} livingDex={livingDex}/>
   );
 }

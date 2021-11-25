@@ -5,10 +5,12 @@ import { SimplePokemon } from "../types/SimplePokemon";
 
 export interface PokemonGridResultsProps {
   pokemon: SimplePokemon[];
+  livingDex: boolean;
 }
 
 export default function PokemonGridResults({
   pokemon,
+  livingDex,
 }: PokemonGridResultsProps) {
   const mapped = pokemon.map((pokemonObject: SimplePokemon) => {
     return (
@@ -17,6 +19,7 @@ export default function PokemonGridResults({
         name={pokemonObject.name}
         index={pokemonObject.id}
         image={pokemonObject.sprite}
+        livingDex={livingDex}
       />
     );
   });

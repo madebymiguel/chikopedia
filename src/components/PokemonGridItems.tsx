@@ -9,12 +9,14 @@ export interface PokemonGridItemsProps {
   name: string;
   index: number;
   image: string;
+  livingDex: boolean;
 }
 
 export default function PokemonGridItems({
   name,
   index,
   image,
+  livingDex,
 }: PokemonGridItemsProps) {
   const [pokeball, setPokeball] = useState(greyPokeball);
   const [toggle, setToggle] = useState(false);
@@ -28,17 +30,19 @@ export default function PokemonGridItems({
     setToggle(!toggle);
   }
 
+  console.log("livingdex boolean is ", livingDex);
+
   return (
     <div className="grid-item-container">
       <div className="grid-item-header">
         <span className="pokemon-index">#{index}</span>
-        <input
+        {livingDex && <input
           type="image"
           src={pokeball}
           alt="pokeball"
           className="pokeball"
           onClick={handlePokeballColorChange}
-        />
+        />}
       </div>
       <Link to={`/pokemon/${index}`} className="link">
         <img className="pokemon-sprite" src={image} />

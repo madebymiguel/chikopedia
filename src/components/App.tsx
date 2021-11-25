@@ -23,7 +23,7 @@ export default function App() {
         </header>
         <Switch>
           <Route exact path="/">
-            <PokemonGridWithQuery />
+            <PokemonGridWithQuery livingDex={livingDex}/>
           </Route>
           <Route
             path="/pokemon/:pokemonName"
