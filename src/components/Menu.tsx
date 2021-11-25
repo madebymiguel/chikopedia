@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
-import Switch from "react-switch";
 import "../scss/Menu.scss";
+import DropDownMenu from "./DropDownMenu";
+import MenuContent from "./MenuContent";
 // import DetectOutsideClick from "../utils/detectOutsideClick"
 
 export interface MenuProps {
@@ -38,56 +39,19 @@ export default function Menu({pokedexStyle, setPokedexStyle, livingDex, setLivin
     };
   }, [menu]);
 
+//   useEffect(() => {
+
+//   }, [livingDex])
+
   const handleMenu = () => setMenu(!menu);
-
-  const onChangeStyle = (event: React.FormEvent<HTMLDivElement>) => {
-    setPokedexStyle(event.currentTarget.innerText);
-    console.log("event text is ", event.currentTarget.innerText);
-  };
-
-  const handleSwitchChange = () => setLivingDex(!livingDex);
 
   return (
     <div className="menu-container">
-      <button onClick={handleMenu} className="drop-down">
-        Menu
-      </button>
-      <div
-        ref={dropdownRef}
-        className={`menu-contents ${menu ? "active" : "inactive"}`}
-      >
-        <form id="scroll-grid" onChange={(e) => onChangeStyle}>
-          <label className="radio-label">
-            <input
-              className="radio-button"
-              type="radio"
-              id="scroll"
-              name="style"
-              value="scroll"
-              checked
-            />
-            Scroll
-          </label>
-          <label className="radio-label">
-            <input
-              className="radio-button"
-              type="radio"
-              id="grid"
-              name="style"
-              value="grid"
-            />
-            Grid
-          </label>
-        </form>
-        <div id="livingdex-switch">
-          <Switch
-            className="toggle-switch"
-            onChange={handleSwitchChange}
-            checked={livingDex}
-          />
-          <span className="switch-label">Living Dex</span>
-        </div>
-      </div>
+      <DropDownMenu menu={menu} setMenu={setMenu} />
+      <MenuContent pokedexStyle={pokedexStyle} setPokedexStyle={setPokedexStyle} 
+                   livingDex={livingDex} setLivingDex={setLivingDex} 
+                   menu={menu} dropdownRef={dropdownRef} 
+      />
     </div>
   );
 }
