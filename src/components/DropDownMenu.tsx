@@ -6,11 +6,9 @@ export interface DropDownMenuProps {
     setMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function DropDownMenu({menu, setMenu}: DropDownMenuProps) {
-    const handleMenu = () => setMenu(!menu);
-    
+export default function DropDownMenu({menu, setMenu}: DropDownMenuProps) {    
     return(
-        <button onClick={handleMenu} 
+        <button onClick={() => setMenu(!menu)} 
                 className="drop-down">
             Menu
         </button>
