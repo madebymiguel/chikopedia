@@ -2,7 +2,7 @@
   "name": "chikopedia",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --port $PORT",
+    "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview"
   },
