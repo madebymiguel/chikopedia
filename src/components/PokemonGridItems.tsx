@@ -4,6 +4,11 @@ import "../scss/PokemonGridItem.scss";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 import greyPokeball from "../assets/grey-pokeball.svg";
 import redPokeball from "../assets/red-pokeball.svg";
+import {
+  addToLivingDexSet,
+  getLivingDexSet,
+  removeFromLivingDexSet,
+} from "../utils/caughtPokemonStorage";
 
 export interface PokemonGridItemsProps {
   name: string;
@@ -18,31 +23,38 @@ export default function PokemonGridItems({
   image,
   livingDex,
 }: PokemonGridItemsProps) {
-  const [pokeball, setPokeball] = useState(greyPokeball);
-  const [toggle, setToggle] = useState(false);
+  const livingDexStorage = getLivingDexSet();
+
+  const [pokeball, setPokeball] = useState(
+    livingDexStorage[index] ? redPokeball : greyPokeball
+  );
+
+  console.log(livingDexStorage);
 
   function handlePokeballColorChange() {
-    if (toggle) {
+    // If a pokeball was selected, and we now toggle to remove it
+    if (pokeball === redPokeball) {
+      removeFromLivingDexSet(index);
       setPokeball(greyPokeball);
     } else {
+      addToLivingDexSet(index);
       setPokeball(redPokeball);
     }
-    setToggle(!toggle);
   }
-
-  console.log("livingdex boolean is ", livingDex);
 
   return (
     <div className="grid-item-container">
       <div className="grid-item-header">
         <span className="pokemon-index">#{index}</span>
-        {livingDex && <input
-          type="image"
-          src={pokeball}
-          alt="pokeball"
-          className="pokeball"
-          onClick={handlePokeballColorChange}
-        />}
+        {livingDex && (
+          <input
+            type="image"
+            src={pokeball}
+            alt="pokeball"
+            className="pokeball"
+            onClick={handlePokeballColorChange}
+          />
+        )}
       </div>
       <Link to={`/pokemon/${index}`} className="link">
         <img className="pokemon-sprite" src={image} />
