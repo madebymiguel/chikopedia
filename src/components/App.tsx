@@ -6,11 +6,15 @@ import Search from "./Search";
 import Menu from "./Menu";
 import PokemonGridWithQuery from "./PokemonGridWithQuery";
 import CarouselWithQuery from "./CarouselWithQuery";
+import { LIVING_DEX_STATUS_KEY } from "../Variables/globalVariables";
+import { getLivingDexStatus } from "../utils/getLivingDexStatus";
 
 export default function App() {
   const [search, setSearch] = useState<string | number>("");
   const [pokedexStyle, setPokedexStyle] = useState<string>("grid");
-  const [livingDex, setLivingDex] = useState<boolean>(false);
+  const livingDexStatus = getLivingDexStatus();
+  const [livingDex, setLivingDex] = useState<boolean>(livingDexStatus); // something to save previous progress -> maybe session storage?
+
   return (
     <Router>
       <div id="page">

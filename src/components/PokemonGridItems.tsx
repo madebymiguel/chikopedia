@@ -4,11 +4,9 @@ import "../scss/PokemonGridItem.scss";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 import greyPokeball from "../assets/grey-pokeball.svg";
 import redPokeball from "../assets/red-pokeball.svg";
-import {
-  addToLivingDexSet,
-  getLivingDexSet,
-  removeFromLivingDexSet,
-} from "../utils/caughtPokemonStorage";
+import { getLivingDexSet } from "../utils/getLivingDexSet";
+import { removeFromLivingDexSet } from "../utils/removeFromLivingDexSet";
+import { addToLivingDexSet } from "../utils/addToLivingDexSet";
 
 export interface PokemonGridItemsProps {
   name: string;
@@ -28,8 +26,6 @@ export default function PokemonGridItems({
   const [pokeball, setPokeball] = useState(
     livingDexStorage[index] ? redPokeball : greyPokeball
   );
-
-  console.log(livingDexStorage);
 
   function handlePokeballColorChange() {
     // If a pokeball was selected, and we now toggle to remove it
