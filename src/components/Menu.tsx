@@ -14,8 +14,6 @@ export interface MenuProps {
 // there is a bug where if you click the toggle, the radio buttons reset
 export default function Menu({pokedexStyle, setPokedexStyle, livingDex, setLivingDex}: MenuProps) {
   const dropdownRef: React.MutableRefObject<any> = useRef(null);
-  // const [menu, setMenu] = DetectOutsideClick(dropdownRef, false); // menu pops or not
-
   const [menu, setMenu] = useState(false);
 
   useEffect(() => {

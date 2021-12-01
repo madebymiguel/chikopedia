@@ -1,6 +1,8 @@
 import React from "react";
 import Switch from "react-switch";
 import "../scss/Menu.scss";
+import { getLivingDexStatus } from "../utils/getLivingDexStatus";
+import { LIVING_DEX_STATUS_KEY } from "../Variables/globalVariables";
 
 export interface MenuContentProps {
     pokedexStyle: string;
@@ -12,15 +14,12 @@ export interface MenuContentProps {
 }
 
 export default function MenuContent({pokedexStyle, setPokedexStyle, livingDex, setLivingDex, menu, dropdownRef}: MenuContentProps) { 
-    
-    // for debugging
-    // useEffect(() => {
-    //     console.log(livingDex);
-    // }, [livingDex]);
-    // useEffect(() => {
-    //     console.log(pokedexStyle);
-    // }, [pokedexStyle]);
+    function handleLivingDexStatus() {
+        const swap = !livingDex;
+        sessionStorage.setItem(LIVING_DEX_STATUS_KEY, JSON.stringify(swap));
+        setLivingDex(swap);
 
+    }
     return(
         <div
             ref={dropdownRef}
@@ -40,7 +39,7 @@ export default function MenuContent({pokedexStyle, setPokedexStyle, livingDex, s
             <div id="livingdex-switch">
                 <Switch
                     className="toggle-switch"
-                    onChange={() => {setLivingDex(!livingDex)}}
+                    onChange={handleLivingDexStatus}
                     checked={livingDex}
                 />
                 <span className="switch-label">Living Dex</span>
