@@ -30,6 +30,6 @@ export default function CarouselWithQuery({ pokemonName }: MatchParams) {
       });
     }
   }, [pokemonName]);
-
+  
   return <Carousel pokemon={pokemon} pokemonName={pokemonName} />;
 }
