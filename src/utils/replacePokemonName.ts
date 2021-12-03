@@ -1,5 +1,5 @@
 import { Pokemon } from "../types/Pokemon";
-import { pokemonNameExceptions } from "../Variables/pokemonNameExceptions";
+import { pokemonNameExceptions } from "../variables/pokemonNameExceptions";
 
 export default function replacePokemonName(pokemon: Pokemon) {
   const findPokemon = pokemonNameExceptions.filter((pokemonObject) => {

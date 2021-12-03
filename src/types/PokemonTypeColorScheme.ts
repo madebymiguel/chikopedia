@@ -1,4 +1,4 @@
-type PokemonTypeNames = { [index: string]: string};
+type PokemonTypeNames = { [index: string]: string };
 
 const colors: PokemonTypeNames = {
   normal: "#A8A77A",

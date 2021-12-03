@@ -6,7 +6,7 @@ import Search from "./Search";
 import Menu from "./Menu";
 import PokemonGridWithQuery from "./PokemonGridWithQuery";
 import CarouselWithQuery from "./CarouselWithQuery";
-import { LIVING_DEX_STATUS_KEY } from "../Variables/globalVariables";
+import { LIVING_DEX_STATUS_KEY } from "../variables/globalVariables";
 import { getLivingDexStatus } from "../utils/getLivingDexStatus";
 
 export default function App() {
@@ -23,11 +23,16 @@ export default function App() {
             <h1>Chikopedia</h1>
           </Link>
           <Search search={search} setSearch={setSearch} />
-          <Menu pokedexStyle={pokedexStyle} setPokedexStyle = {setPokedexStyle} livingDex={livingDex} setLivingDex={setLivingDex} />
+          <Menu
+            pokedexStyle={pokedexStyle}
+            setPokedexStyle={setPokedexStyle}
+            livingDex={livingDex}
+            setLivingDex={setLivingDex}
+          />
         </header>
         <Switch>
           <Route exact path="/">
-            <PokemonGridWithQuery livingDex={livingDex}/>
+            <PokemonGridWithQuery livingDex={livingDex} />
           </Route>
           <Route
             path="/pokemon/:pokemonName"

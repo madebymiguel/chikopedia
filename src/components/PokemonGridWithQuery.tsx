@@ -4,14 +4,16 @@ import PokemonGrid from "./PokemonGrid";
 import getAllPokemon from "../apis/getAllPokemon";
 import simplifyPokemon from "../utils/simplifyPokemon";
 import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
-import { POKEMON_LIMIT } from "../Variables/globalVariables";
+import { POKEMON_LIMIT } from "../variables/globalVariables";
 import replacePokemonNamesFromArray from "../utils/replacePokemonNamesFromArray";
 
 export interface PokemonGridWithQueryProps {
   livingDex: boolean;
 }
 
-export default function PokemonGridWithQuery({livingDex}: PokemonGridWithQueryProps) {
+export default function PokemonGridWithQuery({
+  livingDex,
+}: PokemonGridWithQueryProps) {
   const [isFetchingPokemon, setIsFetchingPokemon] = useState<boolean>(false);
   const [allSimplePokemon, setPokemonStorage] = useSimplePokemonSessionStorage(
     []
@@ -31,6 +33,10 @@ export default function PokemonGridWithQuery({livingDex}: PokemonGridWithQueryPr
     }
   }, []);
   return (
-    <PokemonGrid isLoading={isFetchingPokemon} allPokemon={allSimplePokemon} livingDex={livingDex}/>
+    <PokemonGrid
+      isLoading={isFetchingPokemon}
+      allPokemon={allSimplePokemon}
+      livingDex={livingDex}
+    />
   );
 }

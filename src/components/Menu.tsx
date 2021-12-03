@@ -6,13 +6,18 @@ import MenuContent from "./MenuContent";
 
 export interface MenuProps {
   pokedexStyle: string;
-  setPokedexStyle: React.Dispatch<React.SetStateAction<string>>
+  setPokedexStyle: React.Dispatch<React.SetStateAction<string>>;
   livingDex: boolean;
   setLivingDex: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 // there is a bug where if you click the toggle, the radio buttons reset
-export default function Menu({pokedexStyle, setPokedexStyle, livingDex, setLivingDex}: MenuProps) {
+export default function Menu({
+  pokedexStyle,
+  setPokedexStyle,
+  livingDex,
+  setLivingDex,
+}: MenuProps) {
   const dropdownRef: React.MutableRefObject<any> = useRef(null);
   const [menu, setMenu] = useState(false);
 
@@ -37,18 +42,22 @@ export default function Menu({pokedexStyle, setPokedexStyle, livingDex, setLivin
     };
   }, [menu]);
 
-//   useEffect(() => {
+  //   useEffect(() => {
 
-//   }, [livingDex])
+  //   }, [livingDex])
 
   const handleMenu = () => setMenu(!menu);
 
   return (
     <div className="menu-container">
       <DropDownMenu menu={menu} setMenu={setMenu} />
-      <MenuContent pokedexStyle={pokedexStyle} setPokedexStyle={setPokedexStyle} 
-                   livingDex={livingDex} setLivingDex={setLivingDex} 
-                   menu={menu} dropdownRef={dropdownRef} 
+      <MenuContent
+        pokedexStyle={pokedexStyle}
+        setPokedexStyle={setPokedexStyle}
+        livingDex={livingDex}
+        setLivingDex={setLivingDex}
+        menu={menu}
+        dropdownRef={dropdownRef}
       />
     </div>
   );
