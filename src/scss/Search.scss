@@ -1,0 +1,27 @@
+@import "_variables.scss";
+.search {
+  // currently hard coded on size but later can be changed
+  height: 40px;
+  width: 450px;
+
+  #search-input {
+    border-radius: 8px;
+    height: 100%;
+    width: 73%;
+    font-size: 100%;
+  }
+
+  #search-button {
+    border-radius: 16px;
+    height: 100%;
+    width: 25%;
+    margin-left: 2%;
+    background-color: $color3;
+    color: white;
+    border: 1.6px $color3 solid;
+
+    &:active {
+      box-shadow: 0 4px 5px -1px lightgrey;
+    }
+  }
+}

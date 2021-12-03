@@ -1,45 +1,42 @@
-import { useState } from "react";
-import logo from "../assets/logo.svg";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import "../scss/App.scss";
+import "../scss/Header.scss";
+import Search from "./Search";
+import Menu from "./Menu";
+import PokemonGridWithQuery from "./PokemonGridWithQuery";
+import CarouselWithQuery from "./CarouselWithQuery";
+import { LIVING_DEX_STATUS_KEY } from "../Variables/globalVariables";
+import { getLivingDexStatus } from "../utils/getLivingDexStatus";
 
-function App() {
-  const [count, setCount] = useState(0);
+export default function App() {
+  const [search, setSearch] = useState<string | number>("");
+  const [pokedexStyle, setPokedexStyle] = useState<string>("grid");
+  const livingDexStatus = getLivingDexStatus();
+  const [livingDex, setLivingDex] = useState<boolean>(livingDexStatus); // something to save previous progress -> maybe session storage?
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {" | "}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <Router>
+      <div id="page">
+        <header id="header">
+          <Link to="/">
+            <h1>Chikopedia</h1>
+          </Link>
+          <Search search={search} setSearch={setSearch} />
+          <Menu pokedexStyle={pokedexStyle} setPokedexStyle = {setPokedexStyle} livingDex={livingDex} setLivingDex={setLivingDex} />
+        </header>
+        <Switch>
+          <Route exact path="/">
+            <PokemonGridWithQuery livingDex={livingDex}/>
+          </Route>
+          <Route
+            path="/pokemon/:pokemonName"
+            render={({ match }) => (
+              <CarouselWithQuery pokemonName={match.params.pokemonName} />
+            )}
+          />
+        </Switch>
+      </div>
+    </Router>
   );
 }
-
-export default App;
