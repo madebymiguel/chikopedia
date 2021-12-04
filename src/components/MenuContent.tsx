@@ -32,36 +32,39 @@ export default function MenuContent({
       className={`menu-contents ${menu ? "active" : "inactive"}`}
     >
       <div id="scroll-grid">
-        <div className="radio-button" onClick={(e) => setPokedexStyle("grid")}>
+        <label className="radio-label">
           <input
+            className="radio-button"
             type="radio"
-            value={pokedexStyle}
-            name="pokedexStyle"
+            id="grid"
+            name="viewStyle"
+            value="grid"
+            onChange={() => setPokedexStyle("grid")}
             checked={pokedexStyle === "grid"}
           />
-          grid
-        </div>
-        <div
-          className="radio-button"
-          onClick={(e) => setPokedexStyle("scroll")}
-        >
-          <input
-            type="radio"
-            value={pokedexStyle}
-            name="pokedexStyle"
-            checked={pokedexStyle === "scroll"}
-          />
-          scroll
-        </div>
-      </div>
+          Grid
+        </label>
 
-      <div id="livingdex-switch">
-        <Switch
-          className="toggle-switch"
-          onChange={handleLivingDexStatus}
-          checked={livingDex}
-        />
-        <span className="switch-label">Living Dex</span>
+        <label className="radio-label">
+          <input
+            className="radio-button"
+            type="radio"
+            id="scroll"
+            name="viewStyle"
+            value="scroll"
+            onChange={() => setPokedexStyle("scroll")}
+          />
+          Scroll
+        </label>
+
+        <div id="livingdex-switch">
+          <Switch
+            className="toggle-switch"
+            onChange={handleLivingDexStatus}
+            checked={livingDex}
+          />
+          <span className="switch-label">Living Dex</span>
+        </div>
       </div>
     </div>
   );
