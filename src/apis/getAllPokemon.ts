@@ -7,5 +7,7 @@ export default async function getAllPokemon(numberOfPokemon: number) {
   }
 
   const responses = await Promise.all(allPokemonToFetch);
-  return await Promise.all<Pokemon>(responses.map((response) => response.json()));
+  return await Promise.all<Pokemon>(
+    responses.map((response) => response.json())
+  );
 }

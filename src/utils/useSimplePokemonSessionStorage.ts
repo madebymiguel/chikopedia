@@ -1,5 +1,5 @@
 import { SimplePokemon } from "../types/SimplePokemon";
-import { SIMPLE_KEY } from "../Variables/globalVariables";
+import { SIMPLE_KEY } from "../variables/globalVariables";
 
 const setPokemonStorage = (value: SimplePokemon[]) => {
   sessionStorage.setItem(SIMPLE_KEY, JSON.stringify(value));

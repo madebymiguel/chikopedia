@@ -1,4 +1,4 @@
 export interface PokemonLimitItem {
-    name: string;
-    url: string;
+  name: string;
+  url: string;
 }
