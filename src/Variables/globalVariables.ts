@@ -1,4 +1,4 @@
-export const POKEMON_LIMIT = 45;
+export const POKEMON_LIMIT = 898;
 export const MAX_POKEMON = 898;
 
 export const SIMPLE_KEY = "allSimplePokemon";

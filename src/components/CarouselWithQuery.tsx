@@ -12,6 +12,14 @@ export default function CarouselWithQuery({ pokemonName }: MatchParams) {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [finishedFetching, setFinishedFetching] = useState(false);
 
+  // const getPokemon = (index: string | number) => {
+  //     const res = fetchPokemon(index);
+  //     res.then((pokemon) => {
+  //       setPokemon(pokemon);
+  //       setFinishedFetching(true);
+  //     });
+  // };
+
   useEffect(() => {
     if (pokemonName !== "") {
       const res = fetchPokemon(pokemonName);
