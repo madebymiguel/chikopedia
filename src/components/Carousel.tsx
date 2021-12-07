@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../scss/Carousel.scss";
-import { Pokemon } from "../types/Pokemon";
+import { Pokemon } from "../types/pokemon/Pokemon";
 import PokedexEntry from "./PokedexEntry";
 import { Link } from "react-router-dom";
 import { MAX_POKEMON } from "../variables/globalVariables";

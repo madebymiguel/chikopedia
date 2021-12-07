@@ -1,12 +1,12 @@
-import { PokemonAbility } from "./PokemonAbility";
-import { PokemonForm } from "./PokemonForm";
-import { PokemonStat } from "./PokemonStat";
-import { PokemonType } from "./PokemonType";
-import { PokemonGameIndex } from "./PokemonGameIndex";
-import { PokemonHeldItem } from "./PokemonHeldItem";
-import { PokemonMove } from "./PokemonMove";
-import { PokemonPastType } from "./PokemonPastType";
-import { PokemonSprites } from "./PokemonSprites";
+import { PokemonAbility } from "./Ability";
+import { PokemonForm } from "./Form";
+import { PokemonStat } from "./Stat";
+import { PokemonType } from "./Type";
+import { PokemonGameIndex } from "./GameIndex";
+import { PokemonHeldItem } from "./HeldItem";
+import { PokemonMove } from "./Move";
+import { PokemonPastType } from "./PastType";
+import { PokemonSprites } from "./Sprites";
 
 export interface Pokemon {
   abilities: PokemonAbility[]; // Ability[];

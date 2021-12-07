@@ -1,8 +1,8 @@
 import "../scss/PokedexEntry.scss";
 import React from "react";
-import { PokemonType } from "../types/PokemonType";
-import { PokemonStat } from "../types/PokemonStat";
-import { PokemonAbility } from "../types/PokemonAbility";
+import { PokemonType } from "../types/pokemon/Type";
+import { PokemonStat } from "../types/pokemon/Stat";
+import { PokemonAbility } from "../types/pokemon/Ability";
 import PokemonTypes from "./PokemonTypes";
 import PokemonStats from "./PokemonStats";
 import PokemonAbilities from "./PokemonAbilities";

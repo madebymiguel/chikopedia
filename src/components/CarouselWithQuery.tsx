@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchPokemon } from "../apis/fetchPokemon";
-import { Pokemon } from "../types/Pokemon";
+import { Pokemon } from "../types/pokemon/Pokemon";
 import replacePokemonName from "../utils/replacePokemonName";
 import Carousel from "./Carousel";
 

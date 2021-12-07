@@ -1,5 +1,5 @@
 import React from "react";
-import { PokemonType } from "../types/PokemonType";
+import { PokemonType } from "../types/pokemon/Type";
 import Colors from "../types/PokemonTypeColorScheme";
 import "../scss/PokemonTypes.scss";
 
