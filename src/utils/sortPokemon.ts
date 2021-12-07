@@ -1,4 +1,4 @@
-import { Pokemon } from "../types/Pokemon";
+import { Pokemon } from "../types/pokemon/Pokemon";
 
 export default function sortPokemon(pokemonArray: Pokemon[]) {
   const result = pokemonArray.sort((pokemon1, pokemon2) =>

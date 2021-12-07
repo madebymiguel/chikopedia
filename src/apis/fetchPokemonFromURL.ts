@@ -1,4 +1,4 @@
-import { Pokemon } from "../types/Pokemon";
+import { Pokemon } from "../types/pokemon/Pokemon";
 
 export async function fetchPokemonFromURL(pokemonUrl: string) {
   const res = await fetch(pokemonUrl);

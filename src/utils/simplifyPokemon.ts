@@ -1,4 +1,4 @@
-import { Pokemon } from "../types/Pokemon";
+import { Pokemon } from "../types/pokemon/Pokemon";
 import { SimplePokemon } from "../types/SimplePokemon";
 
 export default function simplifyPokemon(pokemonArray: Pokemon[]) {

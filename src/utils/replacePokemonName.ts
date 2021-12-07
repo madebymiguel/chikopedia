@@ -1,4 +1,4 @@
-import { Pokemon } from "../types/Pokemon";
+import { Pokemon } from "../types/pokemon/Pokemon";
 import { pokemonNameExceptions } from "../variables/pokemonNameExceptions";
 
 export default function replacePokemonName(pokemon: Pokemon) {

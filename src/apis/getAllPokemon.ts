@@ -1,4 +1,4 @@
-import { Pokemon } from "../types/Pokemon";
+import { Pokemon } from "../types/pokemon/Pokemon";
 
 export default async function getAllPokemon(numberOfPokemon: number) {
   const allPokemonToFetch = [];
