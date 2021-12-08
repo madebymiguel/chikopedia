@@ -1,5 +1,4 @@
 import "../scss/PokemonStats.scss";
-import React from "react";
 import { PokemonStat } from "../types/pokemon/Stat";
 
 export interface PokemonStatProps {

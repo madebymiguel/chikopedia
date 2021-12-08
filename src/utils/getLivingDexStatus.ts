@@ -5,7 +5,7 @@ export function getLivingDexStatus() {
     LIVING_DEX_STATUS_KEY
   );
 
-  const livingDexStatus =
+  const livingDexStatus: boolean =
     serializedLivingDexStatus === null
       ? false
       : JSON.parse(serializedLivingDexStatus);

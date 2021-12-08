@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import "../scss/App.scss";
 import "../scss/Header.scss";
@@ -6,14 +6,13 @@ import Search from "./Search";
 import Menu from "./Menu";
 import PokemonGridWithQuery from "./PokemonGridWithQuery";
 import CarouselWithQuery from "./CarouselWithQuery";
-import { LIVING_DEX_STATUS_KEY } from "../variables/globalVariables";
 import { getLivingDexStatus } from "../utils/getLivingDexStatus";
 
 export default function App() {
   const [search, setSearch] = useState<string | number>("");
   const [pokedexStyle, setPokedexStyle] = useState<string>("grid");
   const livingDexStatus = getLivingDexStatus();
-  const [livingDex, setLivingDex] = useState<boolean>(livingDexStatus); // something to save previous progress -> maybe session storage?
+  const [livingDex, setLivingDex] = useState<boolean>(livingDexStatus);
 
   return (
     <Router>
@@ -35,9 +34,9 @@ export default function App() {
             <PokemonGridWithQuery livingDex={livingDex} />
           </Route>
           <Route
-            path="/pokemon/:pokemonName"
+            path="/pokemon/:pokemonId"
             render={({ match }) => (
-              <CarouselWithQuery pokemonName={match.params.pokemonName} />
+              <CarouselWithQuery pokemonId={+match.params.pokemonId} />
             )}
           />
         </Switch>

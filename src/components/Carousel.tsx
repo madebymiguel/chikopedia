@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../scss/Carousel.scss";
 import { Pokemon } from "../types/pokemon/Pokemon";
 import PokedexEntry from "./PokedexEntry";
@@ -7,47 +7,46 @@ import { MAX_POKEMON } from "../variables/globalVariables";
 
 export interface CarouselProps {
   pokemon: Pokemon | null;
-  pokemonName: string | number;
+  pokemonId: number;
+  finishedFetching: boolean;
 }
 
-export default function Carousel({ pokemon, pokemonName }: CarouselProps) {
+export default function Carousel({
+  pokemon,
+  pokemonId,
+  finishedFetching,
+}: CarouselProps) {
   return (
     <div className="carousel-container">
       <div className="nav-buttons">
-        {pokemonName > 1 && (
-          <Link
-            to={`/pokemon/${+pokemonName - 1}`}
-            className="nav-buttons prev"
-          >
+        {pokemonId > 1 && (
+          <Link to={`/pokemon/${pokemonId - 1}`} className="nav-buttons prev">
             prev
           </Link>
         )}
       </div>
       <div className="carousel-content">
-        {pokemon !== null && (
-          <PokedexEntry
-            name={pokemon.name}
-            index={pokemon.id}
-            image={pokemon.sprites.front_default}
-            types={pokemon.types}
-            region={
-              pokemon.id > 649
-                ? "unknown"
-                : pokemon.game_indices[0].version.name
-            }
-            stats={pokemon.stats}
-            weight={pokemon.weight}
-            height={pokemon.height}
-            abilities={pokemon.abilities}
-          />
+        {finishedFetching ? (
+          pokemon !== null && (
+            <PokedexEntry
+              key={pokemon.id}
+              name={pokemon.name}
+              index={pokemon.id}
+              image={pokemon.sprites.front_default}
+              types={pokemon.types}
+              stats={pokemon.stats}
+              weight={pokemon.weight}
+              height={pokemon.height}
+              abilities={pokemon.abilities}
+            />
+          )
+        ) : (
+          <span>...loading</span>
         )}
       </div>
       <div className="nav-buttons">
-        {pokemonName < MAX_POKEMON && (
-          <Link
-            to={`/pokemon/${+pokemonName + 1}`}
-            className="nav-buttons next"
-          >
+        {pokemonId < MAX_POKEMON && (
+          <Link to={`/pokemon/${pokemonId + 1}`} className="nav-buttons next">
             next
           </Link>
         )}

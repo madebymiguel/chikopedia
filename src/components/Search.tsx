@@ -9,33 +9,25 @@ export interface SearchProps {
 }
 
 export default function Search({ search, setSearch }: SearchProps) {
-
   const [searchIndex, setSearchIndex] = useState(0);
-  const [isClicked, setIsClicked] = useState(false);
   const location = useLocation();
-  
+
   useEffect(() => {
     const setSearchIndexOnUseEffect = async () => {
       setSearchIndex(await getPokemonIndexFromStorage(search));
     };
-
     setSearchIndexOnUseEffect();
-
-    console.log("search index result is ", searchIndex);
   }, [search]);
-  
 
   return (
     <div>
       <Link
         to={
-          searchIndex !== 0
-            ? `/pokemon/${searchIndex}`
-            : `${location.pathname}`
+          searchIndex !== 0 ? `/pokemon/${searchIndex}` : `${location.pathname}`
         }
         className="link"
       >
-        <form onClick={() => {setSearch("")}} className="search">
+        <form onClick={() => setSearch("")} className="search">
           <input
             placeholder="search pokemon by name or id"
             type="text"

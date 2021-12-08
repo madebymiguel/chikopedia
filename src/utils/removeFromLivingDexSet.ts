@@ -1,5 +1,5 @@
-import { LIVING_DEX_KEY } from "../variables/globalVariables";
 import { getLivingDexSet } from "./getLivingDexSet";
+import { LIVING_DEX_KEY } from "../variables/globalVariables";
 
 export function removeFromLivingDexSet(pokemonIndex: number) {
   const livingDexSet = getLivingDexSet();

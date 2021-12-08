@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PokemonGrid from "./PokemonGrid";
 import getAllPokemon from "../apis/getAllPokemon";
 import simplifyPokemon from "../utils/simplifyPokemon";

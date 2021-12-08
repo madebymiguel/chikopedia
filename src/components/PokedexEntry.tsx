@@ -13,13 +13,10 @@ export interface PokedexEntryProps {
   index: number;
   image: string;
   types: PokemonType[];
-  region: string;
   stats: PokemonStat[];
   weight: number;
   height: number;
   abilities: PokemonAbility[];
-  //   dexEntry: string;
-  //   evolution?: number[];
 }
 
 export default function PokedexEntry({
@@ -27,7 +24,6 @@ export default function PokedexEntry({
   index,
   image,
   types,
-  region,
   stats,
   weight,
   height,
@@ -49,7 +45,6 @@ export default function PokedexEntry({
 
       <section className="pokedex-detailed-info">
         <PokemonTypes types={types} />
-        {/* <span>Found In: {region === undefined ? "unknown" : region}</span> */}
         <div className="description">
           <span>WEIGHT: {(weight * 0.1).toFixed(1)} kg</span>
           <span>HEIGHT: {(height * 0.1).toFixed(1)} m </span>

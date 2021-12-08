@@ -1,7 +1,6 @@
 import React from "react";
 import Switch from "react-switch";
 import "../scss/Menu.scss";
-import { getLivingDexStatus } from "../utils/getLivingDexStatus";
 import { LIVING_DEX_STATUS_KEY } from "../variables/globalVariables";
 
 export interface MenuContentProps {
@@ -26,6 +25,7 @@ export default function MenuContent({
     sessionStorage.setItem(LIVING_DEX_STATUS_KEY, JSON.stringify(swap));
     setLivingDex(swap);
   }
+
   return (
     <div
       ref={dropdownRef}

@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import "../scss/Menu.scss";
 import DropDownMenu from "./DropDownMenu";
 import MenuContent from "./MenuContent";
-// import DetectOutsideClick from "../utils/detectOutsideClick"
 
 export interface MenuProps {
   pokedexStyle: string;
@@ -11,7 +10,6 @@ export interface MenuProps {
   setLivingDex: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-// there is a bug where if you click the toggle, the radio buttons reset
 export default function Menu({
   pokedexStyle,
   setPokedexStyle,
@@ -41,12 +39,6 @@ export default function Menu({
       window.removeEventListener("click", onClick);
     };
   }, [menu]);
-
-  //   useEffect(() => {
-
-  //   }, [livingDex])
-
-  const handleMenu = () => setMenu(!menu);
 
   return (
     <div className="menu-container">

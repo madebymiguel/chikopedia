@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import "../scss/PokemonGrid.scss";
 import { SimplePokemon } from "../types/SimplePokemon";
 import PokemonGridItem from "./PokemonGridItem";

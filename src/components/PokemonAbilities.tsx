@@ -1,5 +1,4 @@
 import "../scss/PokemonAbilities.scss";
-import React from "react";
 import { PokemonAbility } from "../types/pokemon/Ability";
 
 export interface PokemonAbilityProps {

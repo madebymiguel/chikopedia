@@ -1,7 +1,5 @@
 import { fetchPokemon } from "../apis/fetchPokemon";
-import PokemonGridItems from "../components/PokemonGridItems";
 import { SimplePokemon } from "../types/SimplePokemon";
-import simplifyPokemon from "./simplifyPokemon";
 
 export default async function getPokemonIndexFromStorage(
   search: string | number

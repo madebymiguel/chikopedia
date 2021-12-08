@@ -1,5 +1,5 @@
-import { pokemonNameExceptions } from "../variables/pokemonNameExceptions";
 import { SimplePokemon } from "../types/SimplePokemon";
+import { pokemonNameExceptions } from "../variables/pokemonNameExceptions";
 import { POKEMON_LIMIT } from "../variables/globalVariables";
 
 export default function replacePokemonName(pokemonArray: SimplePokemon[]) {

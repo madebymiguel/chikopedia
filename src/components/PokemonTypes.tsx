@@ -1,7 +1,6 @@
-import React from "react";
+import "../scss/PokemonTypes.scss";
 import { PokemonType } from "../types/pokemon/Type";
 import Colors from "../types/PokemonTypeColorScheme";
-import "../scss/PokemonTypes.scss";
 
 function PokemonTypeComponent({ name }: { name: string }) {
   const currentPokemonTypeColor = Colors[name];
