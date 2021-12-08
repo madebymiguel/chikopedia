@@ -36,7 +36,10 @@ export default function App() {
           <Route
             path="/pokemon/:pokemonId"
             render={({ match }) => (
-              <CarouselWithQuery pokemonId={+match.params.pokemonId} />
+              <CarouselWithQuery
+                pokemonId={+match.params.pokemonId}
+                livingDex={livingDex}
+              />
             )}
           />
         </Switch>
