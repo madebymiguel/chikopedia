@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import "../scss/PokemonEvolutionChainItem.scss";
+import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 
 export interface PokemonEvolutionChainItemProps {
   name: string;
@@ -12,11 +14,11 @@ export default function PokemonEvolutionChainItem({
   image,
 }: PokemonEvolutionChainItemProps) {
   return (
-    <div>
-      <Link to={`/pokemon/${index}`} className="link">
-        <span>{name}</span>
-        <img src={image} />
-      </Link>
-    </div>
+    <Link to={`/pokemon/${index}`} className="link">
+      <div className="chain-item-container">
+        <img src={image} className="pokemon-sprite" />
+        <span className="pokemon-name">{upperCaseFirstLetter(name)}</span>
+      </div>
+    </Link>
   );
 }

@@ -12,6 +12,7 @@ import { handlePokeballColorChange } from "../utils/handlePokeballColorChange";
 import PokemonEvolutionChain from "./PokemonEvolutionChain";
 
 export interface PokedexEntryProps {
+  //From Pokemon
   name: string;
   index: number;
   image: string;
@@ -20,11 +21,16 @@ export interface PokedexEntryProps {
   weight: number;
   height: number;
   abilities: PokemonAbility[];
-  color: string;
+  //From PokemonSpecies
+  genderRate: number;
+  captureRate: number;
   isLegendary: boolean;
   isMythical: boolean;
-  generation: string;
+  growthRate: string;
+  eggGroups: string;
+  color: string;
   habitat: string;
+  generation: string;
   evolutionChain: EvolutionChain | null;
   pokeball: string;
   setPokeball: React.Dispatch<React.SetStateAction<string>>;
@@ -40,11 +46,15 @@ export default function PokedexEntry({
   weight,
   height,
   abilities,
-  color,
+  genderRate,
+  captureRate,
   isLegendary,
   isMythical,
-  generation,
+  growthRate,
+  eggGroups,
+  color,
   habitat,
+  generation,
   evolutionChain,
   pokeball,
   setPokeball,
@@ -78,11 +88,23 @@ export default function PokedexEntry({
         <div className="description">
           <span>WEIGHT: {(weight * 0.1).toFixed(1)} kg</span>
           <span>HEIGHT: {(height * 0.1).toFixed(1)} m </span>
-          <span>COLOR: {color} </span>
-          <span>HABITAT: {habitat} </span>
-          <span>GENERATION: {generation} </span>
+        </div>
+        <div className="extra">
+          <span>
+            Gender Rate: Male: ({100 - Math.round((genderRate / 8) * 100)}
+            %) Female: ({Math.round((genderRate / 8) * 100)}%)
+          </span>
+          <span>
+            Capture Rate: {captureRate} ({Math.round((captureRate / 255) * 100)}
+            %)
+          </span>
           {isLegendary && <span> Legendary </span>}
           {isMythical && <span> Mythical </span>}
+          <span>Growth Rate: {growthRate}</span>
+          <span>Egg Groups: {eggGroups}</span>
+          {/* <span>COLOR: {color} </span> */}
+          <span>HABITAT: {habitat} </span>
+          <span>GENERATION: {generation} </span>
         </div>
         <PokemonStats stats={stats} />
         <PokemonAbilities abilities={abilities} />

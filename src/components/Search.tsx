@@ -29,7 +29,7 @@ export default function Search({ search, setSearch }: SearchProps) {
       >
         <form onClick={() => setSearch("")} className="search">
           <input
-            placeholder="search pokemon by name or id"
+            placeholder="Search your Pokemon by Name or ID!"
             type="text"
             id="search-input"
             value={search}

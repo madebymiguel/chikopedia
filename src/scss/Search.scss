@@ -1,4 +1,5 @@
 @import "_variables.scss";
+
 .search {
   // currently hard coded on size but later can be changed
   height: 40px;
@@ -16,12 +17,12 @@
     height: 100%;
     width: 25%;
     margin-left: 2%;
-    background-color: $color3;
+    background-color: #ff0000;
     color: white;
-    border: 1.6px $color3 solid;
+    border: 1.6px #ff0000 solid;
 
     &:active {
-      box-shadow: 0 4px 5px -1px lightgrey;
+      box-shadow: 0 4px 5px -1px #999;
     }
   }
 }

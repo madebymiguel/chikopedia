@@ -16,4 +16,19 @@
   top: 0;
   z-index: 999;
   box-shadow: 0 5px 10px -1px gray;
+
+  .title {
+    text-decoration: none;
+    color: black;
+
+    &:focus,
+    &:visited,
+    &:link,
+    &:active {
+      text-decoration: none;
+    }
+    &:hover {
+      color: #974c56;
+    }
+  }
 }

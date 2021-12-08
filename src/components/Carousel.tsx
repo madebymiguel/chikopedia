@@ -43,6 +43,7 @@ export default function Carousel({
           pokemonSpecies !== null && (
             <PokedexEntry
               key={pokemon.id}
+              //From Pokemon
               name={pokemon.name}
               index={pokemon.id}
               image={pokemon.sprites.front_default}
@@ -51,11 +52,25 @@ export default function Carousel({
               weight={pokemon.weight}
               height={pokemon.height}
               abilities={pokemon.abilities}
-              color={pokemonSpecies.color.name}
+              //From PokemonSpecies
+              genderRate={pokemonSpecies.gender_rate}
+              captureRate={pokemonSpecies.capture_rate}
               isLegendary={pokemonSpecies.is_legendary}
               isMythical={pokemonSpecies.is_mythical}
+              growthRate={pokemonSpecies.growth_rate.name}
+              //Right now just pull the first egg group
+              eggGroups={
+                pokemonSpecies.egg_groups.length < 0
+                  ? pokemonSpecies.egg_groups[0].name
+                  : "Unknown"
+              }
+              color={pokemonSpecies.color.name}
+              habitat={
+                pokemonSpecies.habitat === null
+                  ? "Unknown"
+                  : pokemonSpecies.habitat.name
+              }
               generation={pokemonSpecies.generation.name}
-              habitat={pokemonSpecies.habitat.name}
               evolutionChain={evolutionChain}
               pokeball={pokeball}
               setPokeball={setPokeball}

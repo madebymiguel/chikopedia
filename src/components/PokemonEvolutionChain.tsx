@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import "../scss/PokemonEvolutionChain.scss";
 import { EvolutionChain } from "../types/evolutionChain/EvolutionChain";
 import { Pokemon } from "../types/pokemon/Pokemon";
 import { SimplePokemon } from "../types/SimplePokemon";
