@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import sortPokemon from "../utils/sortPokemon";
 import PokemonGrid from "./PokemonGrid";
 import getAllPokemon from "../apis/getAllPokemon";
 import simplifyPokemon from "../utils/simplifyPokemon";
+import sortPokemon from "../utils/sortPokemon";
 import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
-import { POKEMON_LIMIT } from "../variables/globalVariables";
 import replacePokemonNamesFromArray from "../utils/replacePokemonNamesFromArray";
+import { POKEMON_LIMIT } from "../variables/globalVariables";
 
 export interface PokemonGridWithQueryProps {
   livingDex: boolean;
