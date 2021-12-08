@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import "../scss/PokemonGrid.scss";
 import { SimplePokemon } from "../types/SimplePokemon";
-import PokemonGridItemWithQuery from "./PokemonGridItemWithQuery";
+import PokemonGridItem from "./PokemonGridItem";
 
 export interface PokemonGridProps {
   isLoading: boolean;
@@ -21,8 +21,11 @@ export default function PokemonGrid({
 
     return allPokemon.map((pokemonObject: SimplePokemon) => {
       return (
-        <PokemonGridItemWithQuery
-          pokemonObject={pokemonObject}
+        <PokemonGridItem
+          key={pokemonObject.id}
+          name={pokemonObject.name}
+          index={pokemonObject.id}
+          image={pokemonObject.sprite}
           livingDex={livingDex}
         />
       );

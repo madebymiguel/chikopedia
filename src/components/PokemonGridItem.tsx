@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../scss/PokemonGridItem.scss";
-
+import greyPokeball from "../assets/grey-pokeball.svg";
+import redPokeball from "../assets/red-pokeball.svg";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
+import { handlePokeballColorChange } from "../utils/handlePokeballColorChange";
+import { getLivingDexSet } from "../utils/getLivingDexSet";
 
 export interface PokemonGridItemProps {
   name: string;
   index: number;
   image: string;
   livingDex: boolean;
-  pokeball: string;
-  handlePokeballColorChange: () => void;
 }
 
 export default function PokemonGridItem({
@@ -18,9 +19,13 @@ export default function PokemonGridItem({
   index,
   image,
   livingDex,
-  pokeball,
-  handlePokeballColorChange,
 }: PokemonGridItemProps) {
+  const livingDexStorage = getLivingDexSet();
+
+  const [pokeball, setPokeball] = useState(
+    livingDexStorage[index] ? redPokeball : greyPokeball
+  );
+
   return (
     <div className="grid-item-container">
       <div className="grid-item-header">
@@ -31,7 +36,9 @@ export default function PokemonGridItem({
             src={pokeball}
             alt="pokeball"
             className="pokeball"
-            onClick={handlePokeballColorChange}
+            onClick={() =>
+              handlePokeballColorChange({ pokeball, index, setPokeball })
+            }
           />
         )}
       </div>
