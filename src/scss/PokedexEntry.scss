@@ -31,6 +31,8 @@
 
       .title {
         //   grid-area: title;
+        font-family: $font-sub-title;
+        font-style: bold;
         margin: 0px;
         padding: 0px;
       }
@@ -64,6 +66,9 @@
   .pokedex-detailed-info {
     grid-area: details;
     width: 100%;
+    font-family: $font-text;
+    font-style: bold;
+    font-weight: 300;
 
     .description {
       display: flex;

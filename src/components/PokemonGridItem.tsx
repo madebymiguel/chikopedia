@@ -43,8 +43,8 @@ export default function PokemonGridItem({
         )}
       </div>
       <Link to={`/pokemon/${index}`} className="link">
-        <img className="pokemon-sprite" src={image} />
-        <h4 className="pokemon-name">{upperCaseFirstLetter(name)}</h4>
+        <img className="pokemon-sprite" src={image} alt={name} />
+        <h2 className="pokemon-name">{upperCaseFirstLetter(name)}</h2>
       </Link>
     </div>
   );
