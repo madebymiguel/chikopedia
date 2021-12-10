@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchPokemon } from "../apis/fetchPokemon";
-import { fetchPokemonSpecies } from "../apis/fetchPokemonSpecies";
+import getAllPokemonData from "../apis/getAllPokemonData";
 import { Pokemon } from "../types/pokemon/Pokemon";
 import { getLivingDexSet } from "../utils/getLivingDexSet";
 import replacePokemonName from "../utils/replacePokemonName";
@@ -37,38 +36,18 @@ export default function CarouselWithQuery({
   );
 
   useEffect(() => {
-    if (pokemonId !== null) {
-      async function getAllPokemonData() {
-        // refactor later
-        const pokemonDataToFetch = [];
-        pokemonDataToFetch.push(
-          fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-        );
-        pokemonDataToFetch.push(
-          fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`)
-        );
-        const fetchedPokemonData = await Promise.all(pokemonDataToFetch);
-
-        Promise.all(fetchedPokemonData)
-          .then((responses) => {
-            return Promise.all(responses.map((response) => response.json()));
-          })
-          .then((data) => {
-            const fixedPokemon: Pokemon = replacePokemonName(data[0]);
-            setPokemon(fixedPokemon);
-            const fixedPokemonSpecies: PokemonSpecies = data[1];
-            setPokemonSpecies(fixedPokemonSpecies);
-            const url = fixedPokemonSpecies.evolution_chain.url;
-            const res = fetchEvolutionChain(url);
-            res.then((data) => {
-              setEvolutionChain(data);
-            });
-            setFinishedFetching(true);
-          });
-      }
-
-      getAllPokemonData();
-    }
+    getAllPokemonData(pokemonId).then((data) => {
+      const fixedPokemon: Pokemon = replacePokemonName(data[0]);
+      setPokemon(fixedPokemon);
+      const fixedPokemonSpecies: PokemonSpecies = data[1];
+      setPokemonSpecies(fixedPokemonSpecies);
+      const url = fixedPokemonSpecies.evolution_chain.url;
+      const res = fetchEvolutionChain(url);
+      res.then((data) => {
+        setEvolutionChain(data);
+      });
+      setFinishedFetching(true);
+    });
   }, [pokemonId]);
 
   return (
