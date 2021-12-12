@@ -7,14 +7,14 @@ export interface MenuProps {
   pokedexStyle: string;
   setPokedexStyle: React.Dispatch<React.SetStateAction<string>>;
   livingDex: boolean;
-  setLivingDex: React.Dispatch<React.SetStateAction<boolean>>;
+  onToggleLivingDex: () => void;
 }
 
 export default function Menu({
   pokedexStyle,
   setPokedexStyle,
   livingDex,
-  setLivingDex,
+  onToggleLivingDex,
 }: MenuProps) {
   const dropdownRef: React.MutableRefObject<any> = useRef(null);
   const [menu, setMenu] = useState(false);
@@ -47,7 +47,7 @@ export default function Menu({
         pokedexStyle={pokedexStyle}
         setPokedexStyle={setPokedexStyle}
         livingDex={livingDex}
-        setLivingDex={setLivingDex}
+        onToggleLivingDex={onToggleLivingDex}
         menu={menu}
         dropdownRef={dropdownRef}
       />

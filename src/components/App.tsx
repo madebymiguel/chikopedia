@@ -7,12 +7,19 @@ import Menu from "./Menu";
 import PokemonGridWithQuery from "./PokemonGridWithQuery";
 import CarouselWithQuery from "./CarouselWithQuery";
 import { getLivingDexStatus } from "../utils/getLivingDexStatus";
+import { LIVING_DEX_STATUS_KEY } from "../variables/globalVariables";
 
 export default function App() {
   const [search, setSearch] = useState<string | number>("");
   const [pokedexStyle, setPokedexStyle] = useState<string>("grid");
   const livingDexStatus = getLivingDexStatus();
   const [livingDex, setLivingDex] = useState<boolean>(livingDexStatus);
+
+  const handleToggleLivingDex = () => {
+    const swap = !livingDex;
+    sessionStorage.setItem(LIVING_DEX_STATUS_KEY, JSON.stringify(swap));
+    setLivingDex(swap);
+  };
 
   return (
     <Router>
@@ -26,7 +33,7 @@ export default function App() {
             pokedexStyle={pokedexStyle}
             setPokedexStyle={setPokedexStyle}
             livingDex={livingDex}
-            setLivingDex={setLivingDex}
+            onToggleLivingDex={handleToggleLivingDex}
           />
         </header>
         <Switch>

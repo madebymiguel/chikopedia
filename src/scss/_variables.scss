@@ -1,25 +1,37 @@
-$color1: #cfdfaa !default;
-$color2: #a0a77f !default;
-$color3: #974c56 !default;
-// $color4: #a7d495 !default;
-// $color5: #67a066 !default;
+/** 
+  original Pokedex color palette based on Chikorita
+  $color1: #cfdfaa !default;
+  $color2: #a0a77f !default;
+  $color3: #974c56 !default;
+  $color4: #a7d495 !default;
+  $color5: #67a066 !default;
+**/
 
-// $color3: #974c56 !default;
+$color3: #974c56 !default;
 $color4: #e2e8f0 !default;
 $color5: #cfdfaa !default;
-
 $grid-item: #ffffff;
+
+$light-grey: #e2e8f0 !default;
+$chikorita-green: #cfdfaa !default;
+$white: #ffffff !default;
 
 // #f2f2f2
 // #d0d7d9
 // #D9D9D9
 
-// font-family: 'Wendy One', sans-serif;
-// font-family: 'Nunito', sans-serif;
-// font-family: 'Lora', serif;
-// font-family: 'Overpass', sans-serif;
+/**
+  Fonts being used:
+  font-family: 'Wendy One', sans-serif;
+  font-family: 'Nunito', sans-serif;
+  font-family: 'Lora', serif;
+  font-family: 'Overpass', sans-serif;
+**/
+
+// $title-font:
+// $sub-title-font:
+// $text-font:
 
 $font-title: "Nunito", sans-serif;
-// $font-title: "Wendy One", sans-serif;
 $font-sub-title: "Lora", serif;
 $font-text: "Overpass", sans-serif;

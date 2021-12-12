@@ -17,12 +17,12 @@
     height: 100%;
     width: 25%;
     margin-left: 2%;
-    background-color: #ff0000;
+    background-color: $color3;
     font-family: "Lora", serif;
     font-weight: 600;
     color: black;
     font-size: 14px;
-    border: 1.6px #ff0000 solid;
+    border: 1.6px $color3 solid;
 
     &:active {
       box-shadow: 0 4px 5px -1px #999;

@@ -7,7 +7,7 @@ export interface MenuContentProps {
   pokedexStyle: string;
   setPokedexStyle: React.Dispatch<React.SetStateAction<string>>;
   livingDex: boolean;
-  setLivingDex: React.Dispatch<React.SetStateAction<boolean>>;
+  onToggleLivingDex: () => void;
   menu: boolean;
   dropdownRef: React.MutableRefObject<any>;
 }
@@ -16,16 +16,10 @@ export default function MenuContent({
   pokedexStyle,
   setPokedexStyle,
   livingDex,
-  setLivingDex,
+  onToggleLivingDex,
   menu,
   dropdownRef,
 }: MenuContentProps) {
-  function handleLivingDexStatus() {
-    const swap = !livingDex;
-    sessionStorage.setItem(LIVING_DEX_STATUS_KEY, JSON.stringify(swap));
-    setLivingDex(swap);
-  }
-
   return (
     <div
       ref={dropdownRef}
@@ -60,7 +54,7 @@ export default function MenuContent({
         <div id="livingdex-switch">
           <Switch
             className="toggle-switch"
-            onChange={handleLivingDexStatus}
+            onChange={onToggleLivingDex}
             checked={livingDex}
           />
           <span className="switch-label">Living Dex</span>
