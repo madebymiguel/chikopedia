@@ -1,6 +1,6 @@
 import { Chain } from "../types/evolutionChain/Chain";
 
-export async function getSpritesFromEvolutionChain(
+export function getSpritesFromEvolutionChain(
   chain: Chain,
   chainArray: string[][],
   currentPath: string[]
@@ -14,10 +14,10 @@ export async function getSpritesFromEvolutionChain(
 
   if (chain.evolves_to.length > 0) {
     for (let i = 0; i < chain.evolves_to.length; i++) {
-      await getSpritesFromEvolutionChain(
+      getSpritesFromEvolutionChain(
         chain.evolves_to[i],
         chainArray,
-        currentPath
+        currentPath.slice(0, 2) // we would introduce height to make sure it parses properly with tree
       );
     }
   }

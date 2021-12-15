@@ -5,7 +5,7 @@ import PokedexEntry from "./PokedexEntry";
 import { Link } from "react-router-dom";
 import { MAX_POKEMON } from "../variables/globalVariables";
 import { PokemonSpecies } from "../types/pokemonSpecies/PokemonSpecies";
-import { EvolutionChain } from "../types/evolutionChain/EvolutionChain";
+import { SimplePokemon } from "../types/SimplePokemon";
 
 export interface CarouselProps {
   pokemon: Pokemon | null;
@@ -13,7 +13,7 @@ export interface CarouselProps {
   pokemonId: number;
   pokeball: string;
   setPokeball: React.Dispatch<React.SetStateAction<string>>;
-  evolutionChain: EvolutionChain | null;
+  evolutionChain: SimplePokemon[] | null;
   finishedFetching: boolean;
   livingDex: boolean;
 }

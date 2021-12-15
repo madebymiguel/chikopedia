@@ -9,6 +9,9 @@ import redPokeball from "../assets/red-pokeball.svg";
 import { PokemonSpecies } from "../types/pokemonSpecies/PokemonSpecies";
 import { fetchEvolutionChain } from "../apis/fetchEvolutionChain";
 import { EvolutionChain } from "../types/evolutionChain/EvolutionChain";
+import { SimplePokemon } from "../types/SimplePokemon";
+import { getSpritesFromEvolutionChain } from "../utils/getSpritesFromEvolutionChain";
+import fetchPokemonFromEvolutionChain from "../apis/fetchPokemonFromEvolutionChain";
 
 export interface MatchParams {
   pokemonId: number;
@@ -24,7 +27,7 @@ export default function CarouselWithQuery({
   const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpecies | null>(
     null
   );
-  const [evolutionChain, setEvolutionChain] = useState<EvolutionChain | null>(
+  const [evolutionChain, setEvolutionChain] = useState<SimplePokemon[] | null>(
     null
   );
 
@@ -36,15 +39,30 @@ export default function CarouselWithQuery({
   );
 
   useEffect(() => {
+    setEvolutionChain(null); // we need to fix this issue but it works for now! -- solution would be session storage
     getAllPokemonData(pokemonId).then((data) => {
       const fixedPokemon: Pokemon = replacePokemonName(data[0]);
       setPokemon(fixedPokemon);
       const fixedPokemonSpecies: PokemonSpecies = data[1];
       setPokemonSpecies(fixedPokemonSpecies);
       const url = fixedPokemonSpecies.evolution_chain.url;
-      const res = fetchEvolutionChain(url);
-      res.then((data) => {
-        setEvolutionChain(data);
+      const fetchedEvolutionChain: Promise<EvolutionChain> =
+        fetchEvolutionChain(url);
+      fetchedEvolutionChain.then((evolutionChainData) => {
+        const chainArray: string[][] = [];
+        getSpritesFromEvolutionChain(evolutionChainData.chain, chainArray, []);
+        fetchPokemonFromEvolutionChain(chainArray).then((data: Pokemon[]) => {
+          const simplePokemonData = data.map((pokemon: Pokemon) => {
+            const simplePokemon: SimplePokemon = {
+              id: pokemon.id,
+              name: pokemon.name,
+              sprite: pokemon.sprites.front_default,
+            };
+            return simplePokemon;
+          });
+          console.log(simplePokemonData);
+          setEvolutionChain(simplePokemonData);
+        });
       });
       setFinishedFetching(true);
     });
