@@ -1,17 +1,24 @@
 import { Chain } from "../types/evolutionChain/Chain";
 
-export function getSpritesFromEvolutionChain(
+export async function getSpritesFromEvolutionChain(
   chain: Chain,
-  chainArray: string[]
+  chainArray: string[][],
+  currentPath: string[]
 ) {
+  currentPath.push(chain.species.name);
   if (chain.evolves_to.length === 0) {
-    chainArray.push(chain.species.name);
+    console.log(currentPath);
+    console.log(chainArray);
+    chainArray.push(currentPath);
   }
 
   if (chain.evolves_to.length > 0) {
-    chainArray.push(chain.species.name);
     for (let i = 0; i < chain.evolves_to.length; i++) {
-      getSpritesFromEvolutionChain(chain.evolves_to[i], chainArray);
+      await getSpritesFromEvolutionChain(
+        chain.evolves_to[i],
+        chainArray,
+        currentPath
+      );
     }
   }
   return chainArray;

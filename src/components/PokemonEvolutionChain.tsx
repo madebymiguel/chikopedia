@@ -23,9 +23,10 @@ export default function PokemonEvolutionChain({
   >(null);
 
   useEffect(() => {
-    const chainArray: string[] = [];
+    const chainArray: string[][] = [];
     if (evolutionChain != null) {
-      getSpritesFromEvolutionChain(evolutionChain.chain, chainArray);
+      getSpritesFromEvolutionChain(evolutionChain.chain, chainArray, []);
+      console.log("Chain Array: ", chainArray);
       fetchPokemonFromEvolutionChain(chainArray).then((data: Pokemon[]) => {
         const simplePokemonData = data.map((pokemon: Pokemon) => {
           const simplePokemon: SimplePokemon = {
@@ -35,6 +36,7 @@ export default function PokemonEvolutionChain({
           };
           return simplePokemon;
         });
+        console.log(simplePokemonData);
         setSimplePokemonChain(simplePokemonData);
       });
     }
