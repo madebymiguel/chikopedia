@@ -2,27 +2,39 @@ import { Chain } from "../types/evolutionChain/Chain";
 
 export function getPathsFromEvolutionChain(
   chain: Chain,
-  evolutionPathArray: string[][],
+  evolutionPathSet: Set<string>,
   currentPath: string[]
-) {
-  currentPath = currentPath.concat(chain.species.name);
+): Set<string> {
+  const currentPokemonPath = currentPath.concat(chain.species.name);
+  let currentEvolutionPathSet: Set<string> = evolutionPathSet;
   if (chain.evolves_to.length === 0) {
-    evolutionPathArray = evolutionPathArray.concat([currentPath]);
-    return evolutionPathArray;
+    currentEvolutionPathSet.add(JSON.stringify(currentPokemonPath));
+    return currentEvolutionPathSet;
   }
 
-  if (chain.evolves_to.length > 0) {
-    for (
-      let pokemonInPath = 0;
-      pokemonInPath < chain.evolves_to.length;
-      pokemonInPath++
-    ) {
-      evolutionPathArray = getPathsFromEvolutionChain(
+  for (
+    let pokemonInPath = 0;
+    pokemonInPath < chain.evolves_to.length;
+    pokemonInPath++
+  ) {
+    console.log(
+      "get paths from evolution chain: ",
+      getPathsFromEvolutionChain(
         chain.evolves_to[pokemonInPath],
-        evolutionPathArray,
-        currentPath
-      );
-    }
+        evolutionPathSet,
+        currentPokemonPath
+      )
+    );
+
+    getPathsFromEvolutionChain(
+      chain.evolves_to[pokemonInPath],
+      evolutionPathSet,
+      currentPokemonPath
+    ).forEach((path) => {
+      currentEvolutionPathSet.add(path);
+    });
   }
-  return evolutionPathArray;
+
+  console.log("current evolution path array: ", currentEvolutionPathSet);
+  return currentEvolutionPathSet;
 }

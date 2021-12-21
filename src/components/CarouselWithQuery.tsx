@@ -52,11 +52,15 @@ export default function CarouselWithQuery({
       const fetchedEvolutionChain: Promise<EvolutionChain> =
         fetchEvolutionChain(url);
       fetchedEvolutionChain.then((evolutionChainData) => {
-        const evolutionPathArray: string[][] = getPathsFromEvolutionChain(
+        const evolutionPathSet: Set<string> = getPathsFromEvolutionChain(
           evolutionChainData.chain,
-          [],
+          new Set<string>(),
           []
         );
+
+        const evolutionPathArray: string[][] = Array.from(
+          evolutionPathSet.values()
+        ).map((val) => JSON.parse(val));
 
         fetchPokemonFromEvolutionChain(evolutionPathArray).then(
           (pokemonEvolutionData: Pokemon[]) => {
