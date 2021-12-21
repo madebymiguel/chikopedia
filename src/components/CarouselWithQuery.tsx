@@ -10,7 +10,7 @@ import { PokemonSpecies } from "../types/pokemonSpecies/PokemonSpecies";
 import { fetchEvolutionChain } from "../apis/fetchEvolutionChain";
 import { EvolutionChain } from "../types/evolutionChain/EvolutionChain";
 import { SimplePokemon } from "../types/SimplePokemon";
-import { getSpritesFromEvolutionChain } from "../utils/getSpritesFromEvolutionChain";
+import { getPathsFromEvolutionChain } from "../utils/getPathsFromEvolutionChain";
 import fetchPokemonFromEvolutionChain from "../apis/fetchPokemonFromEvolutionChain";
 
 export interface MatchParams {
@@ -52,23 +52,24 @@ export default function CarouselWithQuery({
       const fetchedEvolutionChain: Promise<EvolutionChain> =
         fetchEvolutionChain(url);
       fetchedEvolutionChain.then((evolutionChainData) => {
-        const evolutionPathArray: string[][] = [];
-        getSpritesFromEvolutionChain(
+        const evolutionPathArray: string[][] = getPathsFromEvolutionChain(
           evolutionChainData.chain,
-          evolutionPathArray,
+          [],
           []
         );
+
         fetchPokemonFromEvolutionChain(evolutionPathArray).then(
-          (data: Pokemon[]) => {
-            const simplePokemonData = data.map((pokemon: Pokemon) => {
-              const simplePokemon: SimplePokemon = {
-                id: pokemon.id,
-                name: pokemon.name,
-                sprite: pokemon.sprites.front_default,
-              };
-              return simplePokemon;
-            });
-            console.log(simplePokemonData);
+          (pokemonEvolutionData: Pokemon[]) => {
+            const simplePokemonData = pokemonEvolutionData.map(
+              (pokemon: Pokemon) => {
+                const simplePokemon: SimplePokemon = {
+                  id: pokemon.id,
+                  name: pokemon.name,
+                  sprite: pokemon.sprites.front_default,
+                };
+                return simplePokemon;
+              }
+            );
             setEvolutionChain(simplePokemonData);
           }
         );
