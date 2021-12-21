@@ -1,13 +1,21 @@
 export default async function fetchPokemonFromEvolutionChain(
-  chainArray: string[][]
+  pathArray: string[][]
 ) {
   const chainToBeFetched = [];
-  for (let i = 0; i < chainArray.length; i++) {
-    console.log(i);
-    for (let j = 0; j < chainArray[i].length; j++) {
-      console.log(chainArray[i][j]);
+  for (
+    let evolutionPath = 0;
+    evolutionPath < pathArray.length;
+    evolutionPath++
+  ) {
+    for (
+      let pokemonInPath = 0;
+      pokemonInPath < pathArray[pokemonInPath].length;
+      pokemonInPath++
+    ) {
       chainToBeFetched.push(
-        fetch(`https://pokeapi.co/api/v2/pokemon/${chainArray[i][j]}`)
+        fetch(
+          `https://pokeapi.co/api/v2/pokemon/${pathArray[evolutionPath][pokemonInPath]}`
+        )
       );
     }
   }
