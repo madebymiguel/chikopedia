@@ -1,7 +1,10 @@
 // evolutionPathArray is 2d array and consist of 1st axis as possible paths of evolution chain of pokemon
 // and 2nd axis as pokemon in the possible path of evolution chain
-// For example, Wurmple has 2 paths of 1) wurmple -> silcoon -> beautifly 2) wurmple -> cascoon -> dustox
-// 1st element of 1st axis would be the first case above and 2nd element would be the second case above.
+// ex. for the case of wurmple's evolution chain, it would look like:
+// [
+//   [wurmple, silcoon, beautifly],
+//   [wurmple, cascoon, dustox]
+// ]
 
 export default async function fetchPokemonFromEvolutionChain(
   evolutionPathArray: string[][]
