@@ -41,12 +41,14 @@ export default function CarouselWithQuery({
   useEffect(() => {
     // how do we properly reset evolution chain every time we switch to different pokemon?
     setEvolutionChain(null);
-    getAllPokemonData(pokemonId).then((data) => {
-      const fixedPokemon: Pokemon = replacePokemonName(data[0]);
-      setPokemon(fixedPokemon);
-      const fixedPokemonSpecies: PokemonSpecies = data[1];
-      setPokemonSpecies(fixedPokemonSpecies);
-      const url = fixedPokemonSpecies.evolution_chain.url;
+    getAllPokemonData(pokemonId).then((pokemonData) => {
+      const pokemonWithSanitizedName: Pokemon = replacePokemonName(
+        pokemonData[0]
+      );
+      setPokemon(pokemonWithSanitizedName);
+      const pokemonSpeciesWithSanitizedName: PokemonSpecies = pokemonData[1];
+      setPokemonSpecies(pokemonSpeciesWithSanitizedName);
+      const url = pokemonSpeciesWithSanitizedName.evolution_chain.url;
       const fetchedEvolutionChain: Promise<EvolutionChain> =
         fetchEvolutionChain(url);
       fetchedEvolutionChain.then((evolutionChainData) => {
