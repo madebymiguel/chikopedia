@@ -17,15 +17,6 @@ export function getPathsFromEvolutionChain(
     pokemonInPath < chain.evolves_to.length;
     pokemonInPath++
   ) {
-    console.log(
-      "get paths from evolution chain: ",
-      getPathsFromEvolutionChain(
-        chain.evolves_to[pokemonInPath],
-        evolutionPathSet,
-        currentPokemonPath
-      )
-    );
-
     getPathsFromEvolutionChain(
       chain.evolves_to[pokemonInPath],
       evolutionPathSet,
@@ -35,6 +26,5 @@ export function getPathsFromEvolutionChain(
     });
   }
 
-  console.log("current evolution path array: ", currentEvolutionPathSet);
   return currentEvolutionPathSet;
 }
