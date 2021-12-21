@@ -39,7 +39,8 @@ export default function CarouselWithQuery({
   );
 
   useEffect(() => {
-    setEvolutionChain(null); // we need to fix this issue but it works for now! -- solution would be session storage
+    // how do we properly reset evolution chain every time we switch to different pokemon?
+    setEvolutionChain(null);
     getAllPokemonData(pokemonId).then((data) => {
       const fixedPokemon: Pokemon = replacePokemonName(data[0]);
       setPokemon(fixedPokemon);
@@ -49,20 +50,26 @@ export default function CarouselWithQuery({
       const fetchedEvolutionChain: Promise<EvolutionChain> =
         fetchEvolutionChain(url);
       fetchedEvolutionChain.then((evolutionChainData) => {
-        const chainArray: string[][] = [];
-        getSpritesFromEvolutionChain(evolutionChainData.chain, chainArray, []);
-        fetchPokemonFromEvolutionChain(chainArray).then((data: Pokemon[]) => {
-          const simplePokemonData = data.map((pokemon: Pokemon) => {
-            const simplePokemon: SimplePokemon = {
-              id: pokemon.id,
-              name: pokemon.name,
-              sprite: pokemon.sprites.front_default,
-            };
-            return simplePokemon;
-          });
-          console.log(simplePokemonData);
-          setEvolutionChain(simplePokemonData);
-        });
+        const evolutionPathArray: string[][] = [];
+        getSpritesFromEvolutionChain(
+          evolutionChainData.chain,
+          evolutionPathArray,
+          []
+        );
+        fetchPokemonFromEvolutionChain(evolutionPathArray).then(
+          (data: Pokemon[]) => {
+            const simplePokemonData = data.map((pokemon: Pokemon) => {
+              const simplePokemon: SimplePokemon = {
+                id: pokemon.id,
+                name: pokemon.name,
+                sprite: pokemon.sprites.front_default,
+              };
+              return simplePokemon;
+            });
+            console.log(simplePokemonData);
+            setEvolutionChain(simplePokemonData);
+          }
+        );
       });
       setFinishedFetching(true);
     });
