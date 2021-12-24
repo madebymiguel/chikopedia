@@ -18,16 +18,7 @@ export default function PokemonEvolutionChain({
   const pokemonChainItems = useMemo(() => {
     if (pokemonEvolutionPaths !== null) {
       return pokemonEvolutionPaths.map((evolutionPath) => {
-        return evolutionPath.map((pokemonObject) => {
-          return (
-            <PokemonEvolutionChainItem
-              key={pokemonObject.id}
-              name={pokemonObject.name}
-              index={pokemonObject.id}
-              image={pokemonObject.sprite}
-            />
-          );
-        });
+        return <PokemonEvolutionChainRow evolutionPath={evolutionPath} />;
       });
     }
   }, [evolutionChain]);

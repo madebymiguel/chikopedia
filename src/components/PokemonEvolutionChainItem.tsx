@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../scss/PokemonEvolutionChainItem.scss";
+import "../scss/PokemonEvolutionChain.scss";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 
 export interface PokemonEvolutionChainItemProps {

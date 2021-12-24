@@ -14,9 +14,6 @@ export function getEvolutionPathsFromTree(
     return [previousPokemon.concat(pokemon)];
   }
 
-  console.log("pokemon: ", pokemon);
-  console.log("next pokemon data is ", nextPokemonData);
-
   return nextPokemonData
     .map((evolution) =>
       getEvolutionPathsFromTree(evolution, previousPokemon.concat(pokemon))
