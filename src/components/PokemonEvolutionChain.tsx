@@ -17,7 +17,6 @@ export default function PokemonEvolutionChain({
   const pokemonEvolutionPaths = getEvolutionPathsFromTree(evolutionChain);
   const pokemonChainItems = useMemo(() => {
     if (pokemonEvolutionPaths !== null) {
-      console.log("pokemon evolution paths is ", pokemonEvolutionPaths);
       return pokemonEvolutionPaths.map((evolutionPath) => {
         return evolutionPath.map((pokemonObject) => {
           return (
