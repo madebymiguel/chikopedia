@@ -1,4 +1,5 @@
 import { Pokemon } from "../types/pokemon/Pokemon";
+import { PokemonSpecies } from "../types/pokemonSpecies/PokemonSpecies";
 
 export default async function getAllPokemonData(index: number) {
   const pokemonDataToFetch = [

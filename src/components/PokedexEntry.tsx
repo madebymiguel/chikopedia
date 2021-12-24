@@ -7,9 +7,9 @@ import PokemonTypes from "./PokemonTypes";
 import PokemonStats from "./PokemonStats";
 import PokemonAbilities from "./PokemonAbilities";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
-import { EvolutionChain } from "../types/evolutionChain/EvolutionChain";
 import { handlePokeballColorChange } from "../utils/handlePokeballColorChange";
 import PokemonEvolutionChain from "./PokemonEvolutionChain";
+import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
 
 export interface PokedexEntryProps {
   //From Pokemon
@@ -31,7 +31,7 @@ export interface PokedexEntryProps {
   color: string;
   habitat: string;
   generation: string;
-  evolutionChain: EvolutionChain | null;
+  evolutionChain: PokemonEvolutionTreeNode | null;
   pokeball: string;
   setPokeball: React.Dispatch<React.SetStateAction<string>>;
   livingDex: boolean;
@@ -141,7 +141,9 @@ export default function PokedexEntry({
         </div>
         <PokemonStats stats={stats} />
         <PokemonAbilities abilities={abilities} />
-        <PokemonEvolutionChain evolutionChain={evolutionChain} />
+        {evolutionChain !== null && (
+          <PokemonEvolutionChain evolutionChain={evolutionChain} />
+        )}
       </section>
     </div>
   );

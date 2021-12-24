@@ -1,12 +1,6 @@
-export interface PokemonEvolutionTreeNode {
-  pokemon: string;
-  evolutions: PokemonEvolutionTreeNode[] | null;
-}
+import { SimplePokemon } from "./SimplePokemon";
 
-// {
-//   pokemon: wurmple,
-//   evolutions: [
-//     {pokemon: silcoon, evolutions: [{pokemon: beautifly}],
-//     {pokemon: duskoon, evolutions: [{pokemon: dustox}]}
-//   ]
-// }
+export interface PokemonEvolutionTreeNode {
+  pokemon: SimplePokemon;
+  nextPokemon: PokemonEvolutionTreeNode[] | null;
+}

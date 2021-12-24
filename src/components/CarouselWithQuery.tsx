@@ -9,6 +9,10 @@ import redPokeball from "../assets/red-pokeball.svg";
 import { PokemonSpecies } from "../types/pokemonSpecies/PokemonSpecies";
 import { fetchEvolutionChain } from "../apis/fetchEvolutionChain";
 import { EvolutionChain } from "../types/evolutionChain/EvolutionChain";
+import { simplifyEvolutionChain } from "../utils/simplifyEvolutionChain";
+import fetchPokemonFromEvolutionChain from "../apis/fetchPokemonFromEvolutionChain";
+import { PokemonEvolutionNameTreeNode } from "../types/PokemonEvolutionNameTreeNode";
+import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
 
 export interface MatchParams {
   pokemonId: number;
@@ -24,9 +28,8 @@ export default function CarouselWithQuery({
   const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpecies | null>(
     null
   );
-  const [evolutionChain, setEvolutionChain] = useState<EvolutionChain | null>(
-    null
-  );
+  const [evolutionChain, setEvolutionChain] =
+    useState<PokemonEvolutionTreeNode | null>(null);
 
   const [finishedFetching, setFinishedFetching] = useState(false);
 
@@ -36,15 +39,33 @@ export default function CarouselWithQuery({
   );
 
   useEffect(() => {
-    getAllPokemonData(pokemonId).then((data) => {
-      const fixedPokemon: Pokemon = replacePokemonName(data[0]);
-      setPokemon(fixedPokemon);
-      const fixedPokemonSpecies: PokemonSpecies = data[1];
-      setPokemonSpecies(fixedPokemonSpecies);
-      const url = fixedPokemonSpecies.evolution_chain.url;
-      const res = fetchEvolutionChain(url);
-      res.then((data) => {
-        setEvolutionChain(data);
+    // how do we properly reset evolution chain every time we switch to different pokemon?
+    setEvolutionChain(null);
+    getAllPokemonData(pokemonId).then((pokemonData) => {
+      const pokemonWithSanitizedName: Pokemon = replacePokemonName(
+        pokemonData[0]
+      );
+      setPokemon(pokemonWithSanitizedName);
+      const pokemonSpeciesWithSanitizedName: PokemonSpecies = pokemonData[1];
+      setPokemonSpecies(pokemonSpeciesWithSanitizedName);
+      const url = pokemonSpeciesWithSanitizedName.evolution_chain.url;
+      const fetchedEvolutionChain: Promise<EvolutionChain> =
+        fetchEvolutionChain(url);
+      fetchedEvolutionChain.then(async (evolutionChainData) => {
+        // first, initiate tree of string from tree-structured data (simplify evolution chain)
+        // second, fetch and modify tree of string into tree of simple pokemon (modify tree nodes)
+        // third, present the tree of simple pokemon by traversing the tree (deconstruct and present into component)
+        // to do so:
+        // first: make a tree class that can represent both string and simple pokemon
+        // second: fetchPokemonFromEvolutionChain is modified so that we fetch from tree, not 2d array
+        // third: PokemonEvolutionChain is modified so that we present evolution chain from tree, not 2d array
+        //        we might introduce PokemonEvolutionChainRow that consists of multiple PokemonEvolutionChainItem
+        const evolutionChainRoot: PokemonEvolutionNameTreeNode =
+          simplifyEvolutionChain(evolutionChainData.chain);
+
+        const pokemonEvolutionTree: PokemonEvolutionTreeNode =
+          await fetchPokemonFromEvolutionChain(evolutionChainRoot);
+        setEvolutionChain(pokemonEvolutionTree);
       });
       setFinishedFetching(true);
     });

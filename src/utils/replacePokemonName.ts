@@ -9,7 +9,6 @@ export default function replacePokemonName(pokemon: Pokemon) {
   });
   if (findPokemon.length > 0) {
     pokemon.name = findPokemon[0].name.toLowerCase();
-    console.log("pokemon.name", pokemon.name);
   }
   return pokemon;
 }
