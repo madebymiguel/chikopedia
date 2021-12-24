@@ -1,8 +1,9 @@
 import { useMemo } from "react";
 import "../scss/PokemonEvolutionChain.scss";
 import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
-import { SimplePokemon } from "../types/SimplePokemon";
+import { getEvolutionPathsFromTree } from "../utils/getEvolutionPathsFromTree";
 import PokemonEvolutionChainItem from "./PokemonEvolutionChainItem";
+import PokemonEvolutionChainRow from "./PokemonEvolutionChainRow";
 
 export interface PokemonEvolutionChainProps {
   evolutionChain: PokemonEvolutionTreeNode;
@@ -16,8 +17,9 @@ export default function PokemonEvolutionChain({
   const pokemonEvolutionPaths = getEvolutionPathsFromTree(evolutionChain);
   const pokemonChainItems = useMemo(() => {
     if (pokemonEvolutionPaths !== null) {
+      console.log("pokemon evolution paths is ", pokemonEvolutionPaths);
       return pokemonEvolutionPaths.map((evolutionPath) => {
-        evolutionPath.map((pokemonObject) => {
+        return evolutionPath.map((pokemonObject) => {
           return (
             <PokemonEvolutionChainItem
               key={pokemonObject.id}
@@ -32,25 +34,4 @@ export default function PokemonEvolutionChain({
   }, [evolutionChain]);
 
   return <div id="pokemon-chain">{pokemonChainItems}</div>;
-}
-
-export type evolutionPath = SimplePokemon[];
-
-export function getEvolutionPathsFromTree(
-  pokemonEvolutionTree: PokemonEvolutionTreeNode,
-  previousPokemon: evolutionPath = []
-): evolutionPath[] {
-  const pokemon: SimplePokemon = pokemonEvolutionTree.pokemon;
-
-  const nextPokemonData = pokemonEvolutionTree.nextPokemon;
-
-  if (nextPokemonData === null || nextPokemonData.length === 0) {
-    return [previousPokemon.concat(pokemon)];
-  }
-
-  return nextPokemonData
-    .map((evolution) =>
-      getEvolutionPathsFromTree(evolution, previousPokemon.concat(pokemon))
-    )
-    .flat();
 }

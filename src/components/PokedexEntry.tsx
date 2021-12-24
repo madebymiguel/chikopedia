@@ -141,7 +141,9 @@ export default function PokedexEntry({
         </div>
         <PokemonStats stats={stats} />
         <PokemonAbilities abilities={abilities} />
-        <PokemonEvolutionChain evolutionChain={evolutionChain} />
+        {evolutionChain !== null && (
+          <PokemonEvolutionChain evolutionChain={evolutionChain} />
+        )}
       </section>
     </div>
   );

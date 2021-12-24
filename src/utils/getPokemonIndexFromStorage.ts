@@ -4,7 +4,6 @@ import { SimplePokemon } from "../types/SimplePokemon";
 export default async function getPokemonIndexFromStorage(
   search: string | number
 ) {
-  console.log("search is: ", search);
   if (search !== "") {
     const stored = sessionStorage.getItem("allSimplePokemon");
     if (stored !== null) {
