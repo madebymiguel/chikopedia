@@ -58,6 +58,7 @@ export default function Carousel({
               isLegendary={pokemonSpecies.is_legendary}
               isMythical={pokemonSpecies.is_mythical}
               growthRate={pokemonSpecies.growth_rate.name}
+              evolutionChain={evolutionChain}
               //Right now just pull the first egg group
               eggGroups={
                 pokemonSpecies.egg_groups.length < 0
@@ -71,7 +72,6 @@ export default function Carousel({
                   : pokemonSpecies.habitat.name
               }
               generation={pokemonSpecies.generation.name}
-              evolutionChain={evolutionChain}
               pokeball={pokeball}
               setPokeball={setPokeball}
               livingDex={livingDex}

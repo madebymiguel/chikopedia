@@ -13,16 +13,19 @@ import { simplifyEvolutionChain } from "../utils/simplifyEvolutionChain";
 import fetchPokemonFromEvolutionChain from "../apis/fetchPokemonFromEvolutionChain";
 import { PokemonEvolutionNameTreeNode } from "../types/PokemonEvolutionNameTreeNode";
 import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
+import { SimplePokemon } from "../types/SimplePokemon";
 
 export interface MatchParams {
   pokemonId: number;
   livingDex: boolean;
+  allSimplePokemon: SimplePokemon[];
 }
 
 // Intend parameter is pokemonID not pokvemonName
 export default function CarouselWithQuery({
   pokemonId,
   livingDex,
+  allSimplePokemon,
 }: MatchParams) {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpecies | null>(
@@ -38,6 +41,7 @@ export default function CarouselWithQuery({
     livingDexStorage[pokemonId] ? redPokeball : greyPokeball
   );
 
+  // next step is to make session storage where key is pokemon id/name and value is simple evolution chain.
   useEffect(() => {
     // how do we properly reset evolution chain every time we switch to different pokemon?
     setEvolutionChain(null);
@@ -78,9 +82,9 @@ export default function CarouselWithQuery({
       pokemonId={pokemonId}
       pokeball={pokeball}
       setPokeball={setPokeball}
-      evolutionChain={evolutionChain}
       finishedFetching={finishedFetching}
       livingDex={livingDex}
+      evolutionChain={evolutionChain}
     />
   );
 }

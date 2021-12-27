@@ -1,14 +1,14 @@
 import { SimplePokemon } from "../types/SimplePokemon";
-import { SIMPLE_KEY } from "../variables/globalVariables";
+import { ALL_SIMPLE_POKEMON_KEY } from "../variables/globalVariables";
 
 const setPokemonStorage = (value: SimplePokemon[]) => {
-  sessionStorage.setItem(SIMPLE_KEY, JSON.stringify(value));
+  sessionStorage.setItem(ALL_SIMPLE_POKEMON_KEY, JSON.stringify(value));
 };
 
 export default function useSimplePokemonSessionStorage(
   allSimplePokemon: SimplePokemon[]
 ): [SimplePokemon[], (value: SimplePokemon[]) => void] {
-  const stored = sessionStorage.getItem(SIMPLE_KEY);
+  const stored = sessionStorage.getItem(ALL_SIMPLE_POKEMON_KEY);
 
   if (stored === null) {
     setPokemonStorage(allSimplePokemon);
