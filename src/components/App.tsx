@@ -13,9 +13,10 @@ import {
 import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
 import getAllPokemon from "../apis/getAllPokemon";
 import sortPokemon from "../utils/sortPokemon";
-import simplifyPokemon from "../utils/simplifyPokemon";
 import replacePokemonNamesFromArray from "../utils/replacePokemonNamesFromArray";
 import PokemonGrid from "./PokemonGrid";
+import simplifyPokemonArray from "../utils/simplifyPokemonArray";
+import useEvolutionChainSessionStorage from "../utils/useEvolutionChainSessionStorage";
 
 export default function App() {
   const [search, setSearch] = useState<string | number>("");
@@ -28,15 +29,19 @@ export default function App() {
     []
   );
 
+  const [evolutionChainStorage, setEvolutionChainStorage] =
+    useEvolutionChainSessionStorage([]);
+
   // useEffect stays at App so that we can make loading screen for both option of scroll and grid
   useEffect(() => {
     if (allSimplePokemon.length === 0) {
       setIsFetchingPokemon(true);
       getAllPokemon(POKEMON_LIMIT).then((data) => {
         const sortedPokemonData = sortPokemon(data);
-        const simplifiedPokemon = simplifyPokemon(sortedPokemonData);
-        const fixedSimplifiedPokemon =
-          replacePokemonNamesFromArray(simplifiedPokemon);
+        const simplifiedPokemonArray = simplifyPokemonArray(sortedPokemonData);
+        const fixedSimplifiedPokemon = replacePokemonNamesFromArray(
+          simplifiedPokemonArray
+        );
         setPokemonStorage(fixedSimplifiedPokemon);
         setIsFetchingPokemon(false);
       });
@@ -78,7 +83,6 @@ export default function App() {
               <CarouselWithQuery
                 pokemonId={+match.params.pokemonId}
                 livingDex={livingDex}
-                allSimplePokemon={allSimplePokemon}
               />
             )}
           />

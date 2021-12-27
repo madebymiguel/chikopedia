@@ -16,6 +16,7 @@ export default async function fetchPokemonFromEvolutionChain(
 ): Promise<PokemonEvolutionTreeNode> {
   const pokemonName = evolutionChainRoot.pokemonName;
 
+  //TODO: put evolution_details here
   const nextPokemonData = evolutionChainRoot.nextPokemon;
 
   const simplePokemonData = await fetchPokemon(pokemonName).then((pokemon) => {
