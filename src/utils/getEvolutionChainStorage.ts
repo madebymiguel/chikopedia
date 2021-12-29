@@ -1,10 +1,10 @@
-import { evolutoinChainMap } from "../types/evolutionChainMap";
+import { evolutionChainMap } from "../types/evolutionChainMap";
 import { EVOLUTION_CHAIN_KEY } from "../variables/globalVariables";
 
 export default function getEvolutionChainStorage() {
   const serializedEvolutionChains = sessionStorage.getItem(EVOLUTION_CHAIN_KEY);
 
-  const evolutionChains: evolutoinChainMap =
+  const evolutionChains: evolutionChainMap =
     serializedEvolutionChains === null
       ? {}
       : JSON.parse(serializedEvolutionChains);

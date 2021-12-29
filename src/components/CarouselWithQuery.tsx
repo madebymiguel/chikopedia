@@ -15,8 +15,8 @@ import { PokemonEvolutionNameTreeNode } from "../types/PokemonEvolutionNameTreeN
 import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
 import simplifyPokemon from "../utils/simplifyPokemon";
 import addToAllSimplePokemon from "../utils/addToAllSimplePokemon";
-import searchPokemonFromSessionStorage from "../utils/searchPokemonFromSessionStorage";
-import searchEvolutionChainFromSessionStorage from "../utils/searchEvolutionChainFromSessionStorage";
+import getSimplePokemonFromSessionStorage from "../utils/getPokemonFromSessionStorage";
+import getEvolutionChainFromSessionStorage from "../utils/getEvolutionChainFromSessionStorage";
 import addToEvolutionChainStorage from "../utils/addToEvolutionChainStorage";
 
 export interface MatchParams {
@@ -48,7 +48,8 @@ export default function CarouselWithQuery({
     // how do we properly reset evolution chain every time we switch to different pokemon?
     setEvolutionChain(null);
 
-    const simplePokemonInStorage = searchPokemonFromSessionStorage(pokemonId);
+    const simplePokemonInStorage =
+      getSimplePokemonFromSessionStorage(pokemonId);
 
     getAllPokemonData(pokemonId).then((pokemonData) => {
       const pokemonWithSanitizedName: Pokemon = replacePokemonName(
@@ -65,9 +66,7 @@ export default function CarouselWithQuery({
           : simplifyPokemon(pokemonWithSanitizedName);
 
       const url = pokemonSpeciesWithSanitizedName.evolution_chain.url;
-      const fetchedEvolutionChain: Promise<EvolutionChain> =
-        fetchEvolutionChain(url);
-      fetchedEvolutionChain.then(async (evolutionChainData) => {
+      fetchEvolutionChain(url).then(async (evolutionChainData) => {
         // first, initiate tree of string from tree-structured data (simplify evolution chain)
         // second, fetch and modify tree of string into tree of simple pokemon (modify tree nodes)
         // third, present the tree of simple pokemon by traversing the tree (deconstruct and present into component)
@@ -78,13 +77,12 @@ export default function CarouselWithQuery({
         //        we might introduce PokemonEvolutionChainRow that consists of multiple PokemonEvolutionChainItem
         const pokemonEvolutionId = evolutionChainData.id;
         const evolutionChainInStorage =
-          searchEvolutionChainFromSessionStorage(pokemonEvolutionId);
+          getEvolutionChainFromSessionStorage(pokemonEvolutionId);
 
         if (
           evolutionChainInStorage !== null &&
           evolutionChainInStorage != undefined
         ) {
-          console.log("the session storage works!");
           setEvolutionChain(evolutionChainInStorage);
         } else {
           const evolutionChainRoot: PokemonEvolutionNameTreeNode =

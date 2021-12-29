@@ -1,5 +1,5 @@
 import { PokemonEvolutionTreeNode } from "./PokemonEvolutionTreeNode";
 
-export interface evolutoinChainMap {
+export interface evolutionChainMap {
   [pokemonId: number]: PokemonEvolutionTreeNode;
 }

@@ -91,6 +91,3 @@ export default function App() {
     </Router>
   );
 }
-function setIsFetchingPokemon(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}
