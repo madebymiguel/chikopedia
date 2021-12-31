@@ -55,10 +55,10 @@ export default function PokedexEntry({
   color, // can be used for theme color for each pokemon
   habitat, // can be used for background theme
   generation,
-  evolutionChain,
   pokeball,
   setPokeball,
   livingDex,
+  evolutionChain,
 }: PokedexEntryProps) {
   return (
     // the description parts can be refactored into react component

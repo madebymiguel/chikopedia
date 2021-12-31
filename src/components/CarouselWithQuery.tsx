@@ -13,6 +13,11 @@ import { simplifyEvolutionChain } from "../utils/simplifyEvolutionChain";
 import fetchPokemonFromEvolutionChain from "../apis/fetchPokemonFromEvolutionChain";
 import { PokemonEvolutionNameTreeNode } from "../types/PokemonEvolutionNameTreeNode";
 import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
+import simplifyPokemon from "../utils/simplifyPokemon";
+import addToAllSimplePokemon from "../utils/addToAllSimplePokemon";
+import getSimplePokemonFromSessionStorage from "../utils/getPokemonFromSessionStorage";
+import getEvolutionChainFromSessionStorage from "../utils/getEvolutionChainFromSessionStorage";
+import addToEvolutionChainStorage from "../utils/addToEvolutionChainStorage";
 
 export interface MatchParams {
   pokemonId: number;
@@ -38,20 +43,30 @@ export default function CarouselWithQuery({
     livingDexStorage[pokemonId] ? redPokeball : greyPokeball
   );
 
+  // next step is to make session storage where key is pokemon id/name and value is simple evolution chain.
   useEffect(() => {
     // how do we properly reset evolution chain every time we switch to different pokemon?
     setEvolutionChain(null);
+
+    const simplePokemonInStorage =
+      getSimplePokemonFromSessionStorage(pokemonId);
+
     getAllPokemonData(pokemonId).then((pokemonData) => {
       const pokemonWithSanitizedName: Pokemon = replacePokemonName(
         pokemonData[0]
       );
       setPokemon(pokemonWithSanitizedName);
+
       const pokemonSpeciesWithSanitizedName: PokemonSpecies = pokemonData[1];
       setPokemonSpecies(pokemonSpeciesWithSanitizedName);
+
+      const simplifiedPokemon =
+        simplePokemonInStorage !== null
+          ? simplePokemonInStorage
+          : simplifyPokemon(pokemonWithSanitizedName);
+
       const url = pokemonSpeciesWithSanitizedName.evolution_chain.url;
-      const fetchedEvolutionChain: Promise<EvolutionChain> =
-        fetchEvolutionChain(url);
-      fetchedEvolutionChain.then(async (evolutionChainData) => {
+      fetchEvolutionChain(url).then(async (evolutionChainData) => {
         // first, initiate tree of string from tree-structured data (simplify evolution chain)
         // second, fetch and modify tree of string into tree of simple pokemon (modify tree nodes)
         // third, present the tree of simple pokemon by traversing the tree (deconstruct and present into component)
@@ -60,13 +75,30 @@ export default function CarouselWithQuery({
         // second: fetchPokemonFromEvolutionChain is modified so that we fetch from tree, not 2d array
         // third: PokemonEvolutionChain is modified so that we present evolution chain from tree, not 2d array
         //        we might introduce PokemonEvolutionChainRow that consists of multiple PokemonEvolutionChainItem
-        const evolutionChainRoot: PokemonEvolutionNameTreeNode =
-          simplifyEvolutionChain(evolutionChainData.chain);
+        const pokemonEvolutionId = evolutionChainData.id;
+        const evolutionChainInStorage =
+          getEvolutionChainFromSessionStorage(pokemonEvolutionId);
 
-        const pokemonEvolutionTree: PokemonEvolutionTreeNode =
-          await fetchPokemonFromEvolutionChain(evolutionChainRoot);
-        setEvolutionChain(pokemonEvolutionTree);
+        if (
+          evolutionChainInStorage !== null &&
+          evolutionChainInStorage != undefined
+        ) {
+          setEvolutionChain(evolutionChainInStorage);
+        } else {
+          const evolutionChainRoot: PokemonEvolutionNameTreeNode =
+            simplifyEvolutionChain(evolutionChainData.chain);
+
+          const pokemonEvolutionTree: PokemonEvolutionTreeNode =
+            await fetchPokemonFromEvolutionChain(evolutionChainRoot);
+
+          addToEvolutionChainStorage(pokemonEvolutionId, pokemonEvolutionTree);
+          setEvolutionChain(pokemonEvolutionTree);
+        }
       });
+
+      if (simplePokemonInStorage === null) {
+        addToAllSimplePokemon(simplifiedPokemon);
+      }
       setFinishedFetching(true);
     });
   }, [pokemonId]);
@@ -78,9 +110,9 @@ export default function CarouselWithQuery({
       pokemonId={pokemonId}
       pokeball={pokeball}
       setPokeball={setPokeball}
-      evolutionChain={evolutionChain}
       finishedFetching={finishedFetching}
       livingDex={livingDex}
+      evolutionChain={evolutionChain}
     />
   );
 }

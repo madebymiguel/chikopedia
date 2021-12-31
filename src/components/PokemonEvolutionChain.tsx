@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import "../scss/PokemonEvolutionChain.scss";
 import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
 import { getEvolutionPathsFromTree } from "../utils/getEvolutionPathsFromTree";
-import PokemonEvolutionChainItem from "./PokemonEvolutionChainItem";
 import PokemonEvolutionChainRow from "./PokemonEvolutionChainRow";
 
 export interface PokemonEvolutionChainProps {

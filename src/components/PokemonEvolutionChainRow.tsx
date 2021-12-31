@@ -9,6 +9,7 @@ export default function PokemonEvolutionChainRow({
   evolutionPath,
 }: PokemonEvolutionChainRowProps) {
   let count = 0;
+  // TODO: after we modify PokemonEvolutionTreeNode, we add evolution detail to arrow
   return (
     <div className="pokemon-chain-row">
       {evolutionPath.map((pokemonObject) => {
