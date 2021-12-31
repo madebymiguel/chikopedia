@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PokedexEntry from "./PokedexEntry";
+import ArrowBack from "../assets/arrow-back.svg";
+import ArrowForward from "../assets/arrow-forward.svg";
 import "../scss/Carousel.scss";
 import { Pokemon } from "../types/pokemon/Pokemon";
 import { PokemonSpecies } from "../types/pokemonSpecies/PokemonSpecies";
@@ -16,6 +18,9 @@ export interface CarouselProps {
   evolutionChain: PokemonEvolutionTreeNode | null;
   finishedFetching: boolean;
   livingDex: boolean;
+  handleBack: () => void;
+  lastState: number;
+  setLastState: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function Carousel({
@@ -27,13 +32,19 @@ export default function Carousel({
   evolutionChain,
   finishedFetching,
   livingDex,
+  handleBack,
+  lastState,
+  setLastState,
 }: CarouselProps) {
   return (
     <div className="carousel-container">
-      <div className="nav-buttons">
+      <button className="back-to-main" onClick={handleBack}>
+        Back
+      </button>
+      <div className="prev" onClick={() => setLastState(lastState - 1)}>
         {pokemonId > 1 && (
-          <Link to={`/pokemon/${pokemonId - 1}`} className="nav-buttons prev">
-            prev
+          <Link to={`/pokemon/${pokemonId - 1}`} className="nav-buttons">
+            <img src={ArrowBack} alt="back-arrow" />
           </Link>
         )}
       </div>
@@ -81,10 +92,10 @@ export default function Carousel({
           <span>...loading</span>
         )}
       </div>
-      <div className="nav-buttons">
+      <div className="next" onClick={() => setLastState(lastState - 1)}>
         {pokemonId < MAX_POKEMON && (
-          <Link to={`/pokemon/${pokemonId + 1}`} className="nav-buttons next">
-            next
+          <Link to={`/pokemon/${pokemonId + 1}`} className="nav-buttons">
+            <img src={ArrowForward} alt="forward-arrow" />
           </Link>
         )}
       </div>

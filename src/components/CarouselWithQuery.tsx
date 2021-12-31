@@ -42,6 +42,13 @@ export default function CarouselWithQuery({
     livingDexStorage[pokemonId] ? redPokeball : greyPokeball
   );
 
+  const [lastState, setLastState] = useState<number>(-1);
+
+  function handleBack() {
+    history.go(lastState);
+    setLastState(-1);
+  }
+
   // next step is to make session storage where key is pokemon id/name and value is simple evolution chain.
   useEffect(() => {
     // how do we properly reset evolution chain every time we switch to different pokemon?
@@ -112,6 +119,9 @@ export default function CarouselWithQuery({
       finishedFetching={finishedFetching}
       livingDex={livingDex}
       evolutionChain={evolutionChain}
+      handleBack={handleBack}
+      lastState={lastState}
+      setLastState={setLastState}
     />
   );
 }

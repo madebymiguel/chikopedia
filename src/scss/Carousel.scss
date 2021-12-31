@@ -4,23 +4,57 @@
 
 .carousel-container {
   grid-area: main;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-areas:
+    "back-to-main ............. ...."
+    "prev         pokedex-entry next";
+
+  .back-to-main {
+    grid-area: back-to-main;
+    align-self: end;
+    background: #67a066;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    border: none;
+    vertical-align: middle;
+    transition: box-shadow 0.4s ease;
+    margin-left: auto;
+    font-family: "Lora", serif;
+    font-size: 16px;
+    color: black;
+
+    &:hover {
+      background: #a7d495;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    }
+  }
 
   .carousel-content {
-    padding: 30px;
+    grid-area: pokedex-entry;
+    align-self: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+  }
+  .prev {
+    grid-area: prev;
+    align-self: center;
+  }
+
+  .next {
+    grid-area: next;
+    align-self: center;
   }
 
   .nav-buttons {
     color: black;
-    // text-decoration: none;
-    .prev {
-      font-size: 30px;
-    }
-    .next {
-      font-size: 30px;
-    }
+    font-size: 30px;
+    text-decoration: none;
   }
 }
