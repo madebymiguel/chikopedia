@@ -1,7 +1,7 @@
 import { useMemo } from "react";
+import PokemonGridItem from "./PokemonGridItem";
 import "../scss/PokemonGrid.scss";
 import { SimplePokemon } from "../types/SimplePokemon";
-import PokemonGridItem from "./PokemonGridItem";
 
 export interface PokemonGridProps {
   isLoading: boolean;

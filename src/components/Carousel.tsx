@@ -1,11 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import PokedexEntry from "./PokedexEntry";
 import "../scss/Carousel.scss";
 import { Pokemon } from "../types/pokemon/Pokemon";
-import PokedexEntry from "./PokedexEntry";
-import { Link } from "react-router-dom";
-import { MAX_POKEMON } from "../variables/globalVariables";
 import { PokemonSpecies } from "../types/pokemonSpecies/PokemonSpecies";
 import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
+import { MAX_POKEMON } from "../variables/globalVariables";
 
 export interface CarouselProps {
   pokemon: Pokemon | null;

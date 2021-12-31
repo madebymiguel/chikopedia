@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import getPokemonIndexFromStorage from "../utils/getPokemonIndexFromStorage";
 import "../scss/Search.scss";
+import getPokemonIndexFromStorage from "../utils/getPokemonIndexFromStorage";
 
 export interface SearchProps {
   search: string | number;
@@ -13,7 +13,6 @@ export default function Search({ search, setSearch }: SearchProps) {
   const location = useLocation();
 
   useEffect(() => {
-    console.log("search", search);
     const setSearchIndexOnUseEffect = async () => {
       setSearchIndex(await getPokemonIndexFromStorage(search));
     };

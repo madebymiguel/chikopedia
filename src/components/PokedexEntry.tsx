@@ -1,15 +1,15 @@
-import "../scss/PokedexEntry.scss";
 import React from "react";
+import PokemonStats from "./PokemonStats";
+import PokemonTypes from "./PokemonTypes";
+import PokemonAbilities from "./PokemonAbilities";
+import PokemonEvolutionChain from "./PokemonEvolutionChain";
+import "../scss/PokedexEntry.scss";
 import { PokemonType } from "../types/pokemon/Type";
 import { PokemonStat } from "../types/pokemon/Stat";
 import { PokemonAbility } from "../types/pokemon/Ability";
-import PokemonTypes from "./PokemonTypes";
-import PokemonStats from "./PokemonStats";
-import PokemonAbilities from "./PokemonAbilities";
+import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 import { handlePokeballColorChange } from "../utils/handlePokeballColorChange";
-import PokemonEvolutionChain from "./PokemonEvolutionChain";
-import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
 
 export interface PokedexEntryProps {
   //From Pokemon

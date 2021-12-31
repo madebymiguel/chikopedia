@@ -1,5 +1,5 @@
-import { SimplePokemon } from "../SimplePokemon";
 import { Chain } from "./Chain";
+import { SimplePokemon } from "../SimplePokemon";
 
 export type evolutionPath = SimplePokemon[];
 export interface EvolutionChain {

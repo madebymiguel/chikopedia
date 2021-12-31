@@ -1,5 +1,5 @@
-import { evolutionPath } from "../types/evolutionChain/EvolutionChain";
 import PokemonEvolutionChainItem from "./PokemonEvolutionChainItem";
+import { evolutionPath } from "../types/evolutionChain/EvolutionChain";
 
 export interface PokemonEvolutionChainRowProps {
   evolutionPath: evolutionPath;

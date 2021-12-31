@@ -1,6 +1,6 @@
 import React from "react";
-import "../scss/Menu.scss";
 import ToggleSwitch from "./ToggleSwitch";
+import "../scss/Menu.scss";
 
 export interface MenuContentProps {
   pokedexStyle: string;

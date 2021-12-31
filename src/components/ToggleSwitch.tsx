@@ -1,4 +1,3 @@
-import React from "react";
 import "../scss/ToggleSwitch.scss";
 
 export interface ToggleSwitchProps {

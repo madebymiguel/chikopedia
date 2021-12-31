@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import "../scss/App.scss";
-import "../scss/Header.scss";
 import Search from "./Search";
 import Menu from "./Menu";
+import PokemonGrid from "./PokemonGrid";
 import CarouselWithQuery from "./CarouselWithQuery";
+import getAllPokemon from "../apis/getAllPokemon";
+import "../scss/App.scss";
+import "../scss/Header.scss";
 import { getLivingDexStatus } from "../utils/getLivingDexStatus";
+import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
+import sortPokemon from "../utils/sortPokemon";
+import replacePokemonNamesFromArray from "../utils/replacePokemonNamesFromArray";
+import simplifyPokemonArray from "../utils/simplifyPokemonArray";
+import useEvolutionChainSessionStorage from "../utils/useEvolutionChainSessionStorage";
 import {
   LIVING_DEX_STATUS_KEY,
   POKEMON_LIMIT,
 } from "../variables/globalVariables";
-import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
-import getAllPokemon from "../apis/getAllPokemon";
-import sortPokemon from "../utils/sortPokemon";
-import replacePokemonNamesFromArray from "../utils/replacePokemonNamesFromArray";
-import PokemonGrid from "./PokemonGrid";
-import simplifyPokemonArray from "../utils/simplifyPokemonArray";
-import useEvolutionChainSessionStorage from "../utils/useEvolutionChainSessionStorage";
 
 export default function App() {
   const [search, setSearch] = useState<string | number>("");

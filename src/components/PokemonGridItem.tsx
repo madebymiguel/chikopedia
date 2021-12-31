@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "../scss/PokemonGridItem.scss";
 import greyPokeball from "../assets/grey-pokeball.svg";
 import redPokeball from "../assets/red-pokeball.svg";
+import "../scss/PokemonGridItem.scss";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 import { handlePokeballColorChange } from "../utils/handlePokeballColorChange";
 import { getLivingDexSet } from "../utils/getLivingDexSet";

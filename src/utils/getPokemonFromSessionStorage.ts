@@ -1,5 +1,5 @@
-import { SimplePokemon } from "../types/SimplePokemon";
 import getAllSimplePokemon from "./getAllSimplePokemon";
+import { SimplePokemon } from "../types/SimplePokemon";
 
 export default function getSimplePokemonFromSessionStorage(pokemonId: number) {
   const allSimplePokemonSet: SimplePokemon[] = getAllSimplePokemon();

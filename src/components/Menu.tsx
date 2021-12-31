@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
-import "../scss/Menu.scss";
 import DropDownMenu from "./DropDownMenu";
 import MenuContent from "./MenuContent";
+import "../scss/Menu.scss";
 
 export interface MenuProps {
   pokedexStyle: string;

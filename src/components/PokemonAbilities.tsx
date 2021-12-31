@@ -1,5 +1,5 @@
-import "../scss/PokemonAbilities.scss";
 import { PokemonAbility } from "../types/pokemon/Ability";
+import "../scss/PokemonAbilities.scss";
 
 export interface PokemonAbilityProps {
   abilities: PokemonAbility[];

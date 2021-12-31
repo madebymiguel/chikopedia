@@ -1,7 +1,7 @@
-import greyPokeball from "../assets/grey-pokeball.svg";
-import redPokeball from "../assets/red-pokeball.svg";
 import { addToLivingDexSet } from "./addToLivingDexSet";
 import { removeFromLivingDexSet } from "./removeFromLivingDexSet";
+import greyPokeball from "../assets/grey-pokeball.svg";
+import redPokeball from "../assets/red-pokeball.svg";
 
 export interface handlePokeballColorChangeProps {
   pokeball: string;
