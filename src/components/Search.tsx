@@ -13,6 +13,7 @@ export default function Search({ search, setSearch }: SearchProps) {
   const location = useLocation();
 
   useEffect(() => {
+    console.log("search", search);
     const setSearchIndexOnUseEffect = async () => {
       setSearchIndex(await getPokemonIndexFromStorage(search));
     };
