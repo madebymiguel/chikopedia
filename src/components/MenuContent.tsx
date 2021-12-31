@@ -1,7 +1,6 @@
 import React from "react";
-import Switch from "react-switch";
 import "../scss/Menu.scss";
-import { LIVING_DEX_STATUS_KEY } from "../variables/globalVariables";
+import ToggleSwitch from "./ToggleSwitch";
 
 export interface MenuContentProps {
   pokedexStyle: string;
@@ -52,10 +51,9 @@ export default function MenuContent({
         </label>
 
         <div id="livingdex-switch">
-          <Switch
-            className="toggle-switch"
-            onChange={onToggleLivingDex}
-            checked={livingDex}
+          <ToggleSwitch
+            isToggled={livingDex}
+            handleToggle={onToggleLivingDex}
           />
           <span className="switch-label">Living Dex</span>
         </div>
