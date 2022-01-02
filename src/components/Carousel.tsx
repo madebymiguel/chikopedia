@@ -8,6 +8,8 @@ import { Pokemon } from "../types/pokemon/Pokemon";
 import { PokemonSpecies } from "../types/pokemonSpecies/PokemonSpecies";
 import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
 import { MAX_POKEMON } from "../variables/globalVariables";
+import { PokemonSpeciesGenera } from "../types/pokemonSpecies/Genera";
+import { PokemonSpeciesFlavorTextEntries } from "../types/pokemonSpecies/FlavorTextEntries";
 
 export interface CarouselProps {
   pokemon: Pokemon | null;
@@ -63,6 +65,7 @@ export default function Carousel({
               weight={pokemon.weight}
               height={pokemon.height}
               abilities={pokemon.abilities}
+              baseExperience={pokemon.base_experience}
               //From PokemonSpecies
               genderRate={pokemonSpecies.gender_rate}
               captureRate={pokemonSpecies.capture_rate}
@@ -71,18 +74,27 @@ export default function Carousel({
               growthRate={pokemonSpecies.growth_rate.name}
               evolutionChain={evolutionChain}
               //Right now just pull the first egg group
-              eggGroups={
-                pokemonSpecies.egg_groups.length < 0
-                  ? pokemonSpecies.egg_groups[0].name
-                  : "Unknown"
-              }
-              color={pokemonSpecies.color.name}
-              habitat={
-                pokemonSpecies.habitat === null
-                  ? "Unknown"
-                  : pokemonSpecies.habitat.name
-              }
+              // eggGroups={
+              //   pokemonSpecies.egg_groups.length > 0
+              //     ? pokemonSpecies.egg_groups
+              //     : "Unknown"
+              // }
               generation={pokemonSpecies.generation.name}
+              flavorTextEntries={
+                (
+                  pokemonSpecies.flavor_text_entries.find(
+                    (text) => text.language.name === "en"
+                  ) as PokemonSpeciesFlavorTextEntries
+                ).flavor_text
+              }
+              genera={
+                (
+                  pokemonSpecies.genera.find(
+                    (gen) => gen.language.name === "en"
+                  ) as PokemonSpeciesGenera
+                ).genus
+              }
+              baseHappiness={pokemonSpecies.base_happiness}
               pokeball={pokeball}
               setPokeball={setPokeball}
               livingDex={livingDex}

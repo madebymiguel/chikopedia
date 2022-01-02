@@ -21,17 +21,19 @@ export interface PokedexEntryProps {
   weight: number;
   height: number;
   abilities: PokemonAbility[];
+  baseExperience: number;
   //From PokemonSpecies
   genderRate: number;
   captureRate: number;
   isLegendary: boolean;
   isMythical: boolean;
   growthRate: string;
-  eggGroups: string;
-  color: string;
-  habitat: string;
+  // eggGroups: EggGroups[];
   generation: string;
+  flavorTextEntries: string;
+  genera: string;
   evolutionChain: PokemonEvolutionTreeNode | null;
+  baseHappiness: number;
   pokeball: string;
   setPokeball: React.Dispatch<React.SetStateAction<string>>;
   livingDex: boolean;
@@ -46,27 +48,33 @@ export default function PokedexEntry({
   weight,
   height,
   abilities,
+  baseExperience,
   genderRate, // genderRate = -1 means no gender
   captureRate,
   isLegendary,
   isMythical,
   growthRate,
-  eggGroups,
-  color, // can be used for theme color for each pokemon
-  habitat, // can be used for background theme
+  // eggGroups,
+  flavorTextEntries,
+  genera,
   generation,
   pokeball,
   setPokeball,
   livingDex,
   evolutionChain,
+  baseHappiness,
 }: PokedexEntryProps) {
   return (
     // the description parts can be refactored into react component
     <div className="pokedex-entry-container">
-      <section className="pokedex-screen">
-        <div className="header">
+      <div className="header">
+        <div className="title-container">
           <h2 className="title">{upperCaseFirstLetter(name)}</h2>
+        </div>
+        <div className="index-container">
           <h2 className="index">#{index}</h2>
+        </div>
+        <div className="pokeball-container">
           {livingDex && (
             <input
               type="image"
@@ -79,72 +87,101 @@ export default function PokedexEntry({
             />
           )}
         </div>
-        <div className="sprite">
-          <img src={image} className="sprite-image"></img>
-        </div>
-      </section>
+      </div>
+      <div className="sprite">
+        <img src={image} className="sprite-image"></img>
+      </div>
 
-      <section className="pokedex-detailed-info">
+      <div className="types-container">
         <PokemonTypes types={types} />
-        <div className="description">
-          <div id="height">
-            <div id="height-title"> HEIGHT </div>
-            <div id="height-content"> {(height * 0.1).toFixed(1)} m </div>
+      </div>
+
+      <div className="flavor-text-container">{flavorTextEntries}</div>
+
+      <div className="description">
+        <div className="generation">
+          <span className=""> {generation} </span>
+        </div>
+
+        <div className="genera-container">{genera}</div>
+
+        <div className="height-container">
+          <span className="">HEIGHT</span>
+          <span className="">{(height * 0.1).toFixed(1)} m</span>
+        </div>
+
+        <div className="weight-container">
+          <span className="">WEIGHT</span>
+          <span className=""> {(weight * 0.1).toFixed(1)} kg </span>
+        </div>
+
+        {isLegendary && <div> Legendary </div>}
+        {isMythical && <div> Mythical </div>}
+      </div>
+
+      <div className="details-container">
+        <div className="training-container">
+          <div className="base-experience-container">
+            <span className="base-experience-title">Base Experience</span>
+            <span className="">{baseExperience}</span>
           </div>
-          <div id="weight">
-            <div id="weight-title"> WEIGHT </div>
-            <div id="weight-content"> {(weight * 0.1).toFixed(1)} kg </div>
+
+          <div className="base-happiness-container">
+            <span className="base-happiness-title">baseHappiness</span>
+            <span className="base-happiness-content">{baseHappiness}</span>
+          </div>
+
+          <div className="capture-rate-container">
+            <div className="capture-rate-title">Capture Rate</div>
+            <div className="capture-rate-content">
+              ({Math.round((captureRate / 255) * 100)}%)
+            </div>
+          </div>
+          <div className="growth-rate-container">
+            <div className="growth-rate-title"> Growth Rate </div>
+            <div className="growth-rate-content"> {growthRate} </div>
           </div>
         </div>
-        <div className="extra">
-          <div className="rates">
-            <div id="gender-rate">
-              <div id="gender-rate-title"> GENDER</div>
-              <div id="gender-rate-content">
-                <div className="gender-rate-gender">
-                  <div className="gender-rate-title">Male</div>
-                  <div className="gender-rate-content">
-                    {100 - Math.round((genderRate / 8) * 100)}%
-                  </div>
-                </div>
-                <div className="gender-rate-gender">
-                  <div className="gender-rate-title">Female</div>
-                  <div className="gender-rate-content">
-                    {Math.round((genderRate / 8) * 100)}%
-                  </div>
-                </div>
+
+        <div className="breeding-container">
+          <span>GENDER</span>
+          {genderRate !== -1 ? (
+            <div className="gender-container">
+              <div className="gender-rate-container">
+                <span className="gender-rate-title">Male</span>
+                <span className="gender-rate-content">
+                  {100 - Math.round((genderRate / 8) * 100)}%
+                </span>
+              </div>
+
+              <div className="gender-rate-container">
+                <span className="gender-rate-title">Female</span>
+                <span className="gender-rate-content">
+                  {Math.round((genderRate / 8) * 100)}%
+                </span>
               </div>
             </div>
-            <div id="capture-rate">
-              <div id="capture-rate-title">Capture Rate</div>
-              <div id="capture-rate-content">
-                {captureRate} ({Math.round((captureRate / 255) * 100)}%)
-              </div>
+          ) : (
+            <div className="gender-container">
+              <span>Genderless</span>
             </div>
-            <div id="growth-rate">
-              <div id="growth-rate-title"> Growth Rate </div>
-              <div id="growth-rate-content"> {growthRate} </div>
-            </div>
-          </div>
-          <div className="groups">
-            <div id="egg-groups">
-              <div id="egg-groups-title"> Egg Groups </div>
-              <div id="egg-groups-content"> {eggGroups} </div>
-            </div>
-            <div id="generation">
-              <div id="generation-title"> GENERATION </div>
-              <div id="generation-content"> {generation} </div>
-            </div>
-          </div>
-          {isLegendary && <div> Legendary </div>}
-          {isMythical && <div> Mythical </div>}
+          )}
         </div>
-        <PokemonStats stats={stats} />
+      </div>
+
+      <div className="abilites-container">
         <PokemonAbilities abilities={abilities} />
+      </div>
+
+      <div className="stats-container">
+        <PokemonStats stats={stats} />
+      </div>
+
+      <div className="evolution-container">
         {evolutionChain !== null && (
           <PokemonEvolutionChain evolutionChain={evolutionChain} />
         )}
-      </section>
+      </div>
     </div>
   );
 }

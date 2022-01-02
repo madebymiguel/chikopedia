@@ -5,108 +5,193 @@
 }
 
 .pokedex-entry-container {
-  background-color: $color5;
+  background-color: whitesmoke;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   grid-template-areas:
-    "...... screen ......"
-    "...... details ......";
+    ".... header ...."
+    ".... sprite ...."
+    ".... types ...."
+    ".... flavor-text ...."
+    ".... description ...."
+    ".... details ...."
+    ".... abilites ...."
+    ".... stats ...."
+    ".... evolution ....";
+
   padding: 20px;
   border-radius: 8px;
 
-  .pokedex-screen {
-    grid-area: screen;
-    width: 100%;
+  .header {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 1fr auto auto auto 1fr;
+    grid-template-areas: ".... name index pokeball ....";
 
-    .header {
-      width: 100%;
-      display: flex;
-      justify-content: space-evenly;
-      text-align: center;
-
-      .index {
-        margin: 0px;
-        padding: 0px;
-      }
+    .title-container {
+      grid-area: name;
+      padding-right: 100px;
 
       .title {
-        //   grid-area: title;
         font-family: $font-sub-title;
         font-style: bold;
         margin: 0px;
         padding: 0px;
       }
+    }
+
+    .index-container {
+      grid-area: index;
+
+      .index {
+        margin: 0px;
+        padding: 0px;
+      }
+    }
+
+    .pokeball-container {
+      grid-area: pokeball;
+      padding-left: 20px;
 
       .pokeball {
         width: 30px;
       }
     }
+  }
 
-    .sprite {
-      //   grid-area: sprite;
+  .sprite {
+    grid-area: sprite;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+    margin-bottom: 12px;
+
+    .sprite-image {
+      object-fit: cover;
       width: 100%;
-      display: flex;
-      justify-content: center;
-      padding-top: 8px;
-      margin-bottom: 12px;
+      max-width: 250px;
+      background-color: whitesmoke;
+      border-radius: 16px;
+      // border: black 1px solid;
+      box-shadow: 0 10px 15px -3px gray;
+      // height: 250px;
+    }
+  }
 
-      .sprite-image {
-        object-fit: cover;
-        width: 100%;
-        max-width: 250px;
-        background-color: whitesmoke;
-        border-radius: 16px;
-        // border: black 1px solid;
-        box-shadow: 0 10px 15px -3px gray;
-        // height: 250px;
+  .types-container {
+    grid-area: types;
+  }
+
+  .flavor-text-container {
+    grid-area: flavor-text;
+    padding-top: 20px;
+  }
+
+  .description {
+    grid-area: description;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 20px;
+
+    .generation-container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .genera-container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .height-container {
+      display: flex;
+      flex-direction: row;
+    }
+    .weight-container {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .details-container {
+    grid-area: details;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    .training-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 16px;
+
+      .base-experience-container {
+        .base-experience-title {
+          padding-right: 16px;
+        }
+      }
+
+      .base-happiness-container {
+      }
+
+      .capture-rate-container {
+        .capture-rate-title {
+        }
+
+        .capture-rate-content {
+        }
+      }
+
+      .growth-rate-container {
+        .growth-rate-title {
+        }
+        .growth-rate-content {
+        }
+      }
+    }
+
+    .breeding-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 16px;
+
+      .gender-container {
+        display: flex;
+        flex-direction: row;
+        padding: 8px;
+
+        .gender-rate-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          .gender-rate-title {
+            padding-right: 16px;
+          }
+
+          .gender-rate-content {
+            padding-right: 16px;
+          }
+        }
       }
     }
   }
 
-  .pokedex-detailed-info {
-    grid-area: details;
-    width: 100%;
-    font-family: $font-text;
-    font-style: bold;
-    font-weight: 300;
+  .abilites-container {
+    grid-area: abilites;
+  }
 
-    .description {
-      display: flex;
-      justify-content: space-evenly;
-      margin-top: 16px;
-      margin-bottom: 8px;
-    }
+  .stats-container {
+    grid-area: stats;
+  }
 
-    .extra {
-      display: flex;
-      flex-direction: column;
-      padding: 8px;
-
-      .rates {
-        display: flex;
-        justify-content: space-evenly;
-        flex-direction: row;
-
-        #gender-rate {
-          #gender-rate-content {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: row;
-
-            .gender-rate-gender {
-              padding-right: 16px;
-            }
-          }
-        }
-
-        padding-bottom: 16px;
-      }
-
-      .groups {
-        display: flex;
-        justify-content: space-evenly;
-        flex-direction: row;
-      }
-    }
+  .evolution-container {
+    grid-area: evolution;
+    padding-top: 16px;
   }
 }
