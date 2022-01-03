@@ -3,6 +3,8 @@ import PokemonStats from "./PokemonStats";
 import PokemonTypes from "./PokemonTypes";
 import PokemonAbilities from "./PokemonAbilities";
 import PokemonEvolutionChain from "./PokemonEvolutionChain";
+import MaleGenderIcon from "../assets/male-gender-icon.svg";
+import FemaleGenderIcon from "../assets/female-gender-icon.svg";
 import "../scss/PokedexEntry.scss";
 import { PokemonType } from "../types/pokemon/Type";
 import { PokemonStat } from "../types/pokemon/Stat";
@@ -128,35 +130,43 @@ export default function PokedexEntry({
           </div>
 
           <div className="base-happiness-container">
-            <span className="base-happiness-title">baseHappiness</span>
+            <span className="base-happiness-title">Base Happiness</span>
             <span className="base-happiness-content">{baseHappiness}</span>
           </div>
 
           <div className="capture-rate-container">
-            <div className="capture-rate-title">Capture Rate</div>
-            <div className="capture-rate-content">
-              ({Math.round((captureRate / 255) * 100)}%)
-            </div>
+            <span className="capture-rate-title">Capture Rate</span>
+            <span className="capture-rate-content">
+              {Math.round((captureRate / 255) * 100)}%
+            </span>
           </div>
           <div className="growth-rate-container">
-            <div className="growth-rate-title"> Growth Rate </div>
-            <div className="growth-rate-content"> {growthRate} </div>
+            <span className="growth-rate-title"> Growth Rate </span>
+            <span className="growth-rate-content"> {growthRate} </span>
           </div>
         </div>
 
         <div className="breeding-container">
-          <span>GENDER</span>
           {genderRate !== -1 ? (
             <div className="gender-container">
+              <span className="gender-rate-title">Gender</span>
               <div className="gender-rate-container">
-                <span className="gender-rate-title">Male</span>
+                <img
+                  src={MaleGenderIcon}
+                  alt="MaleGenderIcon"
+                  className="gender-rate-icon"
+                />
                 <span className="gender-rate-content">
                   {100 - Math.round((genderRate / 8) * 100)}%
                 </span>
               </div>
 
               <div className="gender-rate-container">
-                <span className="gender-rate-title">Female</span>
+                <img
+                  src={FemaleGenderIcon}
+                  alt="FemaleGenderIcon"
+                  className="gender-rate-icon"
+                />
                 <span className="gender-rate-content">
                   {Math.round((genderRate / 8) * 100)}%
                 </span>

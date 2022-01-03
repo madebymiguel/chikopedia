@@ -19,13 +19,32 @@
     flex-direction: row;
     justify-content: center;
 
-    .ability-name {
+    .ability-content {
+      display: flex;
+      justify-content: center;
       text-align: center;
-      font-size: 18px;
-      background-color: lightgray;
+      border: 2px solid blue;
       border-radius: 8px;
       padding: 4px;
       margin: 8px;
+
+      .ability-name {
+        font-size: 18px;
+      }
+    }
+
+    .ability-content-hidden {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      border: 2px solid red;
+      border-radius: 8px;
+      padding: 4px;
+      margin: 8px;
+
+      .ability-name {
+        font-size: 18px;
+      }
     }
   }
 }
