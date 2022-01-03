@@ -10,6 +10,7 @@ import { PokemonAbility } from "../types/pokemon/Ability";
 import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 import { handlePokeballColorChange } from "../utils/handlePokeballColorChange";
+import formatIndex from "../utils/formatIndex";
 
 export interface PokedexEntryProps {
   //From Pokemon
@@ -72,7 +73,7 @@ export default function PokedexEntry({
           <h2 className="title">{upperCaseFirstLetter(name)}</h2>
         </div>
         <div className="index-container">
-          <h2 className="index">#{index}</h2>
+          <h2 className="index">#{formatIndex(index)}</h2>
         </div>
         <div className="pokeball-container">
           {livingDex && (
