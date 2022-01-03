@@ -124,53 +124,61 @@ export default function PokedexEntry({
 
       <div className="details-container">
         <div className="training-container">
-          <div className="base-experience-container">
-            <span className="base-experience-title">Base Experience</span>
-            <span className="">{baseExperience}</span>
-          </div>
-
-          <div className="base-happiness-container">
-            <span className="base-happiness-title">Base Happiness</span>
-            <span className="base-happiness-content">{baseHappiness}</span>
-          </div>
-
-          <div className="capture-rate-container">
-            <span className="capture-rate-title">Capture Rate</span>
-            <span className="capture-rate-content">
-              {Math.round((captureRate / 255) * 100)}%
-            </span>
-          </div>
-          <div className="growth-rate-container">
-            <span className="growth-rate-title"> Growth Rate </span>
-            <span className="growth-rate-content"> {growthRate} </span>
-          </div>
+          <h3>Training</h3>
+          <table className="stat-table">
+            <tr className="stat-row">
+              <th className="stat-name">Base Experience</th>
+              <td className="stat-number">{baseExperience}</td>
+            </tr>
+            <tr className="stat-row">
+              <th className="stat-name">Base Happiness</th>
+              <td className="stat-number">{baseHappiness}</td>
+            </tr>
+            <tr className="stat-row">
+              <th className="stat-name">Capture Rate</th>
+              <td className="stat-number">
+                {Math.round((captureRate / 255) * 100)}%
+              </td>
+            </tr>
+            <tr className="stat-row">
+              <th className="stat-name">Growth Rate</th>
+              <td className="stat-number">{growthRate}</td>
+            </tr>
+          </table>
         </div>
 
         <div className="breeding-container">
+          <h3>Breeding</h3>
           {genderRate !== -1 ? (
             <div className="gender-container">
-              <span className="gender-rate-title">Gender</span>
-              <div className="gender-rate-container">
-                <img
-                  src={MaleGenderIcon}
-                  alt="MaleGenderIcon"
-                  className="gender-rate-icon"
-                />
-                <span className="gender-rate-content">
-                  {100 - Math.round((genderRate / 8) * 100)}%
-                </span>
-              </div>
-
-              <div className="gender-rate-container">
-                <img
-                  src={FemaleGenderIcon}
-                  alt="FemaleGenderIcon"
-                  className="gender-rate-icon"
-                />
-                <span className="gender-rate-content">
-                  {Math.round((genderRate / 8) * 100)}%
-                </span>
-              </div>
+              <table className="stat-table">
+                <tr className="stat-row">
+                  <th className="stat-name">
+                    <span className="gender-type">Male</span>
+                    <img
+                      src={MaleGenderIcon}
+                      alt="MaleGenderIcon"
+                      className="gender-rate-icon"
+                    />
+                  </th>
+                  <td className="stat-number">
+                    {100 - Math.round((genderRate / 8) * 100)}%
+                  </td>
+                </tr>
+                <tr className="stat-row">
+                  <th className="stat-name">
+                    <span className="gender-type">Female</span>
+                    <img
+                      src={FemaleGenderIcon}
+                      alt="FemaleGenderIcon"
+                      className="gender-rate-icon"
+                    />
+                  </th>
+                  <td className="stat-number">
+                    {Math.round((genderRate / 8) * 100)}%
+                  </td>
+                </tr>
+              </table>
             </div>
           ) : (
             <div className="gender-container">

@@ -121,12 +121,31 @@
     flex-direction: row;
     justify-content: space-evenly;
 
+    h3 {
+      margin: 8px;
+    }
+
     .training-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       padding-top: 16px;
 
+      .stat-table {
+        border-collapse: collapse;
+
+        .stat-row {
+          border-bottom: 1px solid black;
+          .stat-name {
+            text-align: left;
+            padding: 4px;
+          }
+          .stat-number {
+            text-align: left;
+            padding: 4px;
+          }
+        }
+      }
       .base-experience-container {
         .base-experience-title {
           padding-right: 16px;
@@ -170,9 +189,25 @@
 
       .gender-container {
         display: flex;
-        flex-direction: row;
-        padding: 8px;
+        flex-direction: column;
+        // padding: 8px;
         align-items: center;
+
+        .stat-table {
+          border-collapse: collapse;
+
+          .stat-row {
+            border-bottom: 1px solid black;
+            .stat-name {
+              text-align: left;
+              padding: 4px;
+            }
+            .stat-number {
+              text-align: left;
+              padding: 4px;
+            }
+          }
+        }
 
         .gender-rate-title {
           padding-right: 16px;
