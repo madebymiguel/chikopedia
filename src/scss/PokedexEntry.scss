@@ -92,26 +92,17 @@
     grid-area: description;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     padding-top: 20px;
 
-    .generation-container {
-      display: flex;
-      flex-direction: row;
-    }
+    .description-table {
+      border-collapse: collapse;
 
-    .genera-container {
-      display: flex;
-      flex-direction: row;
-    }
-
-    .height-container {
-      display: flex;
-      flex-direction: row;
-    }
-    .weight-container {
-      display: flex;
-      flex-direction: row;
+      .description-row {
+        .description-data {
+          padding-right: 16px;
+        }
+      }
     }
   }
 

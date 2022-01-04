@@ -102,24 +102,24 @@ export default function PokedexEntry({
       <div className="flavor-text-container">{flavorTextEntries}</div>
 
       <div className="description">
-        <div className="generation">
-          <span className=""> {generation} </span>
-        </div>
-
-        <div className="genera-container">{genera}</div>
-
-        <div className="height-container">
-          <span className="">HEIGHT</span>
-          <span className="">{(height * 0.1).toFixed(1)} m</span>
-        </div>
-
-        <div className="weight-container">
-          <span className="">WEIGHT</span>
-          <span className=""> {(weight * 0.1).toFixed(1)} kg </span>
-        </div>
-
-        {isLegendary && <div> Legendary </div>}
-        {isMythical && <div> Mythical </div>}
+        <table className="description-table">
+          <tbody>
+            <tr className="description-row">
+              <td className="description-data">{generation}</td>
+              <td className="description-data">{genera}</td>
+              <th className="description-header">HEIGHT:</th>
+              <td className="description-data">
+                {(height * 0.1).toFixed(1)} m
+              </td>
+              <th className="description-header">WEIGHT:</th>
+              <td className="description-data">
+                {(weight * 0.1).toFixed(1)} kg
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        {isLegendary && <span>Legendary</span>}
+        {isMythical && <span>Mythical</span>}
       </div>
 
       <div className="details-container">
