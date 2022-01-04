@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PokedexEntry from "./PokedexEntry";
 import ArrowBack from "../assets/arrow-back.svg";
 import ArrowForward from "../assets/arrow-forward.svg";
+import redPokeball from "../assets/red-pokeball.svg";
 import "../scss/Carousel.scss";
 import { Pokemon } from "../types/pokemon/Pokemon";
 import { PokemonSpecies } from "../types/pokemonSpecies/PokemonSpecies";
@@ -101,7 +102,11 @@ export default function Carousel({
             />
           )
         ) : (
-          <span>...loading</span>
+          <img
+            className=".loading-img"
+            src={redPokeball}
+            alt="pokball loading"
+          />
         )}
       </div>
       <div className="next" onClick={() => setLastState(lastState - 1)}>
