@@ -126,24 +126,26 @@ export default function PokedexEntry({
         <div className="training-container">
           <h3>Training</h3>
           <table className="stat-table">
-            <tr className="stat-row">
-              <th className="stat-name">Base Experience</th>
-              <td className="stat-number">{baseExperience}</td>
-            </tr>
-            <tr className="stat-row">
-              <th className="stat-name">Base Happiness</th>
-              <td className="stat-number">{baseHappiness}</td>
-            </tr>
-            <tr className="stat-row">
-              <th className="stat-name">Capture Rate</th>
-              <td className="stat-number">
-                {Math.round((captureRate / 255) * 100)}%
-              </td>
-            </tr>
-            <tr className="stat-row">
-              <th className="stat-name">Growth Rate</th>
-              <td className="stat-number">{growthRate}</td>
-            </tr>
+            <tbody>
+              <tr className="stat-row">
+                <th className="stat-name">Base Experience</th>
+                <td className="stat-number">{baseExperience}</td>
+              </tr>
+              <tr className="stat-row">
+                <th className="stat-name">Base Happiness</th>
+                <td className="stat-number">{baseHappiness}</td>
+              </tr>
+              <tr className="stat-row">
+                <th className="stat-name">Capture Rate</th>
+                <td className="stat-number">
+                  {Math.round((captureRate / 255) * 100)}%
+                </td>
+              </tr>
+              <tr className="stat-row">
+                <th className="stat-name">Growth Rate</th>
+                <td className="stat-number">{growthRate}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
 
@@ -152,32 +154,34 @@ export default function PokedexEntry({
           {genderRate !== -1 ? (
             <div className="gender-container">
               <table className="stat-table">
-                <tr className="stat-row">
-                  <th className="stat-name">
-                    <span className="gender-type">Male</span>
-                    <img
-                      src={MaleGenderIcon}
-                      alt="MaleGenderIcon"
-                      className="gender-rate-icon"
-                    />
-                  </th>
-                  <td className="stat-number">
-                    {100 - Math.round((genderRate / 8) * 100)}%
-                  </td>
-                </tr>
-                <tr className="stat-row">
-                  <th className="stat-name">
-                    <span className="gender-type">Female</span>
-                    <img
-                      src={FemaleGenderIcon}
-                      alt="FemaleGenderIcon"
-                      className="gender-rate-icon"
-                    />
-                  </th>
-                  <td className="stat-number">
-                    {Math.round((genderRate / 8) * 100)}%
-                  </td>
-                </tr>
+                <tbody>
+                  <tr className="stat-row">
+                    <th className="stat-name">
+                      <span className="gender-type">Male</span>
+                      <img
+                        src={MaleGenderIcon}
+                        alt="MaleGenderIcon"
+                        className="gender-rate-icon"
+                      />
+                    </th>
+                    <td className="stat-number">
+                      {100 - Math.round((genderRate / 8) * 100)}%
+                    </td>
+                  </tr>
+                  <tr className="stat-row">
+                    <th className="stat-name">
+                      <span className="gender-type">Female</span>
+                      <img
+                        src={FemaleGenderIcon}
+                        alt="FemaleGenderIcon"
+                        className="gender-rate-icon"
+                      />
+                    </th>
+                    <td className="stat-number">
+                      {Math.round((genderRate / 8) * 100)}%
+                    </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
           ) : (

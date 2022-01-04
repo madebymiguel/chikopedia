@@ -9,16 +9,28 @@ export default function PokemonStats({ stats }: PokemonStatProps) {
   return (
     <div className="pokemon-stat-container">
       <table className="stat-table">
-        <tr>
-          {stats.map((statJSON) => {
-            return <th className="stat-name"> {statJSON.stat.name} </th>;
-          })}
-        </tr>
-        <tr>
-          {stats.map((statJSON) => {
-            return <td className="stat-number"> {statJSON.base_stat} </td>;
-          })}
-        </tr>
+        <tbody>
+          <tr>
+            {stats.map((statJSON) => {
+              return (
+                <th key={statJSON.stat.name} className="stat-name">
+                  {statJSON.stat.name}
+                </th>
+              );
+            })}
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            {stats.map((statJSON) => {
+              return (
+                <td key={statJSON.stat.name} className="stat-number">
+                  {statJSON.base_stat}
+                </td>
+              );
+            })}
+          </tr>
+        </tbody>
       </table>
     </div>
   );
