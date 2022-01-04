@@ -7,6 +7,7 @@ import CarouselWithQuery from "./CarouselWithQuery";
 import getAllPokemon from "../apis/getAllPokemon";
 import "../scss/App.scss";
 import "../scss/Header.scss";
+import "../scss/Footer.scss";
 import { getLivingDexStatus } from "../utils/getLivingDexStatus";
 import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
 import sortPokemon from "../utils/sortPokemon";
@@ -87,6 +88,23 @@ export default function App() {
             )}
           />
         </Switch>
+        <footer id="footer">
+          <span>Created by: </span>
+          <a
+            className="link-formatter"
+            href="https://github.com/madebymiguel"
+            target="_blank"
+          >
+            Miguel Mayorga,{" "}
+          </a>
+          <a
+            className="link-formatter"
+            href="http://github.com/warandstar"
+            target="_blank"
+          >
+            Jong Tai Kim
+          </a>
+        </footer>
       </div>
     </Router>
   );

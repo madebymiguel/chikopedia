@@ -1,0 +1,33 @@
+@import "_variables";
+
+* {
+  box-sizing: border-box;
+}
+
+#footer {
+  grid-area: footer;
+  text-align: center;
+  padding: 8px;
+  background-color: $color5;
+  position: sticky;
+  bottom: 0;
+  z-index: 999;
+  box-shadow: 0px -10px 10px -10px gray;
+
+  .link-formatter {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+
+    &:focus,
+    &:visited,
+    &:link,
+    &:active {
+      text-decoration: none;
+    }
+    &:hover {
+      color: #974c56;
+    }
+  }
+}
