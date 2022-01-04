@@ -11,8 +11,8 @@ export default function PokemonEvolutionChain({
   evolutionChain,
 }: PokemonEvolutionChainProps) {
   // use the name from chain of evolution chain to fetchPokemon to get pokemon sprite.
-  // Edge case: create map function to get all the pokemon at the same evolution level (e.g eevee)
-  // edge case for pokemon with no evolution is solved
+  //
+  // TODO: Fix the bug where some pokemon fails to present the evolution paths, even when API seems normal
   const pokemonEvolutionPaths = getEvolutionPathsFromTree(evolutionChain);
   const pokemonChainItems = useMemo(() => {
     if (pokemonEvolutionPaths !== null) {

@@ -1,8 +1,8 @@
 import { EvolutionDetail } from "./evolutionChain/EvolutionDetail";
 import { SimplePokemon } from "./SimplePokemon";
 
-export interface PokemonEvolutionTreeNode {
-  pokemon: SimplePokemon;
+export type evolutionPath = SimplePokemonWithEvolutionDetail[];
+export interface SimplePokemonWithEvolutionDetail {
+  simplePokemon: SimplePokemon;
   evolutionDetail: EvolutionDetail[];
-  nextPokemon: PokemonEvolutionTreeNode[] | null;
 }

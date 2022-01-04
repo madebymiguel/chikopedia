@@ -11,6 +11,8 @@ export default async function fetchPokemonFromEvolutionChain(
   //TODO: put evolution_details here
   const nextPokemonData = evolutionChainRoot.nextPokemon;
 
+  const pokemonEvolutionDetail = evolutionChainRoot.evolutionDetail;
+
   const simplePokemonData = await fetchPokemon(pokemonName).then((pokemon) => {
     const simplePokemon: SimplePokemon = {
       id: pokemon.id,
@@ -21,11 +23,16 @@ export default async function fetchPokemonFromEvolutionChain(
   });
 
   if (nextPokemonData === null || nextPokemonData.length === 0) {
-    return { pokemon: simplePokemonData, nextPokemon: null };
+    return {
+      pokemon: simplePokemonData,
+      evolutionDetail: pokemonEvolutionDetail,
+      nextPokemon: null,
+    };
   }
 
   return {
     pokemon: simplePokemonData,
+    evolutionDetail: pokemonEvolutionDetail,
     nextPokemon: await Promise.all(
       nextPokemonData.map(fetchPokemonFromEvolutionChain)
     ),

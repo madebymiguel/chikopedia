@@ -1,5 +1,6 @@
+import PokemonEvolutionChainArrow from "./PokemonEvolutionChainArrow";
 import PokemonEvolutionChainItem from "./PokemonEvolutionChainItem";
-import { evolutionPath } from "../types/evolutionChain/EvolutionChain";
+import { evolutionPath } from "../types/SimplePokemonWithEvolutionDetail";
 
 export interface PokemonEvolutionChainRowProps {
   evolutionPath: evolutionPath;
@@ -8,28 +9,24 @@ export interface PokemonEvolutionChainRowProps {
 export default function PokemonEvolutionChainRow({
   evolutionPath,
 }: PokemonEvolutionChainRowProps) {
-  let count = 0;
   // TODO: after we modify PokemonEvolutionTreeNode, we add evolution detail to arrow
   return (
     <div className="pokemon-chain-row">
-      {evolutionPath.map((pokemonObject) => {
-        count = count + 1;
+      {evolutionPath.map((pokemonEvolutionObject) => {
+        const pokemonObject = pokemonEvolutionObject.simplePokemon;
+        const evolutionDetailArray = pokemonEvolutionObject.evolutionDetail;
+        const evolutionDetail = pokemonEvolutionObject.evolutionDetail[0];
         return (
           <div className="pokemon-chain-item">
+            {evolutionDetail !== undefined && (
+              <PokemonEvolutionChainArrow evolutionDetail={evolutionDetail} />
+            )}
             <PokemonEvolutionChainItem
               key={pokemonObject.id}
               name={pokemonObject.name}
               index={pokemonObject.id}
               image={pokemonObject.sprite}
             />
-            <div
-              className="arrow"
-              style={{
-                display: count % evolutionPath.length === 0 ? "none" : "flex",
-              }}
-            >
-              -{">"}
-            </div>
           </div>
         );
       })}
