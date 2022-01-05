@@ -5,6 +5,18 @@ export default function simplifyEvolutionDetail(
 ): string[] {
   let simplifiedEvolutionDetailArray: string[] = [];
 
+  const trigger = evolutionDetail.trigger.name;
+
+  if (trigger === "trade") {
+    simplifiedEvolutionDetailArray.push(" trade ");
+  } else if (trigger === "level-up") {
+    simplifiedEvolutionDetailArray.push(" level up ");
+  } else if (trigger === "shed") {
+    simplifiedEvolutionDetailArray.push(" shed ");
+  } else if (trigger === "other") {
+    simplifiedEvolutionDetailArray.push(" other ");
+  }
+
   for (let [evolutionDetailKey, evolutionDetailValue] of Object.entries(
     evolutionDetail
   )) {
@@ -44,10 +56,7 @@ export default function simplifyEvolutionDetail(
         evolutionDetailKey === "min_level"
       ) {
         simplifiedEvolutionDetailArray.push(
-          " reaching " +
-            evolutionDetailKey.split("_")[1] +
-            " " +
-            evolutionDetailValue
+          " " + evolutionDetailKey.split("_")[1] + " " + evolutionDetailValue
         );
       } else if (evolutionDetailKey === "needs_overworld_rain") {
         simplifiedEvolutionDetailArray.push(" if overworld rain is required ");
