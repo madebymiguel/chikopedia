@@ -2,42 +2,80 @@ import { EvolutionDetail } from "../types/evolutionChain/EvolutionDetail";
 
 export default function simplifyEvolutionDetail(
   evolutionDetail: EvolutionDetail
-): string {
-  const evolutionTrigger = evolutionDetail.trigger.name;
+): string[] {
+  let simplifiedEvolutionDetailArray: string[] = [];
 
-  let simplifiedEvolutionDetail = "";
-
-  // there are a lot of exceptions so we might not handle all cases!
-  if (evolutionTrigger === "level-up") {
-    if (evolutionDetail.min_level !== null) {
-      simplifiedEvolutionDetail =
-        simplifiedEvolutionDetail + " at level " + evolutionDetail.min_level;
+  for (let [evolutionDetailKey, evolutionDetailValue] of Object.entries(
+    evolutionDetail
+  )) {
+    if (
+      evolutionDetailValue !== null &&
+      evolutionDetailValue !== "" &&
+      evolutionDetailValue !== false
+    ) {
+      if (evolutionDetailKey === "gender") {
+        let gender;
+        if (evolutionDetailValue == 1) {
+          gender = "male";
+        } else {
+          gender = "female";
+        }
+        simplifiedEvolutionDetailArray.push(" be " + gender);
+      } else if (
+        evolutionDetailKey === "held-item" ||
+        evolutionDetailKey === "item"
+      ) {
+        simplifiedEvolutionDetailArray.push(
+          " holding " + evolutionDetailValue.name
+        );
+      } else if (
+        evolutionDetailKey === "known_move" ||
+        evolutionDetailKey === "known_move_type"
+      ) {
+        simplifiedEvolutionDetailArray.push(
+          " knowing " + evolutionDetailValue.name
+        );
+      } else if (evolutionDetailKey === "location") {
+        simplifiedEvolutionDetailArray.push(" at " + evolutionDetailValue.name);
+      } else if (
+        evolutionDetailKey === "min_affection" ||
+        evolutionDetailKey === "min_beauty" ||
+        evolutionDetailKey === "min_happiness" ||
+        evolutionDetailKey === "min_level"
+      ) {
+        simplifiedEvolutionDetailArray.push(
+          " reaching " +
+            evolutionDetailKey.split("_")[1] +
+            " " +
+            evolutionDetailValue
+        );
+      } else if (evolutionDetailKey === "needs_overworld_rain") {
+        simplifiedEvolutionDetailArray.push(" if overworld rain is required ");
+      } else if (evolutionDetailKey === "turn_upside_down") {
+        simplifiedEvolutionDetailArray.push(" if device is upside down ");
+      } else if (
+        evolutionDetailKey === "party_species" ||
+        evolutionDetailKey === "party_type"
+      ) {
+        simplifiedEvolutionDetailArray.push(
+          " with pokemon of " + evolutionDetailValue.name
+        );
+      } else if (evolutionDetailKey === "relative_physical_stats") {
+        if (evolutionDetailValue == 1) {
+          simplifiedEvolutionDetailArray.push(" when attack > defense ");
+        } else if (evolutionDetailValue == 0) {
+          simplifiedEvolutionDetailArray.push(" when attack = defense ");
+        } else {
+          simplifiedEvolutionDetailArray.push(" when attack < defense ");
+        }
+      } else if (evolutionDetailKey === "time_of_day") {
+        simplifiedEvolutionDetailArray.push(" at " + evolutionDetailValue);
+      } else if (evolutionDetailKey === "trade_species") {
+        simplifiedEvolutionDetailArray.push(
+          " when traded with pokemon of " + evolutionDetailValue.name
+        );
+      }
     }
-    if (evolutionDetail.min_happiness !== null) {
-      simplifiedEvolutionDetail =
-        simplifiedEvolutionDetail +
-        " at happiness " +
-        evolutionDetail.min_happiness;
-    }
-    if (evolutionDetail.min_beauty !== null) {
-      simplifiedEvolutionDetail =
-        simplifiedEvolutionDetail + " at beauty " + evolutionDetail.min_beauty;
-    }
-    if (evolutionDetail.min_affection !== null) {
-      simplifiedEvolutionDetail =
-        simplifiedEvolutionDetail +
-        " at affection " +
-        evolutionDetail.min_affection;
-    }
-  } else if (evolutionTrigger === "trade") {
-    const evolutionHeldItem =
-      evolutionDetail.held_item !== null ? evolutionDetail.held_item.name : "";
-    simplifiedEvolutionDetail =
-      evolutionTrigger + " while holding " + evolutionHeldItem;
-  } else if (evolutionTrigger === "use-item") {
-    simplifiedEvolutionDetail = " using " + evolutionDetail.item.name;
-  } else {
-    simplifiedEvolutionDetail = evolutionTrigger;
   }
-  return simplifiedEvolutionDetail;
+  return simplifiedEvolutionDetailArray;
 }
