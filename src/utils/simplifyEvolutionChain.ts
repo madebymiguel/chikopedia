@@ -4,7 +4,9 @@ import { PokemonEvolutionNameTreeNode } from "../types/PokemonEvolutionNameTreeN
 export function simplifyEvolutionChain(
   chain: Chain
 ): PokemonEvolutionNameTreeNode {
-  const pokemonName = chain.species.name;
+  const pokemonUrl = chain.species.url.split("/");
+
+  const pokemonId = pokemonUrl[pokemonUrl.length - 2];
   // TODO: remembers the evolution_details for the evolution methods to become current pokemon
   // e.g) we do not remember pichu to pikachu in pichu, but we remember that in pikachu (that is how poke-api works)
   // Then, put the evolution_details in PokemonEvolutionNameTreeNode
@@ -14,14 +16,14 @@ export function simplifyEvolutionChain(
 
   if (nextPokemonData.length === 0) {
     return {
-      pokemonName: pokemonName,
+      pokemonId: pokemonId,
       evolutionDetail: pokemonEvolutionDetail,
       nextPokemon: null,
     };
   }
 
   return {
-    pokemonName: pokemonName,
+    pokemonId: pokemonId,
     evolutionDetail: pokemonEvolutionDetail,
     nextPokemon: nextPokemonData.map(simplifyEvolutionChain),
   };

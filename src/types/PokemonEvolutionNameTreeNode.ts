@@ -1,7 +1,7 @@
 import { EvolutionDetail } from "./evolutionChain/EvolutionDetail";
 
 export interface PokemonEvolutionNameTreeNode {
-  pokemonName: string;
+  pokemonId: string;
   evolutionDetail: EvolutionDetail[];
   nextPokemon: PokemonEvolutionNameTreeNode[] | null;
 }
