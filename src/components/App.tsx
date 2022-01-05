@@ -5,6 +5,7 @@ import Menu from "./Menu";
 import PokemonGrid from "./PokemonGrid";
 import CarouselWithQuery from "./CarouselWithQuery";
 import getAllPokemon from "../apis/getAllPokemon";
+import githubLogo from "../assets/github-logo.png";
 import "../scss/App.scss";
 import "../scss/Header.scss";
 import "../scss/Footer.scss";
@@ -89,7 +90,15 @@ export default function App() {
           />
         </Switch>
         <footer id="footer">
-          <span>Created by: </span>
+          <a
+            className="link-formatter"
+            href="https://github.com/madebymiguel/chikopedia"
+            target="_blank"
+          >
+            Chikopedia
+            <img className="github-logo" src={githubLogo} alt="github-logo" />
+          </a>
+          <span> Created by: </span>
           <a
             className="link-formatter"
             href="https://github.com/madebymiguel"
