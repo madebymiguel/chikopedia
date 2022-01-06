@@ -28,7 +28,14 @@ export default function PokemonGridItem({
 
   return (
     <div className="grid-item-container">
-      <div className="grid-item-header">
+      <div
+        className="grid-item-header"
+        onClick={() => {
+          if (livingDex) {
+            handlePokeballColorChange({ pokeball, index, setPokeball });
+          }
+        }}
+      >
         <span className="pokemon-index">#{index}</span>
         {livingDex && (
           <input
@@ -36,9 +43,6 @@ export default function PokemonGridItem({
             src={pokeball}
             alt="pokeball"
             className="pokeball"
-            onClick={() =>
-              handlePokeballColorChange({ pokeball, index, setPokeball })
-            }
           />
         )}
       </div>

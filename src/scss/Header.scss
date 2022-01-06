@@ -10,17 +10,21 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  padding: 8px;
+  padding: 16px;
   background-color: $color5;
   position: sticky;
   top: 0;
   z-index: 999;
   box-shadow: 0 5px 10px -1px gray;
 
-  .title {
+  .title-link {
     font-family: $font-title;
     text-decoration: none;
     color: black;
+
+    .title {
+      margin: 0px;
+    }
 
     &:focus,
     &:visited,

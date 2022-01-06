@@ -60,8 +60,8 @@ export default function App() {
     <Router>
       <div id="page">
         <header id="header">
-          <Link className="title" to="/">
-            <h1>Chikopedia</h1>
+          <Link className="title-link" to="/">
+            <h1 className="title">Chikopedia</h1>
           </Link>
           <Search search={search} setSearch={setSearch} />
           <Menu
