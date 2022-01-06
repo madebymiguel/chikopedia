@@ -71,11 +71,8 @@ export default function PokedexEntry({
     // the description parts can be refactored into react component
     <div className="pokedex-entry-container">
       <div className="header">
-        <div className="title-container">
-          <h2 className="title">{upperCaseFirstLetter(name)}</h2>
-        </div>
-        <div className="index-container">
-          <h2 className="index">#{formatIndex(index)}</h2>
+        <div className="pokemon-name-container">
+          <h2 className="pokemon-name">{upperCaseFirstLetter(name)}</h2>
         </div>
         <div className="pokeball-container">
           {livingDex && (
@@ -91,28 +88,43 @@ export default function PokedexEntry({
           )}
         </div>
       </div>
+
       <div className="sprite">
         <img src={image} className="sprite-image"></img>
       </div>
 
-      <div className="types-container">
-        <PokemonTypes types={types} />
-      </div>
+      <div className="pokedex-data-container">
+        <h3 className="sub-title">Pokedex data</h3>
+        <table className="table-formatter">
+          <tbody className="table-body-formatter">
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">National №</th>
+              <td className="table-data-formatter">#{formatIndex(index)}</td>
+            </tr>
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">generation</th>
+              <td className="table-data-formatter">{generation} </td>
+            </tr>
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">Type</th>
+              <td className="table-data-formatter">
+                <PokemonTypes types={types} />
+              </td>
+            </tr>
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">Species</th>
+              <td className="table-data-formatter">{genera}</td>
+            </tr>
 
-      <div className="flavor-text-container">{flavorTextEntries}</div>
-
-      <div className="description">
-        <table className="description-table">
-          <tbody>
-            <tr className="description-row">
-              <td className="description-data">{generation}</td>
-              <td className="description-data">{genera}</td>
-              <th className="description-header">HEIGHT:</th>
-              <td className="description-data">
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">Height</th>
+              <td className="table-data-formatter">
                 {(height * 0.1).toFixed(1)} m
               </td>
-              <th className="description-header">WEIGHT:</th>
-              <td className="description-data">
+            </tr>
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">Weight</th>
+              <td className="table-data-formatter">
                 {(weight * 0.1).toFixed(1)} kg
               </td>
             </tr>
@@ -120,87 +132,92 @@ export default function PokedexEntry({
         </table>
         {isLegendary && <span>Legendary</span>}
         {isMythical && <span>Mythical</span>}
-      </div>
-
-      <div className="details-container">
-        <div className="training-container">
-          <h3>Training</h3>
-          <table className="stat-table">
-            <tbody>
-              <tr className="stat-row">
-                <th className="stat-name">Base Experience</th>
-                <td className="stat-number">{baseExperience}</td>
-              </tr>
-              <tr className="stat-row">
-                <th className="stat-name">Base Happiness</th>
-                <td className="stat-number">{baseHappiness}</td>
-              </tr>
-              <tr className="stat-row">
-                <th className="stat-name">Capture Rate</th>
-                <td className="stat-number">
-                  {Math.round((captureRate / 255) * 100)}%
-                </td>
-              </tr>
-              <tr className="stat-row">
-                <th className="stat-name">Growth Rate</th>
-                <td className="stat-number">{growthRate}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div className="breeding-container">
-          <h3>Breeding</h3>
-          {genderRate !== -1 ? (
-            <div className="gender-container">
-              <table className="stat-table">
-                <tbody>
-                  <tr className="stat-row">
-                    <th className="stat-name">
-                      <span className="gender-type">Male</span>
-                      <img
-                        src={MaleGenderIcon}
-                        alt="MaleGenderIcon"
-                        className="gender-rate-icon"
-                      />
-                    </th>
-                    <td className="stat-number">
-                      {100 - Math.round((genderRate / 8) * 100)}%
-                    </td>
-                  </tr>
-                  <tr className="stat-row">
-                    <th className="stat-name">
-                      <span className="gender-type">Female</span>
-                      <img
-                        src={FemaleGenderIcon}
-                        alt="FemaleGenderIcon"
-                        className="gender-rate-icon"
-                      />
-                    </th>
-                    <td className="stat-number">
-                      {Math.round((genderRate / 8) * 100)}%
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <div className="gender-container">
-              <span>Genderless</span>
-            </div>
-          )}
+        <div className="ability-container">
+          <h3 className="sub-title">Abilities</h3>
+          <PokemonAbilities abilities={abilities} />
         </div>
       </div>
 
-      <div className="abilites-container">
-        <PokemonAbilities abilities={abilities} />
+      <div className="description-container">
+        <h3 className="sub-title">Pokedex Entry</h3>
+        {flavorTextEntries}
       </div>
 
-      <div className="stats-container">
+      <div className="training-container">
+        <h3 className="sub-title">Training</h3>
+        <table className="table-formatter">
+          <tbody className="table-body-formatter">
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">Base Experience</th>
+              <td className="table-data-formatter">{baseExperience}</td>
+            </tr>
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">Base Happiness</th>
+              <td className="table-data-formatter">{baseHappiness}</td>
+            </tr>
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">Capture Rate</th>
+              <td className="table-data-formatter">
+                {Math.round((captureRate / 255) * 100)}%
+              </td>
+            </tr>
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">Growth Rate</th>
+              <td className="table-data-formatter">{growthRate}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div className="breeding-container">
+        <h3 className="sub-title">Breeding</h3>
+        {genderRate !== -1 ? (
+          <div className="gender-container">
+            <table className="table-formatter">
+              <tbody className="table-body-formatter">
+                <tr className="table-row-formatter">
+                  <th className="table-header-formatter">
+                    <span className="gender-type">Male</span>
+                    <img
+                      src={MaleGenderIcon}
+                      alt="MaleGenderIcon"
+                      className="gender-rate-icon"
+                    />
+                  </th>
+                  <td className="table-data-formatter">
+                    {100 - Math.round((genderRate / 8) * 100)}%
+                  </td>
+                </tr>
+                <tr className="table-row-formatter">
+                  <th className="table-header-formatter">
+                    <span className="gender-type">Female</span>
+                    <img
+                      src={FemaleGenderIcon}
+                      alt="FemaleGenderIcon"
+                      className="gender-rate-icon"
+                    />
+                  </th>
+                  <td className="table-data-formatter">
+                    {Math.round((genderRate / 8) * 100)}%
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="gender-container">
+            <span>Genderless</span>
+          </div>
+        )}
+      </div>
+
+      <div className="stat-container">
+        <h3 className="sub-title">Base Stats</h3>
         <PokemonStats stats={stats} />
       </div>
 
       <div className="evolution-container">
+        <h3 className="sub-title">Evolutions</h3>
         {evolutionChain !== null && (
           <PokemonEvolutionChain evolutionChain={evolutionChain} />
         )}

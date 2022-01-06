@@ -46,10 +46,7 @@ export default function PokemonAbilities({ abilities }: PokemonAbilityProps) {
 
   return (
     <div className="pokemon-ability-container">
-      <h3 className="ability-title">ABILITIES</h3>
-      <div className="ability-container">
-        {abilityComponent.map((abilityComponent) => abilityComponent)}
-      </div>
+      {abilityComponent.map((abilityComponent) => abilityComponent)}
     </div>
   );
 }
