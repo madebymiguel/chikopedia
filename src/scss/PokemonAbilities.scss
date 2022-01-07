@@ -4,34 +4,30 @@
 
 .pokemon-ability-container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
 
-  .ability-content {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    border: 2px solid blue;
-    border-radius: 8px;
-    padding: 4px;
-    margin: 8px;
-
-    .ability-name {
-      font-size: 18px;
-    }
+  .ability-name {
+    font-size: 16px;
   }
 
-  .ability-content-hidden {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    border: 2px solid red;
-    border-radius: 8px;
-    padding: 4px;
-    margin: 8px;
+  .ability-content {
+    // display: flex;
+    // justify-content: center;
+    // text-align: center;
+    // border-radius: 8px;
+    // padding: 4px;
+    // border: 3px solid blue;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    width: 100%;
+  }
 
-    .ability-name {
-      font-size: 18px;
-    }
+  .ability-image {
+    padding-left: 4px;
+    width: 16px;
+  }
+
+  .hidden {
+    // border: 3px solid red;
   }
 }

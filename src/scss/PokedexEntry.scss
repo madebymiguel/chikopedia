@@ -7,26 +7,28 @@
 .pokedex-entry-container {
   background-color: whitesmoke;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr auto 1fr;
   grid-template-areas:
-    "header header"
-    "sprite pokedex-data"
-    "sprite pokedex-data"
-    "description description"
-    "training breeding"
-    "stats stats"
-    "evolution evolution";
+    "header header header"
+    "sprite pokedex-data pokedex-data"
+    "sprite pokedex-data pokedex-data"
+    "description description description"
+    "training .... breeding"
+    "stats stats stats"
+    "evolution evolution evolution";
 
   padding: 20px;
   border-radius: 8px;
 
   .sub-title {
-    margin-top: 20px;
-    margin-bottom: 0px;
+    font-size: 24px;
+    margin-top: 15px;
+    margin-bottom: 10px;
   }
 
   .table-formatter {
     border-collapse: collapse;
+    width: 100%;
 
     .table-body-formatter {
       .table-row-formatter {
@@ -35,11 +37,12 @@
         .table-header-formatter {
           text-align: left;
           padding: 4px;
+          font-size: 20px;
+        }
 
-          .table-data-formatter {
-            text-align: left;
-            padding: 4px;
-          }
+        .table-data-formatter {
+          text-align: right;
+          padding: 4px;
         }
       }
     }
@@ -50,14 +53,16 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-bottom: 20px;
 
     .pokemon-name-container {
       grid-area: name;
 
       .pokemon-name {
         font-family: $font-sub-title;
-        font-style: bold;
-        margin: 0px;
+        font-size: 30px;
+        margin-top: 0px;
+        margin-bottom: 0px;
         padding: 0px;
       }
     }
@@ -77,18 +82,15 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-top: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 
     .sprite-image {
       object-fit: cover;
       width: 100%;
-      max-width: 250px;
+      max-width: 320px;
       background-color: whitesmoke;
       border-radius: 16px;
-      // border: black 1px solid;
       box-shadow: 0 10px 15px -3px gray;
-      // height: 250px;
     }
   }
 
@@ -96,15 +98,23 @@
     grid-area: pokedex-data;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    align-content: center;
     align-items: center;
+    width: 100%;
+
+    .sub-title {
+      margin-top: 10px;
+    }
   }
 
   .ability-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-content: center;
     align-items: center;
+    width: 100%;
   }
 
   .description-container {
@@ -112,36 +122,34 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-content: center;
     align-items: center;
+    width: 100%;
   }
 
   .training-container {
     grid-area: training;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
     align-items: center;
-    padding-top: 16px;
+    width: 100%;
+    padding-right: 10px;
   }
 
   .breeding-container {
     grid-area: breeding;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
     align-items: center;
-    padding-top: 16px;
+    width: 100%;
+    padding-left: 10px;
 
-    .gender-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .gender-type {
-        padding-right: 4px;
-      }
-
-      .gender-rate-icon {
-        padding-right: 6px;
-      }
+    .gender-rate-icon {
+      width: 20px;
     }
   }
 
@@ -150,7 +158,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-content: center;
     align-items: center;
+    width: 100%;
   }
 
   .evolution-container {
@@ -158,6 +168,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-content: center;
     align-items: center;
+    width: 100%;
+
+    .sub-title {
+      margin-bottom: -10px;
+    }
   }
 }

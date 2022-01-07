@@ -16,9 +16,13 @@ function PokemonAbilityComponent({
   return (
     <>
       {is_hidden ? (
-        <div className="ability-content-hidden">
-          <span className="ability-name">{ability.name}</span>
-          <img src={VisibilityOffIcon} alt="VisibilityOffIcon" />
+        <div className="ability-content hidden">
+          <span className="ability-name">{ability.name} </span>
+          <img
+            className="ability-image"
+            src={VisibilityOffIcon}
+            alt="VisibilityOffIcon"
+          />
         </div>
       ) : (
         <div className="ability-content">

@@ -98,22 +98,25 @@ export default function PokedexEntry({
         <table className="table-formatter">
           <tbody className="table-body-formatter">
             <tr className="table-row-formatter">
-              <th className="table-header-formatter">National №</th>
-              <td className="table-data-formatter">#{formatIndex(index)}</td>
+              <th className="table-header-formatter">National No.</th>
+              <td className="table-data-formatter">{formatIndex(index)}</td>
             </tr>
+
             <tr className="table-row-formatter">
-              <th className="table-header-formatter">generation</th>
+              <th className="table-header-formatter">Generation</th>
               <td className="table-data-formatter">{generation} </td>
             </tr>
+
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">Species</th>
+              <td className="table-data-formatter">{genera}</td>
+            </tr>
+
             <tr className="table-row-formatter">
               <th className="table-header-formatter">Type</th>
               <td className="table-data-formatter">
                 <PokemonTypes types={types} />
               </td>
-            </tr>
-            <tr className="table-row-formatter">
-              <th className="table-header-formatter">Species</th>
-              <td className="table-data-formatter">{genera}</td>
             </tr>
 
             <tr className="table-row-formatter">
@@ -122,20 +125,24 @@ export default function PokedexEntry({
                 {(height * 0.1).toFixed(1)} m
               </td>
             </tr>
+
             <tr className="table-row-formatter">
               <th className="table-header-formatter">Weight</th>
               <td className="table-data-formatter">
                 {(weight * 0.1).toFixed(1)} kg
               </td>
             </tr>
+
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">Abilities</th>
+              <td className="table-data-formatter">
+                <PokemonAbilities abilities={abilities} />
+              </td>
+            </tr>
           </tbody>
         </table>
         {isLegendary && <span>Legendary</span>}
         {isMythical && <span>Mythical</span>}
-        <div className="ability-container">
-          <h3 className="sub-title">Abilities</h3>
-          <PokemonAbilities abilities={abilities} />
-        </div>
       </div>
 
       <div className="description-container">
@@ -172,17 +179,17 @@ export default function PokedexEntry({
       <div className="breeding-container">
         <h3 className="sub-title">Breeding</h3>
         {genderRate !== -1 ? (
-          <div className="gender-container">
+          <>
             <table className="table-formatter">
               <tbody className="table-body-formatter">
                 <tr className="table-row-formatter">
                   <th className="table-header-formatter">
-                    <span className="gender-type">Male</span>
-                    <img
+                    Male
+                    {/* <img
                       src={MaleGenderIcon}
                       alt="MaleGenderIcon"
                       className="gender-rate-icon"
-                    />
+                    /> */}
                   </th>
                   <td className="table-data-formatter">
                     {100 - Math.round((genderRate / 8) * 100)}%
@@ -190,12 +197,12 @@ export default function PokedexEntry({
                 </tr>
                 <tr className="table-row-formatter">
                   <th className="table-header-formatter">
-                    <span className="gender-type">Female</span>
-                    <img
+                    Female
+                    {/* <img
                       src={FemaleGenderIcon}
                       alt="FemaleGenderIcon"
                       className="gender-rate-icon"
-                    />
+                    /> */}
                   </th>
                   <td className="table-data-formatter">
                     {Math.round((genderRate / 8) * 100)}%
@@ -203,11 +210,11 @@ export default function PokedexEntry({
                 </tr>
               </tbody>
             </table>
-          </div>
+          </>
         ) : (
-          <div className="gender-container">
+          <>
             <span>Genderless</span>
-          </div>
+          </>
         )}
       </div>
 
