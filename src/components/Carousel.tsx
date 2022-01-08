@@ -103,7 +103,7 @@ export default function Carousel({
           )
         ) : (
           <img
-            className=".loading-img"
+            className="loading-img"
             src={redPokeball}
             alt="pokball loading"
           />

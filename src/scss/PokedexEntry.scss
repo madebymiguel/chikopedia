@@ -28,20 +28,22 @@
 
   .table-formatter {
     border-collapse: collapse;
-    width: 100%;
+    // width: 100%; // uncomment if you want different format - 1
 
     .table-body-formatter {
       .table-row-formatter {
-        border-bottom: 1px solid black;
+        // border-bottom: 1px solid black; // uncomment if you want different format - 2
 
         .table-header-formatter {
-          text-align: left;
+          // text-align: left; // uncomment if you want different format - 3
+          text-align: right;
           padding: 4px;
           font-size: 20px;
         }
 
         .table-data-formatter {
-          text-align: right;
+          // text-align: right; // uncomment if you want different format - 4
+          text-align: left;
           padding: 4px;
         }
       }
@@ -51,12 +53,13 @@
   .header {
     grid-area: header;
     display: flex;
-    flex-direction: row;
     justify-content: center;
+
     margin-bottom: 20px;
 
     .pokemon-name-container {
       grid-area: name;
+      text-align: center;
 
       .pokemon-name {
         font-family: $font-sub-title;

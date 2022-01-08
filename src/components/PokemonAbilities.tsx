@@ -1,6 +1,7 @@
 import { PokemonAbility } from "../types/pokemon/Ability";
 import VisibilityOffIcon from "../assets/visibility-off-icon.svg";
 import "../scss/PokemonAbilities.scss";
+import removeDash from "../utils/removeDash";
 
 export interface PokemonAbilityProps {
   abilities: PokemonAbility[];
@@ -17,7 +18,7 @@ function PokemonAbilityComponent({
     <>
       {is_hidden ? (
         <div className="ability-content hidden">
-          <span className="ability-name">{ability.name} </span>
+          <span className="ability-name">{removeDash(ability.name)} </span>
           <img
             className="ability-image"
             src={VisibilityOffIcon}
@@ -26,7 +27,7 @@ function PokemonAbilityComponent({
         </div>
       ) : (
         <div className="ability-content">
-          <span className="ability-name">{ability.name}</span>
+          <span className="ability-name">{removeDash(ability.name)}</span>
         </div>
       )}
     </>

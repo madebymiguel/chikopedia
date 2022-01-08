@@ -13,6 +13,8 @@ import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 import { handlePokeballColorChange } from "../utils/handlePokeballColorChange";
 import formatIndex from "../utils/formatIndex";
+import formatGeneration from "../utils/formatGeneration";
+import removeDash from "../utils/removeDash";
 
 export interface PokedexEntryProps {
   //From Pokemon
@@ -73,6 +75,8 @@ export default function PokedexEntry({
       <div className="header">
         <div className="pokemon-name-container">
           <h2 className="pokemon-name">{upperCaseFirstLetter(name)}</h2>
+          {isLegendary && <span>Legendary</span>}
+          {isMythical && <span>Mythical</span>}
         </div>
         <div className="pokeball-container">
           {livingDex && (
@@ -104,7 +108,9 @@ export default function PokedexEntry({
 
             <tr className="table-row-formatter">
               <th className="table-header-formatter">Generation</th>
-              <td className="table-data-formatter">{generation} </td>
+              <td className="table-data-formatter">
+                {formatGeneration(generation)}
+              </td>
             </tr>
 
             <tr className="table-row-formatter">
@@ -141,8 +147,6 @@ export default function PokedexEntry({
             </tr>
           </tbody>
         </table>
-        {isLegendary && <span>Legendary</span>}
-        {isMythical && <span>Mythical</span>}
       </div>
 
       <div className="description-container">
@@ -164,13 +168,11 @@ export default function PokedexEntry({
             </tr>
             <tr className="table-row-formatter">
               <th className="table-header-formatter">Capture Rate</th>
-              <td className="table-data-formatter">
-                {Math.round((captureRate / 255) * 100)}%
-              </td>
+              <td className="table-data-formatter">{captureRate}</td>
             </tr>
             <tr className="table-row-formatter">
               <th className="table-header-formatter">Growth Rate</th>
-              <td className="table-data-formatter">{growthRate}</td>
+              <td className="table-data-formatter">{removeDash(growthRate)}</td>
             </tr>
           </tbody>
         </table>
@@ -184,7 +186,7 @@ export default function PokedexEntry({
               <tbody className="table-body-formatter">
                 <tr className="table-row-formatter">
                   <th className="table-header-formatter">
-                    Male
+                    Gender
                     {/* <img
                       src={MaleGenderIcon}
                       alt="MaleGenderIcon"
@@ -192,20 +194,10 @@ export default function PokedexEntry({
                     /> */}
                   </th>
                   <td className="table-data-formatter">
-                    {100 - Math.round((genderRate / 8) * 100)}%
-                  </td>
-                </tr>
-                <tr className="table-row-formatter">
-                  <th className="table-header-formatter">
-                    Female
-                    {/* <img
-                      src={FemaleGenderIcon}
-                      alt="FemaleGenderIcon"
-                      className="gender-rate-icon"
-                    /> */}
-                  </th>
-                  <td className="table-data-formatter">
-                    {Math.round((genderRate / 8) * 100)}%
+                    <span>
+                      Male: {100 - Math.round((genderRate / 8) * 100)}%,{" "}
+                    </span>
+                    <span>Female: {Math.round((genderRate / 8) * 100)}% </span>
                   </td>
                 </tr>
               </tbody>
