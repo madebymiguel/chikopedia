@@ -15,6 +15,7 @@ export default function simplifyEvolutionDetail(
     simplifiedEvolutionDetailArray.push(" shed ");
   } else if (trigger === "other") {
     simplifiedEvolutionDetailArray.push(" other ");
+  } else {
   }
 
   for (let [evolutionDetailKey, evolutionDetailValue] of Object.entries(
@@ -34,9 +35,10 @@ export default function simplifyEvolutionDetail(
         }
         simplifiedEvolutionDetailArray.push(" be " + gender);
       } else if (
-        evolutionDetailKey === "held-item" ||
+        evolutionDetailKey === "held_item" ||
         evolutionDetailKey === "item"
       ) {
+        console.log("hello");
         simplifiedEvolutionDetailArray.push(
           " holding " + evolutionDetailValue.name
         );

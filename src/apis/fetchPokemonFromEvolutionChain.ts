@@ -22,7 +22,6 @@ export default async function fetchPokemonFromEvolutionChain(
         name: pokemon.name,
         sprite: pokemon.sprites.front_default,
       };
-      console.log(simplePokemon);
       return simplePokemon;
     }
   );
