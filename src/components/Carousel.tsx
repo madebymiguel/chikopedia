@@ -74,7 +74,8 @@ export default function Carousel({
               isMythical={pokemonSpecies.is_mythical}
               growthRate={pokemonSpecies.growth_rate.name}
               evolutionChain={evolutionChain}
-              //Right now just pull the first egg group
+              eggGroups={pokemonSpecies.egg_groups}
+              eggCycle={pokemonSpecies.hatch_counter}
               // eggGroups={
               //   pokemonSpecies.egg_groups.length > 0
               //     ? pokemonSpecies.egg_groups

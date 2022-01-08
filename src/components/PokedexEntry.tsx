@@ -15,6 +15,8 @@ import { handlePokeballColorChange } from "../utils/handlePokeballColorChange";
 import formatIndex from "../utils/formatIndex";
 import formatGeneration from "../utils/formatGeneration";
 import removeDash from "../utils/removeDash";
+import { PokemonSpeciesEggGroups } from "../types/pokemonSpecies/EggGroups";
+import PokemonEggGroups from "./PokemonEggGroups";
 
 export interface PokedexEntryProps {
   //From Pokemon
@@ -33,7 +35,8 @@ export interface PokedexEntryProps {
   isLegendary: boolean;
   isMythical: boolean;
   growthRate: string;
-  // eggGroups: EggGroups[];
+  eggGroups: PokemonSpeciesEggGroups[];
+  eggCycle: number;
   generation: string;
   flavorTextEntries: string;
   genera: string;
@@ -59,7 +62,8 @@ export default function PokedexEntry({
   isLegendary,
   isMythical,
   growthRate,
-  // eggGroups,
+  eggGroups,
+  eggCycle,
   flavorTextEntries,
   genera,
   generation,
@@ -185,20 +189,23 @@ export default function PokedexEntry({
             <table className="table-formatter">
               <tbody className="table-body-formatter">
                 <tr className="table-row-formatter">
-                  <th className="table-header-formatter">
-                    Gender
-                    {/* <img
-                      src={MaleGenderIcon}
-                      alt="MaleGenderIcon"
-                      className="gender-rate-icon"
-                    /> */}
-                  </th>
+                  <th className="table-header-formatter">Gender</th>
                   <td className="table-data-formatter">
                     <span>
                       Male: {100 - Math.round((genderRate / 8) * 100)}%,{" "}
                     </span>
                     <span>Female: {Math.round((genderRate / 8) * 100)}% </span>
                   </td>
+                </tr>
+                <tr className="table-row-formatter">
+                  <th className="table-header-formatter">Egg Group</th>
+                  <td className="table-data-formatter">
+                    <PokemonEggGroups eggGroups={eggGroups} />
+                  </td>
+                </tr>
+                <tr className="table-row-formatter">
+                  <th className="table-header-formatter">Egg Cycle</th>
+                  <td className="table-data-formatter">{eggCycle}</td>
                 </tr>
               </tbody>
             </table>
