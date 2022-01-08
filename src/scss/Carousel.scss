@@ -48,17 +48,15 @@
   }
   .prev {
     grid-area: prev;
-    align-self: center;
-    position: fixed;
-    top: 55vh;
+    position: relative;
+    top: 400px;
   }
 
   .next {
     grid-area: next;
-    align-self: center;
-    position: fixed;
-    top: 55vh;
-    right: 20vw;
+    position: relative;
+    top: 400px;
+    // right: 300px;
   }
 
   .nav-buttons {
