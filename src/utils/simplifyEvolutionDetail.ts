@@ -38,7 +38,6 @@ export default function simplifyEvolutionDetail(
         evolutionDetailKey === "held_item" ||
         evolutionDetailKey === "item"
       ) {
-        console.log("hello");
         simplifiedEvolutionDetailArray.push(
           " holding " + evolutionDetailValue.name
         );
