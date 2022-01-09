@@ -12,13 +12,12 @@ export default function Search() {
   const handleSearchIndex = async () => {
     const pokemonIndex = await getPokemonIndexFromStorage(search);
     setSearchIndex(pokemonIndex);
-    history.push(`/pokemon/${searchIndex}`);
     setSearch("");
   };
 
   useEffect(() => {
     if (searchIndex !== 0) {
-      handleSearchIndex();
+      history.push(`/pokemon/${searchIndex}`);
     }
   }, [searchIndex]);
 

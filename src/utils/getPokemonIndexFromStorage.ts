@@ -9,7 +9,6 @@ export default async function getPokemonIndexFromStorage(
     const stored = sessionStorage.getItem("allSimplePokemon");
     if (stored !== null) {
       const storedData: SimplePokemon[] = JSON.parse(stored);
-
       const filteredStoredData = storedData.filter((e: SimplePokemon) =>
         isString ? e.name === search.toLowerCase() : e.id == search
       );
