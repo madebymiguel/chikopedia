@@ -21,7 +21,6 @@ import {
 } from "../variables/globalVariables";
 
 export default function App() {
-  const [search, setSearch] = useState<string | number>("");
   const [pokedexStyle, setPokedexStyle] = useState<string>("grid");
   const livingDexStatus = getLivingDexStatus();
   const [livingDex, setLivingDex] = useState<boolean>(livingDexStatus);
@@ -63,7 +62,7 @@ export default function App() {
           <Link className="title-link" to="/">
             <h1 className="title">Chikopedia</h1>
           </Link>
-          <Search search={search} setSearch={setSearch} />
+          <Search />
           <Menu
             pokedexStyle={pokedexStyle}
             setPokedexStyle={setPokedexStyle}

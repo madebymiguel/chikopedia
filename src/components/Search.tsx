@@ -1,45 +1,48 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "../scss/Search.scss";
 import getPokemonIndexFromStorage from "../utils/getPokemonIndexFromStorage";
 
-export interface SearchProps {
-  search: string | number;
-  setSearch: React.Dispatch<React.SetStateAction<string | number>>;
-}
+export default function Search() {
+  const [search, setSearch] = useState<string | number>("");
 
-export default function Search({ search, setSearch }: SearchProps) {
   const [searchIndex, setSearchIndex] = useState(0);
-  const location = useLocation();
+  let history = useHistory();
+
+  const handleSearchIndex = async () => {
+    const pokemonIndex = await getPokemonIndexFromStorage(search);
+    setSearchIndex(pokemonIndex);
+    history.push(`/pokemon/${searchIndex}`);
+    setSearch("");
+  };
 
   useEffect(() => {
-    const setSearchIndexOnUseEffect = async () => {
-      setSearchIndex(await getPokemonIndexFromStorage(search));
-    };
-    setSearchIndexOnUseEffect();
-  }, [search]);
+    if (searchIndex !== 0) {
+      handleSearchIndex();
+    }
+  }, [searchIndex]);
 
   return (
     <div>
-      <Link
-        to={
-          searchIndex !== 0 ? `/pokemon/${searchIndex}` : `${location.pathname}`
-        }
-        className="link"
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSearchIndex();
+        }}
+        className="search"
       >
-        <form onClick={() => setSearch("")} className="search">
-          <input
-            placeholder="Search your Pokemon by Name or ID!"
-            type="text"
-            id="search-input"
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-            }}
-          ></input>
-          <button id="search-button">Find Pokemon</button>
-        </form>
-      </Link>
+        <input
+          placeholder="Search your Pokemon by Name or ID!"
+          type="text"
+          id="search-input"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+        ></input>
+
+        <input id="search-button" type="submit" value="Find Pokemon"></input>
+      </form>
     </div>
   );
 }
