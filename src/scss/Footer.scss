@@ -9,10 +9,11 @@
   text-align: center;
   padding: 8px;
   background-color: $color5;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   z-index: 999;
   box-shadow: 0px -10px 10px -10px gray;
+  width: 100%;
 
   .github-logo {
     width: 16px;

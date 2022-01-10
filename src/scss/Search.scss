@@ -4,27 +4,37 @@
   // currently hard coded on size but later can be changed
   height: 40px;
   width: 450px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
   #search-input {
     border-radius: 8px;
     height: 100%;
     width: 73%;
     font-size: 100%;
+    background: #f2f2f2;
+    border: none;
+
+    &::placeholder {
+      color: black;
+    }
   }
 
   #search-button {
-    border-radius: 16px;
-    height: 100%;
-    width: 25%;
+    border-radius: 8px;
+    height: 90%;
+    width: 35px;
     margin-left: 2%;
     background-color: #fc8a8a;
     font-family: "Lora", serif;
-    font-weight: 600;
     color: black;
-    font-size: 14px;
-    border: 1.6px $color3 solid;
+    font-size: 30px;
+    border: none;
 
     &:active {
+      background-color: #ee6161;
+
       box-shadow: 0 4px 5px -1px #999;
     }
   }

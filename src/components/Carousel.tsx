@@ -41,9 +41,13 @@ export default function Carousel({
 }: CarouselProps) {
   return (
     <div className="carousel-container">
-      <button className="back-to-main" onClick={handleBack}>
-        Back
-      </button>
+      <input
+        type="button"
+        value="Go Back"
+        className="back-to-main"
+        onClick={handleBack}
+      ></input>
+
       <div className="prev" onClick={() => setLastState(lastState - 1)}>
         {pokemonId > 1 && (
           <Link to={`/pokemon/${pokemonId - 1}`} className="nav-buttons">
@@ -51,6 +55,7 @@ export default function Carousel({
           </Link>
         )}
       </div>
+
       <div className="carousel-content">
         {finishedFetching ? (
           pokemon !== null &&
@@ -76,11 +81,6 @@ export default function Carousel({
               evolutionChain={evolutionChain}
               eggGroups={pokemonSpecies.egg_groups}
               eggCycle={pokemonSpecies.hatch_counter}
-              // eggGroups={
-              //   pokemonSpecies.egg_groups.length > 0
-              //     ? pokemonSpecies.egg_groups
-              //     : "Unknown"
-              // }
               generation={pokemonSpecies.generation.name}
               flavorTextEntries={
                 (
@@ -103,13 +103,16 @@ export default function Carousel({
             />
           )
         ) : (
-          <img
-            className="loading-img"
-            src={redPokeball}
-            alt="pokball loading"
-          />
+          <div className="carousel-content">
+            <img
+              className="loading-img"
+              src={redPokeball}
+              alt="pokball loading"
+            />
+          </div>
         )}
       </div>
+
       <div className="next" onClick={() => setLastState(lastState - 1)}>
         {pokemonId < MAX_POKEMON && (
           <Link to={`/pokemon/${pokemonId + 1}`} className="nav-buttons">

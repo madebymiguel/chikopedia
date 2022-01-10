@@ -7,91 +7,92 @@
   display: grid;
   grid-template-columns: auto auto auto;
   grid-template-areas:
-    "back-to-main .... ...."
+    ".... back-to-main ...."
     "prev pokedex-entry next";
 
   width: 100%;
+  position: relative;
 
   .back-to-main {
     grid-area: back-to-main;
-    align-self: end;
-    background: #67a066;
-    border-radius: 8px;
+    align-self: start;
+    background: none;
+    border: none;
     cursor: pointer;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    border: none;
-    vertical-align: middle;
-    transition: box-shadow 0.4s ease;
-    margin-left: auto;
+    padding-left: 30px;
+    margin: 0px;
+    transform: translate(0px, 0px);
+    transition: all 0.333333s ease-out;
     font-family: "Lora", serif;
     font-size: 16px;
     color: black;
+    color: #e3350d;
+
+    width: 100px;
 
     &:hover {
-      background: #a7d495;
-      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+      transform: translate(0px, -4px);
+      color: red;
     }
   }
 
   .carousel-content {
     grid-area: pokedex-entry;
     align-self: center;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
     width: 100px;
     min-width: 800px;
+
+    .loading-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      display: flex;
+      margin: 30% auto auto auto;
+      align-items: center;
+      align-content: center;
+      animation: rotation 1s cubic-bezier(0.01, 0.01, 1, 1) infinite;
+
+      @keyframes rotation {
+        0% {
+          transform: rotateY(0deg);
+        }
+        25% {
+          transform: rotateY(45deg);
+        }
+        50% {
+          transform: rotateY(90deg);
+        }
+        75% {
+          transform: rotateY(45deg);
+        }
+        100% {
+          transform: rotateY(0deg);
+        }
+      }
+    }
   }
   .prev {
     grid-area: prev;
-    position: relative;
-    top: 400px;
+    position: absolute;
+    top: 28rem;
+    margin-left: -25px;
   }
 
   .next {
     grid-area: next;
-    position: relative;
-    top: 400px;
-    // right: 300px;
+    position: absolute;
+    top: 28rem;
   }
 
   .nav-buttons {
     color: black;
     font-size: 30px;
     text-decoration: none;
-  }
-
-  .loading-img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: solid 10px silver;
-    display: flex;
-    margin: 25% auto auto auto;
-    align-items: center;
-    align-content: center;
-    animation: rotation 1s cubic-bezier(0.01, 0.01, 1, 1) infinite;
-
-    @keyframes rotation {
-      0% {
-        transform: rotateY(0deg);
-      }
-      25% {
-        transform: rotateY(45deg);
-      }
-      50% {
-        transform: rotateY(90deg);
-      }
-      75% {
-        transform: rotateY(45deg);
-      }
-      100% {
-        transform: rotateY(0deg);
-      }
-    }
   }
 }

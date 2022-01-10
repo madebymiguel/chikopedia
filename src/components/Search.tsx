@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import SearchIcon from "../assets/search-icon.svg";
 import "../scss/Search.scss";
 import getPokemonIndexFromStorage from "../utils/getPokemonIndexFromStorage";
 
@@ -22,7 +23,7 @@ export default function Search() {
   }, [searchIndex]);
 
   return (
-    <div>
+    <>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -39,9 +40,10 @@ export default function Search() {
             setSearch(e.target.value);
           }}
         ></input>
-
-        <input id="search-button" type="submit" value="Find Pokemon"></input>
+        <button id="search-button" type="submit">
+          <img src={SearchIcon} alt="search-icon" />
+        </button>
       </form>
-    </div>
+    </>
   );
 }
