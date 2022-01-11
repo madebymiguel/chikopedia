@@ -46,36 +46,8 @@ $red: #ff0000;
     margin-bottom: 20px;
     width: 6.25rem;
     min-width: 50rem;
-
-    .loading-img {
-      width: 12.5rem;
-      height: 12.5rem;
-      border-radius: 50%;
-      display: flex;
-      margin: 30% auto auto auto;
-      align-items: center;
-      align-content: center;
-      animation: rotation 1s cubic-bezier(0.01, 0.01, 1, 1) infinite;
-
-      @keyframes rotation {
-        0% {
-          transform: rotateY(0deg);
-        }
-        25% {
-          transform: rotateY(45deg);
-        }
-        50% {
-          transform: rotateY(90deg);
-        }
-        75% {
-          transform: rotateY(45deg);
-        }
-        100% {
-          transform: rotateY(0deg);
-        }
-      }
-    }
   }
+
   .prev {
     grid-area: prev;
     position: absolute;

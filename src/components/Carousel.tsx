@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import PokedexEntry from "./PokedexEntry";
 import ArrowBack from "../assets/arrow-back.svg";
 import ArrowForward from "../assets/arrow-forward.svg";
-import redPokeball from "../assets/red-pokeball.svg";
 import "../scss/Carousel.scss";
 import { Pokemon } from "../types/pokemon/Pokemon";
 import { PokemonSpecies } from "../types/pokemonSpecies/PokemonSpecies";
@@ -11,6 +10,7 @@ import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
 import { MAX_POKEMON } from "../variables/globalVariables";
 import { PokemonSpeciesGenera } from "../types/pokemonSpecies/Genera";
 import { PokemonSpeciesFlavorTextEntries } from "../types/pokemonSpecies/FlavorTextEntries";
+import LoadingComponent from "./LoadingComponent";
 
 export interface CarouselProps {
   pokemon: Pokemon | null;
@@ -104,11 +104,7 @@ export default function Carousel({
           )
         ) : (
           <div className="carousel-content">
-            <img
-              className="loading-img"
-              src={redPokeball}
-              alt="pokball loading"
-            />
+            <LoadingComponent />
           </div>
         )}
       </div>

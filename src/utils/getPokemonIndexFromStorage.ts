@@ -21,6 +21,8 @@ export default async function getPokemonIndexFromStorage(
         if (Object.keys(pokemonData).length > 0) {
           return pokemonData.id;
         }
+        // fuzzy search will happen here
+
         return 0;
       }
     }

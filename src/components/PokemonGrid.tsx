@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import PokemonGridItem from "./PokemonGridItem";
 import "../scss/PokemonGrid.scss";
 import { SimplePokemon } from "../types/SimplePokemon";
+import LoadingComponent from "./LoadingComponent";
 
 export interface PokemonGridProps {
   isLoading: boolean;
@@ -35,7 +36,9 @@ export default function PokemonGrid({
   return (
     <div className="pokemon-grid-container">
       {isLoading ? (
-        <span> Loading ... </span>
+        <div className="loading-container">
+          <LoadingComponent />
+        </div>
       ) : (
         <div className="pokemon-grid">{pokemonGridItems}</div>
       )}

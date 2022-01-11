@@ -9,4 +9,11 @@
     grid-template-columns: repeat(6, 1fr);
     padding-bottom: 30px;
   }
+
+  .loading-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
