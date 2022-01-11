@@ -15,7 +15,9 @@ export default async function getPokemonIndexFromStorage(
       if (filteredStoredData.length > 0) {
         return filteredStoredData[0].id;
       } else {
-        const pokemonData = await fetchPokemon(search);
+        const pokemonData = isString
+          ? await fetchPokemon(search.toLowerCase())
+          : await fetchPokemon(search);
         if (Object.keys(pokemonData).length > 0) {
           return pokemonData.id;
         }
