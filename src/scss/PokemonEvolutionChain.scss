@@ -1,4 +1,6 @@
-#pokemon-chain {
+@import "_variables";
+
+.pokemon-chain {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -20,14 +22,14 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 100px;
+        width: 6.25rem;
 
         .pokemon-sprite {
           justify-content: center;
           padding: 0px;
           margin: 0px;
-          width: 96px;
-          height: 96px;
+          width: 6rem;
+          height: 6rem;
         }
 
         .pokemon-name {
@@ -46,7 +48,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 150px;
+        width: 9.5rem;
 
         .evolution-detail {
           padding: 2px;

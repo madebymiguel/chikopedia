@@ -33,11 +33,11 @@ export default function PokemonGrid({
   }, [allPokemon, isLoading]);
 
   return (
-    <div id="pokemon-grid-container">
+    <div className="pokemon-grid-container">
       {isLoading ? (
         <span> Loading ... </span>
       ) : (
-        <div id="pokemon-grid">{pokemonGridItems}</div>
+        <div className="pokemon-grid">{pokemonGridItems}</div>
       )}
     </div>
   );

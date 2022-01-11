@@ -5,17 +5,18 @@
 }
 
 body {
-  background-color: $color4;
+  background-color: $light-blue-tint;
   margin: 0px;
-}
-
-#page {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  grid-template-areas:
-    "header header header"
-    "......   main ......"
-    "footer footer footer";
-  grid-gap: 16px;
   width: 100%;
+
+  #page {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-areas:
+      "header header header"
+      ".... main ...."
+      "footer footer footer";
+
+    grid-gap: 16px;
+  }
 }

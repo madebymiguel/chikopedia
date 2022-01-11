@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Search from "./Search";
 import Menu from "./Menu";
+import Credits from "./Credits";
 import PokemonGrid from "./PokemonGrid";
 import CarouselWithQuery from "./CarouselWithQuery";
 import getAllPokemon from "../apis/getAllPokemon";
-import githubLogo from "../assets/github-logo.png";
 import "../scss/App.scss";
 import "../scss/Header.scss";
-import "../scss/Footer.scss";
 import { getLivingDexStatus } from "../utils/getLivingDexStatus";
 import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
 import sortPokemon from "../utils/sortPokemon";
@@ -88,31 +87,7 @@ export default function App() {
             )}
           />
         </Switch>
-        <footer id="footer">
-          <a
-            className="link-formatter"
-            href="https://github.com/madebymiguel/chikopedia"
-            target="_blank"
-          >
-            Chikopedia
-            <img className="github-logo" src={githubLogo} alt="github-logo" />
-          </a>
-          <span> Created by: </span>
-          <a
-            className="link-formatter"
-            href="https://github.com/madebymiguel"
-            target="_blank"
-          >
-            Miguel Mayorga,{" "}
-          </a>
-          <a
-            className="link-formatter"
-            href="http://github.com/warandstar"
-            target="_blank"
-          >
-            Jong Tai Kim
-          </a>
-        </footer>
+        <Credits />
       </div>
     </Router>
   );

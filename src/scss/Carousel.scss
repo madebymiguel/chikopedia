@@ -1,6 +1,7 @@
-* {
-  box-sizing: border-box;
-}
+@import "_variables.scss";
+
+$darker-red: #e3350d;
+$red: #ff0000;
 
 .carousel-container {
   grid-area: main;
@@ -25,15 +26,13 @@
     transform: translate(0px, 0px);
     transition: all 0.333333s ease-out;
     font-family: "Lora", serif;
-    font-size: 16px;
-    color: black;
-    color: #e3350d;
-
-    width: 100px;
+    font-size: 1rem;
+    color: $darker-red;
+    width: 7rem;
 
     &:hover {
       transform: translate(0px, -4px);
-      color: red;
+      color: $red;
     }
   }
 
@@ -45,12 +44,12 @@
     padding-right: 20px;
     padding-bottom: 20px;
     margin-bottom: 20px;
-    width: 100px;
-    min-width: 800px;
+    width: 6.25rem;
+    min-width: 50rem;
 
     .loading-img {
-      width: 200px;
-      height: 200px;
+      width: 12.5rem;
+      height: 12.5rem;
       border-radius: 50%;
       display: flex;
       margin: 30% auto auto auto;
@@ -91,8 +90,7 @@
   }
 
   .nav-buttons {
-    color: black;
-    font-size: 30px;
+    color: $black;
     text-decoration: none;
   }
 }

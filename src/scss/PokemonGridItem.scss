@@ -1,11 +1,8 @@
 @import "_variables";
 
-* {
-  box-sizing: border-box;
-}
 .link {
   text-decoration: none;
-  color: black;
+  color: $black;
 
   &:focus,
   &:hover,
@@ -19,28 +16,27 @@
 .grid-item-container {
   display: flex;
   flex-direction: column;
-  // border: black 1px solid;
   padding: 8px;
   margin: 8px;
-  background-color: $grid-item;
   border-radius: 8px;
-  width: 120px;
-  box-shadow: 1px 1px 0px #999, 2px 2px 0px #999, 3px 3px 0px #999,
-    4px 4px 0px #999;
+  background-color: $white;
+  width: 7.5rem;
+  box-shadow: 1px 1px 0px $box-shadow-grey, 2px 2px 0px $box-shadow-grey,
+    3px 3px 0px $box-shadow-grey, 4px 4px 0px $box-shadow-grey;
   transform: translate(0px, 0px);
   transition: all 0.333333s ease-out;
   cursor: pointer;
 
   &:hover {
     transform: translate(0px, -8px);
-    box-shadow: 0 10px 15px -3px gray;
+    box-shadow: 0 10px 15px -3px $box-shadow-grey;
   }
 
   .grid-item-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: #f2f2f2;
+    background-color: $light-blue-tint;
     border-radius: 8px;
     padding-left: 8px;
     padding-right: 8px;
@@ -53,8 +49,8 @@
     }
 
     .pokeball {
-      width: 16px;
-      height: 16px;
+      width: 1rem;
+      height: 1rem;
       z-index: 500;
     }
   }
@@ -62,7 +58,7 @@
   .pokemon-name {
     font-family: $font-sub-title;
     font-style: bold;
-    font-size: 16px;
+    font-size: 1rem;
     text-align: center;
     padding: 0px;
     margin: 0px;
@@ -72,7 +68,7 @@
     justify-content: center;
     padding: 0px;
     margin: 0px;
-    width: 96px;
-    height: 96px;
+    width: 6rem;
+    height: 6rem;
   }
 }

@@ -98,7 +98,7 @@ export default function PokedexEntry({
       </div>
 
       <div className="sprite">
-        <img src={image} className="sprite-image"></img>
+        <img src={image} className="sprite-image" alt="pokemon-sprite"></img>
       </div>
 
       <div className="pokedex-data-container">

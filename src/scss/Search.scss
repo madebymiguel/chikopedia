@@ -1,41 +1,39 @@
 @import "_variables.scss";
 
+$salmon-color: #fc8a8a;
+$darker-salmon-color: #ee6161;
+
 .search {
-  // currently hard coded on size but later can be changed
-  height: 40px;
-  width: 450px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: auto;
 
   #search-input {
+    width: 19rem;
+    height: 2.5rem;
     border-radius: 8px;
-    height: 100%;
-    width: 73%;
     font-size: 100%;
-    background: #f2f2f2;
+    background: $white;
     border: none;
 
     &::placeholder {
-      color: black;
+      color: $black;
     }
   }
 
   #search-button {
+    width: 3rem;
+    height: 2.5rem;
+    padding-top: 4px;
+    margin-left: 8px;
     border-radius: 8px;
-    height: 90%;
-    width: auto;
-    margin-left: 2%;
-    background-color: #fc8a8a;
-    font-family: "Lora", serif;
-    color: black;
-    font-size: 30px;
+    background-color: $salmon-color;
     border: none;
 
     &:active {
-      background-color: #ee6161;
-
-      box-shadow: 0 4px 5px -1px #999;
+      background-color: $darker-salmon-color;
+      box-shadow: 0px 4px 5px -1px $box-shadow-grey;
     }
   }
 }

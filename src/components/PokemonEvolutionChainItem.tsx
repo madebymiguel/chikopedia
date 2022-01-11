@@ -16,7 +16,7 @@ export default function PokemonEvolutionChainItem({
   return (
     <Link to={`/pokemon/${index}`} className="link">
       <div className="chain-item-container">
-        <img src={image} className="pokemon-sprite" />
+        <img src={image} className="pokemon-sprite" alt="pokemon-sprite" />
         <span className="pokemon-name">{upperCaseFirstLetter(name)}</span>
       </div>
     </Link>

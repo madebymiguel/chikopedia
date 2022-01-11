@@ -1,13 +1,11 @@
-* {
-  box-sizing: border-box;
-}
+@import "_variables";
 
 .pokemon-ability-container {
   display: flex;
   flex-direction: column;
 
   .ability-name {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .ability-content {
@@ -24,7 +22,7 @@
 
   .ability-image {
     padding-left: 4px;
-    width: 16px;
+    width: 1rem;
   }
 
   .hidden {

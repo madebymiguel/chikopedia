@@ -22,5 +22,5 @@ export default function PokemonEvolutionChain({
     }
   }, [evolutionChain]);
 
-  return <div id="pokemon-chain">{pokemonChainItems}</div>;
+  return <div className="pokemon-chain">{pokemonChainItems}</div>;
 }

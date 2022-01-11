@@ -1,9 +1,5 @@
 @import "_variables";
 
-* {
-  box-sizing: border-box;
-}
-
 #header {
   grid-area: header;
   display: flex;
@@ -11,16 +7,17 @@
   justify-content: space-around;
   align-items: center;
   padding: 16px;
-  background-color: $color5;
+  background-color: $chikorita-green;
   position: sticky;
   top: 0;
   z-index: 999;
-  box-shadow: 0 5px 10px -1px gray;
+  box-shadow: 0px 5px 10px -1px $box-shadow-grey;
+  width: 100%;
 
   .title-link {
     font-family: $font-title;
     text-decoration: none;
-    color: black;
+    color: $black;
 
     .title {
       margin: 0px;
@@ -33,7 +30,7 @@
       text-decoration: none;
     }
     &:hover {
-      color: #974c56;
+      color: $chikorita-red;
     }
   }
 }

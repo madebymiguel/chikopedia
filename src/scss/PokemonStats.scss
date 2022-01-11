@@ -1,26 +1,20 @@
 @import "./_variables.scss";
 
-* {
-  box-sizing: border-box;
-}
-
 .pokemon-stat-container {
   display: flex;
   justify-content: center;
   width: 100%;
 
   .stat-table {
-    border: 2px solid black;
+    border: 2px solid $black;
 
     .stat-name {
-      // border: 1px solid black;
       text-align: center;
       padding-right: 8px;
       padding-left: 8px;
     }
 
     .stat-number {
-      // border: 1px solid black;
       text-align: center;
     }
   }
