@@ -4,6 +4,7 @@ import Search from "./Search";
 import Menu from "./Menu";
 import Credits from "./Credits";
 import PokemonGrid from "./PokemonGrid";
+import PokemonScroll from "./PokemonScroll";
 import CarouselWithQuery from "./CarouselWithQuery";
 import getAllPokemon from "../apis/getAllPokemon";
 import "../scss/App.scss";
@@ -71,11 +72,19 @@ export default function App() {
         </header>
         <Switch>
           <Route exact path="/">
-            <PokemonGrid
-              livingDex={livingDex}
-              allPokemon={allSimplePokemon}
-              isLoading={isFetchingPokemon}
-            />
+            {pokedexStyle === "grid" ? (
+              <PokemonGrid
+                livingDex={livingDex}
+                allPokemon={allSimplePokemon}
+                isLoading={isFetchingPokemon}
+              />
+            ) : (
+              <PokemonScroll
+                livingDex={livingDex}
+                allPokemon={allSimplePokemon}
+                isLoading={isFetchingPokemon}
+              />
+            )}
           </Route>
           <Route
             path="/pokemon/:pokemonId"

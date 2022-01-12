@@ -1,0 +1,11 @@
+@import "_variables";
+
+.pokemon-scroll-container {
+  grid-area: main;
+
+  .pokemon-scroll {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
