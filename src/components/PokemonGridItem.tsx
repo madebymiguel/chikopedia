@@ -6,6 +6,7 @@ import "../scss/PokemonGridItem.scss";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 import { handlePokeballColorChange } from "../utils/handlePokeballColorChange";
 import { getLivingDexSet } from "../utils/getLivingDexSet";
+import formatIndex from "../utils/formatIndex";
 
 export interface PokemonGridItemProps {
   name: string;
@@ -36,7 +37,7 @@ export default function PokemonGridItem({
           }
         }}
       >
-        <span className="pokemon-index">#{index}</span>
+        <span className="pokemon-index">#{formatIndex(index)}</span>
         {livingDex && (
           <input
             type="image"

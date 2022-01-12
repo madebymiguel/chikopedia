@@ -102,7 +102,7 @@ export default function PokedexEntry({
       </div>
 
       <div className="pokedex-data-container">
-        <h3 className="sub-title">Pokedex data</h3>
+        <h3 className="sub-title">Pokedex Data</h3>
         <table className="table-formatter">
           <tbody className="table-body-formatter">
             <tr className="table-row-formatter">
@@ -155,7 +155,7 @@ export default function PokedexEntry({
 
       <div className="description-container">
         <h3 className="sub-title">Pokedex Entry</h3>
-        {flavorTextEntries}
+        <span className="text">{flavorTextEntries}</span>
       </div>
 
       <div className="training-container">

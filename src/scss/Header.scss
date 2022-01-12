@@ -1,4 +1,5 @@
 @import "_variables";
+@import "_mixins";
 
 #header {
   grid-area: header;
@@ -15,7 +16,7 @@
   width: 100%;
 
   .title-link {
-    font-family: $font-title;
+    @include font($font-sans, 1rem, bolder);
     text-decoration: none;
     color: $black;
 

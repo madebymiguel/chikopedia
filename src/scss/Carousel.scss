@@ -1,4 +1,5 @@
 @import "_variables.scss";
+@import "_mixins";
 
 $darker-red: #e3350d;
 $red: #ff0000;
@@ -25,10 +26,9 @@ $red: #ff0000;
     margin: 0px;
     transform: translate(0px, 0px);
     transition: all 0.333333s ease-out;
-    font-family: "Lora", serif;
-    font-size: 1rem;
+    @include font($font-sans, 1.25rem, bold);
     color: $darker-red;
-    width: 7rem;
+    width: 7.5rem;
 
     &:hover {
       transform: translate(0px, -4px);

@@ -1,4 +1,5 @@
 @import "_variables";
+@import "_mixins";
 
 .container-format {
   display: flex;
@@ -27,7 +28,7 @@
   width: 100%;
 
   .sub-title {
-    font-size: 24px;
+    @include font($font-serif, 1.5rem, bold);
     margin-top: 15px;
     margin-bottom: 10px;
   }
@@ -44,13 +45,15 @@
           // text-align: left; // uncomment if you want different format - 3
           text-align: right;
           padding: 4px;
-          font-size: 20px;
+          // font-size: 20px;
+          @include font($font-sans, 1.25rem, bold);
         }
 
         .table-data-formatter {
           // text-align: right; // uncomment if you want different format - 4
           text-align: left;
           padding: 4px;
+          @include font($font-sans, 1.125rem, normal);
         }
       }
     }
@@ -67,8 +70,7 @@
       text-align: center;
 
       .pokemon-name {
-        font-family: $font-sub-title;
-        font-size: 2rem;
+        @include font($font-sans, 2.25rem, bold);
         margin-top: 0px;
         margin-bottom: 0px;
         padding: 0px;
@@ -77,10 +79,10 @@
 
     .pokeball-container {
       grid-area: pokeball;
-      padding-left: 20px;
+      padding-left: 10px;
 
       .pokeball {
-        width: 30px;
+        width: 2.25rem;
       }
     }
   }
@@ -118,6 +120,12 @@
   .description-container {
     grid-area: description;
     @extend .container-format;
+
+    .text {
+      width: 90%;
+      text-align: center;
+      @include font($font-sans, 1.125rem, normal);
+    }
   }
 
   .training-container {

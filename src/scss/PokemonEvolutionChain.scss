@@ -1,4 +1,5 @@
 @import "_variables";
+@import "_mixins";
 
 .pokemon-chain {
   display: flex;
@@ -33,6 +34,7 @@
         }
 
         .pokemon-name {
+          @include font($font-sans, 1.125rem, bold);
           text-align: center;
           padding: 0px;
           margin: 0px;
@@ -51,6 +53,7 @@
         width: 9.5rem;
 
         .evolution-detail {
+          @include font($font-sans, 1rem, normal);
           padding: 2px;
         }
       }
