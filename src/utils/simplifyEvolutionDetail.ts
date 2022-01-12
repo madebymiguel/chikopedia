@@ -29,9 +29,9 @@ export default function simplifyEvolutionDetail(
       if (evolutionDetailKey === "gender") {
         let gender;
         if (evolutionDetailValue == 1) {
-          gender = "male";
-        } else {
           gender = "female";
+        } else {
+          gender = "male";
         }
         simplifiedEvolutionDetailArray.push(" be " + gender);
       } else if (
