@@ -45,6 +45,8 @@ export interface PokedexEntryProps {
   pokeball: string;
   setPokeball: React.Dispatch<React.SetStateAction<string>>;
   livingDex: boolean;
+  backToLastHomeState: number;
+  setBackButton: (val: number) => void;
 }
 
 export default function PokedexEntry({
@@ -72,6 +74,8 @@ export default function PokedexEntry({
   livingDex,
   evolutionChain,
   baseHappiness,
+  backToLastHomeState,
+  setBackButton,
 }: PokedexEntryProps) {
   return (
     // the description parts can be refactored into react component
@@ -225,7 +229,11 @@ export default function PokedexEntry({
       <div className="evolution-container">
         <h3 className="sub-title">Evolutions</h3>
         {evolutionChain !== null && (
-          <PokemonEvolutionChain evolutionChain={evolutionChain} />
+          <PokemonEvolutionChain
+            evolutionChain={evolutionChain}
+            backToLastHomeState={backToLastHomeState}
+            setBackButton={setBackButton}
+          />
         )}
       </div>
     </div>

@@ -4,10 +4,14 @@ import { evolutionPath } from "../types/SimplePokemonWithEvolutionDetail";
 
 export interface PokemonEvolutionChainRowProps {
   evolutionPath: evolutionPath;
+  backToLastHomeState: number;
+  setBackButton: (val: number) => void;
 }
 
 export default function PokemonEvolutionChainRow({
   evolutionPath,
+  backToLastHomeState,
+  setBackButton,
 }: PokemonEvolutionChainRowProps) {
   // TODO: after we modify PokemonEvolutionTreeNode, we add evolution detail to arrow
   return (
@@ -26,6 +30,8 @@ export default function PokemonEvolutionChainRow({
               name={pokemonObject.name}
               index={pokemonObject.id}
               image={pokemonObject.sprite}
+              backToLastHomeState={backToLastHomeState}
+              setBackButton={setBackButton}
             />
           </div>
         );

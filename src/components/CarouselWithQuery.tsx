@@ -21,12 +21,18 @@ import addToEvolutionChainStorage from "../utils/addToEvolutionChainStorage";
 export interface MatchParams {
   pokemonId: number;
   livingDex: boolean;
+  backToLastHomeState: number;
+  handleBackButton: () => void;
+  setBackButton: (val: number) => void;
 }
 
 // Intend parameter is pokemonID not pokvemonName
 export default function CarouselWithQuery({
   pokemonId,
   livingDex,
+  backToLastHomeState,
+  handleBackButton,
+  setBackButton,
 }: MatchParams) {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpecies | null>(
@@ -41,13 +47,6 @@ export default function CarouselWithQuery({
   const [pokeball, setPokeball] = useState(
     livingDexStorage[pokemonId] ? redPokeball : greyPokeball
   );
-
-  const [lastState, setLastState] = useState<number>(-1);
-
-  function handleBack() {
-    history.go(lastState);
-    setLastState(-1);
-  }
 
   // next step is to make session storage where key is pokemon id/name and value is simple evolution chain.
   useEffect(() => {
@@ -119,9 +118,9 @@ export default function CarouselWithQuery({
       finishedFetching={finishedFetching}
       livingDex={livingDex}
       evolutionChain={evolutionChain}
-      handleBack={handleBack}
-      lastState={lastState}
-      setLastState={setLastState}
+      handleBackButton={handleBackButton}
+      backToLastHomeState={backToLastHomeState}
+      setBackButton={setBackButton}
     />
   );
 }
