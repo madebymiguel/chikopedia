@@ -2,17 +2,15 @@ import { fetchPokemon } from "../apis/fetchPokemon";
 import { SimplePokemon } from "../types/SimplePokemon";
 import fuzzySearchFromSessionStorage from "./fuzzySearchFromSessionStorage";
 
-export default async function getPokemonIndexFromStorage(
-  search: string | number
-) {
+export default async function getPokemonIndexFromStorage(search: string) {
   if (search !== "") {
-    const isString = typeof search === "string";
+    const isString = isNaN(parseInt(search));
     const stored = sessionStorage.getItem("allSimplePokemon");
 
     if (stored !== null) {
       const storedData: SimplePokemon[] = JSON.parse(stored);
       const filteredStoredData = storedData.filter((e: SimplePokemon) =>
-        isString ? e.name === search.toLowerCase() : e.id == search
+        isString ? e.name === search.toLowerCase() : e.id == parseInt(search)
       );
       if (filteredStoredData.length > 0) {
         return filteredStoredData[0].id;
@@ -25,9 +23,7 @@ export default async function getPokemonIndexFromStorage(
         //   return pokemonData.id;
         // }
         // fuzzy search will happen here (as search input is not found in either session storage or api)
-        const result = isString
-          ? fuzzySearchFromSessionStorage(search)
-          : search;
+        const result = isString ? fuzzySearchFromSessionStorage(search) : 0;
         return result;
       }
     }

@@ -13,9 +13,9 @@ export default function Search({
   backToLastHomeState,
   setBackButton,
 }: SearchProps) {
-  const [search, setSearch] = useState<string | number>("");
+  const [search, setSearch] = useState<string>("");
 
-  const [searchIndex, setSearchIndex] = useState(0);
+  const [searchIndex, setSearchIndex] = useState<number>(0);
   let history = useHistory();
 
   const handleSearchIndex = async () => {
