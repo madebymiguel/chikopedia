@@ -8,6 +8,7 @@
 
   .stat-table {
     border: 2px solid $black;
+    border-radius: 8px;
 
     .stat-name {
       @include font($font-serif, 1.25rem, bold);

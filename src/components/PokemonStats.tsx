@@ -6,6 +6,15 @@ export interface PokemonStatProps {
 }
 
 export default function PokemonStats({ stats }: PokemonStatProps) {
+  const statAcronym = new Map<string, string>([
+    ["hp", "HP"],
+    ["attack", "ATK"],
+    ["defense", "DEF"],
+    ["special-attack", "SP. ATK"],
+    ["special-defense", "SP. DEF"],
+    ["speed", "SPD"],
+  ]);
+
   return (
     <div className="pokemon-stat-container">
       <table className="stat-table">
@@ -14,7 +23,7 @@ export default function PokemonStats({ stats }: PokemonStatProps) {
             {stats.map((statJSON) => {
               return (
                 <th key={statJSON.stat.name} className="stat-name">
-                  {statJSON.stat.name}
+                  {statAcronym.get(statJSON.stat.name)}
                 </th>
               );
             })}
