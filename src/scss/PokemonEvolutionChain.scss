@@ -25,6 +25,10 @@
         justify-content: center;
         width: 6.25rem;
 
+        &:hover {
+          transform: translate(0px, -4px);
+        }
+
         .pokemon-sprite {
           justify-content: center;
           padding: 0px;
