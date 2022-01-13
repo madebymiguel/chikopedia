@@ -4,7 +4,15 @@ import SearchIcon from "../assets/search-icon.svg";
 import "../scss/Search.scss";
 import getPokemonIndexFromStorage from "../utils/getPokemonIndexFromStorage";
 
-export default function Search() {
+export interface SearchProps {
+  backToLastHomeState: number;
+  setBackButton: (val: number) => void;
+}
+
+export default function Search({
+  backToLastHomeState,
+  setBackButton,
+}: SearchProps) {
   const [search, setSearch] = useState<string | number>("");
 
   const [searchIndex, setSearchIndex] = useState(0);
@@ -28,6 +36,7 @@ export default function Search() {
         onSubmit={(e) => {
           e.preventDefault();
           handleSearchIndex();
+          setBackButton(backToLastHomeState);
         }}
         className="search"
       >

@@ -33,6 +33,8 @@ export default function App() {
   const [evolutionChainStorage, setEvolutionChainStorage] =
     useEvolutionChainSessionStorage([]);
 
+  const [backToLastHomeState, setbackToLastHomeState] = useState<number>(-1);
+
   // useEffect stays at App so that we can make loading screen for both option of scroll and grid
   useEffect(() => {
     if (allSimplePokemon.length === 0) {
@@ -55,6 +57,15 @@ export default function App() {
     setLivingDex(swap);
   };
 
+  const handleBackButton = () => {
+    history.go(backToLastHomeState);
+    setbackToLastHomeState(-1);
+  };
+
+  const setBackButton = (lastState: number) => {
+    setbackToLastHomeState(lastState - 1);
+  };
+
   return (
     <Router>
       <div id="page">
@@ -62,7 +73,10 @@ export default function App() {
           <Link className="title-link" to="/">
             <h1 className="title">Chikopedia</h1>
           </Link>
-          <Search />
+          <Search
+            backToLastHomeState={backToLastHomeState}
+            setBackButton={setBackButton}
+          />
           <Menu
             pokedexStyle={pokedexStyle}
             setPokedexStyle={setPokedexStyle}
@@ -92,6 +106,9 @@ export default function App() {
               <CarouselWithQuery
                 pokemonId={+match.params.pokemonId}
                 livingDex={livingDex}
+                backToLastHomeState={backToLastHomeState}
+                handleBackButton={handleBackButton}
+                setBackButton={setBackButton}
               />
             )}
           />

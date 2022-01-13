@@ -6,9 +6,13 @@ import { getEvolutionPathsFromTree } from "../utils/getEvolutionPathsFromTree";
 
 export interface PokemonEvolutionChainProps {
   evolutionChain: PokemonEvolutionTreeNode;
+  backToLastHomeState: number;
+  setBackButton: (val: number) => void;
 }
 export default function PokemonEvolutionChain({
   evolutionChain,
+  backToLastHomeState,
+  setBackButton,
 }: PokemonEvolutionChainProps) {
   // use the name from chain of evolution chain to fetchPokemon to get pokemon sprite.
   //
@@ -17,7 +21,13 @@ export default function PokemonEvolutionChain({
   const pokemonChainItems = useMemo(() => {
     if (pokemonEvolutionPaths !== null) {
       return pokemonEvolutionPaths.map((evolutionPath) => {
-        return <PokemonEvolutionChainRow evolutionPath={evolutionPath} />;
+        return (
+          <PokemonEvolutionChainRow
+            evolutionPath={evolutionPath}
+            backToLastHomeState={backToLastHomeState}
+            setBackButton={setBackButton}
+          />
+        );
       });
     }
   }, [evolutionChain]);
