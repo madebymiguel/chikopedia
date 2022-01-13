@@ -51,7 +51,7 @@ export default function Carousel({
       <div className="prev" onClick={() => setLastState(lastState - 1)}>
         {pokemonId > 1 && (
           <Link to={`/pokemon/${pokemonId - 1}`} className="nav-buttons">
-            <img src={ArrowBack} alt="back-arrow" />
+            <img src={ArrowBack} alt="back-arrow" className="arrow-image" />
           </Link>
         )}
       </div>
@@ -112,7 +112,11 @@ export default function Carousel({
       <div className="next" onClick={() => setLastState(lastState - 1)}>
         {pokemonId < MAX_POKEMON && (
           <Link to={`/pokemon/${pokemonId + 1}`} className="nav-buttons">
-            <img src={ArrowForward} alt="forward-arrow" />
+            <img
+              src={ArrowForward}
+              alt="forward-arrow"
+              className="arrow-image"
+            />
           </Link>
         )}
       </div>
