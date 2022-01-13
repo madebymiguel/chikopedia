@@ -188,37 +188,41 @@ export default function PokedexEntry({
 
       <div className="breeding-container">
         <h3 className="sub-title">Breeding</h3>
-        {genderRate !== -1 ? (
-          <>
-            <table className="table-formatter">
-              <tbody className="table-body-formatter">
-                <tr className="table-row-formatter">
-                  <th className="table-header-formatter">Gender</th>
-                  <td className="table-data-formatter">
-                    <span>
-                      Male: {100 - Math.round((genderRate / 8) * 100)}%,{" "}
-                    </span>
-                    <span>Female: {Math.round((genderRate / 8) * 100)}% </span>
-                  </td>
-                </tr>
-                <tr className="table-row-formatter">
-                  <th className="table-header-formatter">Egg Group</th>
-                  <td className="table-data-formatter">
-                    <PokemonEggGroups eggGroups={eggGroups} />
-                  </td>
-                </tr>
-                <tr className="table-row-formatter">
-                  <th className="table-header-formatter">Egg Cycle</th>
-                  <td className="table-data-formatter">{eggCycle}</td>
-                </tr>
-              </tbody>
-            </table>
-          </>
-        ) : (
-          <>
-            <span>Genderless</span>
-          </>
-        )}
+        <>
+          <table className="table-formatter">
+            <tbody className="table-body-formatter">
+              <tr className="table-row-formatter">
+                <th className="table-header-formatter">Gender</th>
+                <td className="table-data-formatter">
+                  {genderRate !== -1 ? (
+                    <>
+                      <span>
+                        Male: {100 - Math.round((genderRate / 8) * 100)}%,{" "}
+                      </span>
+                      <span>
+                        Female: {Math.round((genderRate / 8) * 100)}%{" "}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Genderless</span>
+                    </>
+                  )}
+                </td>
+              </tr>
+              <tr className="table-row-formatter">
+                <th className="table-header-formatter">Egg Group</th>
+                <td className="table-data-formatter">
+                  <PokemonEggGroups eggGroups={eggGroups} />
+                </td>
+              </tr>
+              <tr className="table-row-formatter">
+                <th className="table-header-formatter">Egg Cycle</th>
+                <td className="table-data-formatter">{eggCycle}</td>
+              </tr>
+            </tbody>
+          </table>
+        </>
       </div>
 
       <div className="stat-container">
