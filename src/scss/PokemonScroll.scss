@@ -1,4 +1,5 @@
 @import "_variables";
+@import "_mixins";
 
 .pokemon-scroll-container {
   grid-area: main;
@@ -7,5 +8,9 @@
     width: 100%;
     display: flex;
     justify-content: center;
+
+    .title {
+      @include font($font-sans, 2rem, normal);
+    }
   }
 }

@@ -15,7 +15,7 @@ export default function PokemonScroll({
   return (
     <div className="pokemon-scroll-container">
       <div className="pokemon-scroll">
-        <h2>Coming Soon!</h2>
+        <h2 className="title">Coming Soon!</h2>
       </div>
     </div>
   );
