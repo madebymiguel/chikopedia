@@ -29,7 +29,7 @@ export default function PokemonScroll({
 
   const MAX_SCROLL_POKEMON = 7;
 
-  const [currentIndex, setCurrentIndex] = useState(1);
+  const [currentIndex, setCurrentIndex] = useState(870);
 
   const currentSprite = allPokemon[currentIndex - 1].sprite;
 
@@ -41,7 +41,7 @@ export default function PokemonScroll({
       i < currentIndex + Math.floor(MAX_SCROLL_POKEMON / 2);
       i++
     ) {
-      if (i >= 0 && i <= MAX_POKEMON) {
+      if (i >= 0 && i <= MAX_POKEMON - 1) {
         const currentPokemon = allPokemon[i];
         pokemonInScroll.push(currentPokemon);
       }
