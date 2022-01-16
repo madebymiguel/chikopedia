@@ -19,12 +19,13 @@ import {
   LIVING_DEX_STATUS_KEY,
   POKEMON_LIMIT,
 } from "../variables/globalVariables";
+import LoadingComponent from "./LoadingComponent";
 
 export default function App() {
   const [pokedexStyle, setPokedexStyle] = useState<string>("grid");
   const livingDexStatus = getLivingDexStatus();
   const [livingDex, setLivingDex] = useState<boolean>(livingDexStatus);
-  const [isFetchingPokemon, setIsFetchingPokemon] = useState<boolean>(false);
+  const [isFetchingPokemon, setIsFetchingPokemon] = useState<boolean>(true);
 
   const [allSimplePokemon, setPokemonStorage] = useSimplePokemonSessionStorage(
     []
@@ -38,7 +39,6 @@ export default function App() {
   // useEffect stays at App so that we can make loading screen for both option of scroll and grid
   useEffect(() => {
     if (allSimplePokemon.length === 0) {
-      setIsFetchingPokemon(true);
       getAllPokemon(POKEMON_LIMIT).then((data) => {
         const sortedPokemonData = sortPokemon(data);
         const simplifiedPokemonArray = simplifyPokemonArray(sortedPokemonData);
@@ -87,17 +87,21 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             {pokedexStyle === "grid" ? (
-              <PokemonGrid
-                livingDex={livingDex}
-                allPokemon={allSimplePokemon}
-                isLoading={isFetchingPokemon}
-              />
-            ) : (
+              !isFetchingPokemon ? (
+                <PokemonGrid
+                  livingDex={livingDex}
+                  allPokemon={allSimplePokemon}
+                />
+              ) : (
+                <LoadingComponent />
+              )
+            ) : !isFetchingPokemon ? (
               <PokemonScroll
                 livingDex={livingDex}
                 allPokemon={allSimplePokemon}
-                isLoading={isFetchingPokemon}
               />
+            ) : (
+              <LoadingComponent />
             )}
           </Route>
           <Route

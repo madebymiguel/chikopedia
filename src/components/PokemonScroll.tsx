@@ -1,20 +1,18 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import PokemonScrollElement from "./PokemonScrollElement";
 import ArrowUpward from "../assets/arrow-upward.svg";
 import ArrowDownward from "../assets/arrow-downward.svg";
 import "../scss/PokemonScroll.scss";
 import { SimplePokemon } from "../types/SimplePokemon";
-import PokemonScrollElement from "./PokemonScrollElement";
 import { MAX_POKEMON } from "../variables/globalVariables";
 
 export interface PokemonScrollProps {
-  isLoading: boolean;
   allPokemon: SimplePokemon[];
   livingDex: boolean;
 }
 
 export default function PokemonScroll({
-  isLoading,
   allPokemon,
   livingDex,
 }: PokemonScrollProps) {
@@ -36,9 +34,6 @@ export default function PokemonScroll({
   const currentSprite = allPokemon[currentIndex - 1].sprite;
 
   const pokemonScrollItems = useMemo(() => {
-    if (isLoading) {
-      return [];
-    }
     const pokemonInScroll: SimplePokemon[] = [];
 
     for (
@@ -64,7 +59,7 @@ export default function PokemonScroll({
         />
       );
     });
-  }, [allPokemon, currentIndex, isLoading]);
+  }, [allPokemon, currentIndex]);
 
   return (
     <div className="pokemon-scroll-container">
@@ -91,7 +86,7 @@ export default function PokemonScroll({
         </div>
         <div className="pokemon-scroll">{pokemonScrollItems}</div>
         <div className="next">
-          {currentIndex < MAX_POKEMON - MAX_SCROLL_POKEMON && (
+          {currentIndex < MAX_POKEMON - MAX_SCROLL_POKEMON - 1 && (
             <img
               src={ArrowDownward}
               alt="down-arrow"
