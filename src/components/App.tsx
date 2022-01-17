@@ -6,26 +6,31 @@ import Credits from "./Credits";
 import PokemonGrid from "./PokemonGrid";
 import PokemonScroll from "./PokemonScroll";
 import CarouselWithQuery from "./CarouselWithQuery";
+import LoadingComponent from "./LoadingComponent";
 import getAllPokemon from "../apis/getAllPokemon";
 import "../scss/App.scss";
 import "../scss/Header.scss";
 import { getLivingDexStatus } from "../utils/getLivingDexStatus";
-import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
 import sortPokemon from "../utils/sortPokemon";
 import replacePokemonNamesFromArray from "../utils/replacePokemonNamesFromArray";
 import simplifyPokemonArray from "../utils/simplifyPokemonArray";
+import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
 import useEvolutionChainSessionStorage from "../utils/useEvolutionChainSessionStorage";
+import getPokedexStyleFromSessionStorage from "../utils/getPokedexStyleFromSessionStorage";
 import {
   LIVING_DEX_STATUS_KEY,
+  POKEDEX_STYLE_KEY,
   POKEMON_LIMIT,
 } from "../variables/globalVariables";
-import LoadingComponent from "./LoadingComponent";
 
 export default function App() {
-  const [pokedexStyle, setPokedexStyle] = useState<string>("grid");
+  const pokedexStyleStatus = getPokedexStyleFromSessionStorage();
+  const [pokedexStyle, setPokedexStyle] = useState<string>(pokedexStyleStatus);
+
   const livingDexStatus = getLivingDexStatus();
   const [livingDex, setLivingDex] = useState<boolean>(livingDexStatus);
-  const [isFetchingPokemon, setIsFetchingPokemon] = useState<boolean>(true);
+
+  const [isFetchingPokemon, setIsFetchingPokemon] = useState<boolean>(false);
 
   const [allSimplePokemon, setPokemonStorage] = useSimplePokemonSessionStorage(
     []
@@ -46,8 +51,10 @@ export default function App() {
           simplifiedPokemonArray
         );
         setPokemonStorage(fixedSimplifiedPokemon);
-        setIsFetchingPokemon(false);
+        setIsFetchingPokemon(true);
       });
+    } else {
+      setIsFetchingPokemon(true);
     }
   }, []);
 
@@ -55,6 +62,11 @@ export default function App() {
     const swap = !livingDex;
     sessionStorage.setItem(LIVING_DEX_STATUS_KEY, JSON.stringify(swap));
     setLivingDex(swap);
+  };
+
+  const handlePokedexStyle = (style: string) => {
+    sessionStorage.setItem(POKEDEX_STYLE_KEY, JSON.stringify(style));
+    setPokedexStyle(style);
   };
 
   const handleBackButton = () => {
@@ -79,7 +91,7 @@ export default function App() {
           />
           <Menu
             pokedexStyle={pokedexStyle}
-            setPokedexStyle={setPokedexStyle}
+            handlePokedexStyle={handlePokedexStyle}
             livingDex={livingDex}
             onToggleLivingDex={handleToggleLivingDex}
           />
@@ -87,7 +99,7 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             {pokedexStyle === "grid" ? (
-              !isFetchingPokemon ? (
+              isFetchingPokemon ? (
                 <PokemonGrid
                   livingDex={livingDex}
                   allPokemon={allSimplePokemon}
@@ -95,7 +107,7 @@ export default function App() {
               ) : (
                 <LoadingComponent />
               )
-            ) : !isFetchingPokemon ? (
+            ) : isFetchingPokemon ? (
               <PokemonScroll
                 livingDex={livingDex}
                 allPokemon={allSimplePokemon}

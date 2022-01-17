@@ -4,7 +4,7 @@ import "../scss/Menu.scss";
 
 export interface MenuContentProps {
   pokedexStyle: string;
-  setPokedexStyle: React.Dispatch<React.SetStateAction<string>>;
+  handlePokedexStyle: (style: string) => void;
   livingDex: boolean;
   onToggleLivingDex: () => void;
   menu: boolean;
@@ -13,7 +13,7 @@ export interface MenuContentProps {
 
 export default function MenuContent({
   pokedexStyle,
-  setPokedexStyle,
+  handlePokedexStyle,
   livingDex,
   onToggleLivingDex,
   menu,
@@ -32,7 +32,7 @@ export default function MenuContent({
             id="grid"
             name="viewStyle"
             value="grid"
-            onChange={() => setPokedexStyle("grid")}
+            onChange={() => handlePokedexStyle("grid")}
             checked={pokedexStyle === "grid"}
           />
           Grid
@@ -45,7 +45,8 @@ export default function MenuContent({
             id="scroll"
             name="viewStyle"
             value="scroll"
-            onChange={() => setPokedexStyle("scroll")}
+            onChange={() => handlePokedexStyle("scroll")}
+            checked={pokedexStyle === "scroll"}
           />
           Scroll
         </label>
