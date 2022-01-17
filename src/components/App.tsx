@@ -10,7 +10,7 @@ import LoadingComponent from "./LoadingComponent";
 import getAllPokemon from "../apis/getAllPokemon";
 import "../scss/App.scss";
 import "../scss/Header.scss";
-import { getLivingDexStatus } from "../utils/getLivingDexStatus";
+import getLivingDexStatusFromSessionStorage from "../utils/getLivingDexStatusFromSessionStorage";
 import sortPokemon from "../utils/sortPokemon";
 import replacePokemonNamesFromArray from "../utils/replacePokemonNamesFromArray";
 import simplifyPokemonArray from "../utils/simplifyPokemonArray";
@@ -27,7 +27,7 @@ export default function App() {
   const pokedexStyleStatus = getPokedexStyleFromSessionStorage();
   const [pokedexStyle, setPokedexStyle] = useState<string>(pokedexStyleStatus);
 
-  const livingDexStatus = getLivingDexStatus();
+  const livingDexStatus = getLivingDexStatusFromSessionStorage();
   const [livingDex, setLivingDex] = useState<boolean>(livingDexStatus);
 
   const [isFetchingPokemon, setIsFetchingPokemon] = useState<boolean>(false);

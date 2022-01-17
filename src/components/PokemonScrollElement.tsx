@@ -2,7 +2,7 @@ import greyPokeball from "../assets/grey-pokeball.svg";
 import redPokeball from "../assets/red-pokeball.svg";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 import { handlePokeballColorChange } from "../utils/handlePokeballColorChange";
-import { getLivingDexSet } from "../utils/getLivingDexSet";
+import { getLivingDexSetFromSessionStorage } from "../utils/getLivingDexSetFromSessionStorage";
 import formatIndex from "../utils/formatIndex";
 import { useState } from "react";
 import "../scss/PokemonScrollElement.scss";
@@ -22,7 +22,7 @@ export default function PokemonScrollElement({
   active,
   setCurrentIndex,
 }: PokemonScrollElementProps) {
-  const livingDexStorage = getLivingDexSet();
+  const livingDexStorage = getLivingDexSetFromSessionStorage();
 
   const [pokeball, setPokeball] = useState(
     livingDexStorage[index] ? redPokeball : greyPokeball

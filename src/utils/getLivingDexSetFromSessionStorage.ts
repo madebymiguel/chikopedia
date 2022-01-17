@@ -1,6 +1,6 @@
 import { LIVING_DEX_KEY } from "../variables/globalVariables";
 
-export function getLivingDexSet() {
+export default function getLivingDexSetFromSessionStorage() {
   const serializedLivingDexSet = localStorage.getItem(LIVING_DEX_KEY);
 
   const livingDexSet =

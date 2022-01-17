@@ -5,7 +5,7 @@ import redPokeball from "../assets/red-pokeball.svg";
 import "../scss/PokemonGridItem.scss";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 import { handlePokeballColorChange } from "../utils/handlePokeballColorChange";
-import { getLivingDexSet } from "../utils/getLivingDexSet";
+import { getLivingDexSetFromSessionStorage } from "../utils/getLivingDexSetFromSessionStorage";
 import formatIndex from "../utils/formatIndex";
 
 export interface PokemonGridItemProps {
@@ -21,7 +21,7 @@ export default function PokemonGridItem({
   image,
   livingDex,
 }: PokemonGridItemProps) {
-  const livingDexStorage = getLivingDexSet();
+  const livingDexStorage = getLivingDexSetFromSessionStorage();
 
   const [pokeball, setPokeball] = useState(
     livingDexStorage[index] ? redPokeball : greyPokeball

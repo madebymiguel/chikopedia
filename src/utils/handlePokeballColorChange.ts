@@ -1,5 +1,5 @@
-import { addToLivingDexSet } from "./addToLivingDexSet";
-import { removeFromLivingDexSet } from "./removeFromLivingDexSet";
+import addLivingDexSetToSessionStorage from "./addLivingDexSetToSessionStorage";
+import removeFromLivingDexSet from "./removeFromLivingDexSet";
 import greyPokeball from "../assets/grey-pokeball.svg";
 import redPokeball from "../assets/red-pokeball.svg";
 
@@ -9,7 +9,7 @@ export interface handlePokeballColorChangeProps {
   setPokeball: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function handlePokeballColorChange({
+export default function handlePokeballColorChange({
   pokeball,
   index,
   setPokeball,
@@ -19,7 +19,7 @@ export function handlePokeballColorChange({
     removeFromLivingDexSet(index);
     setPokeball(greyPokeball);
   } else {
-    addToLivingDexSet(index);
+    addLivingDexSetToSessionStorage(index);
     setPokeball(redPokeball);
   }
 }

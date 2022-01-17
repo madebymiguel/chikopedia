@@ -1,7 +1,7 @@
 import { SimplePokemon } from "../types/SimplePokemon";
 import { ALL_SIMPLE_POKEMON_KEY } from "../variables/globalVariables";
 
-export default function getAllSimplePokemon() {
+export default function getAllSimplePokemonFromSessionStorage() {
   const serializedAllSimplePokemon = sessionStorage.getItem(
     ALL_SIMPLE_POKEMON_KEY
   );

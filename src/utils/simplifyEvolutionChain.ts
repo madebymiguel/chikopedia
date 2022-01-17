@@ -1,7 +1,7 @@
 import { Chain } from "../types/evolutionChain/Chain";
 import { PokemonEvolutionNameTreeNode } from "../types/PokemonEvolutionNameTreeNode";
 
-export function simplifyEvolutionChain(
+export default function simplifyEvolutionChain(
   chain: Chain
 ): PokemonEvolutionNameTreeNode {
   const pokemonUrl = chain.species.url.split("/");

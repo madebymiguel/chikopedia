@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import SearchIcon from "../assets/search-icon.svg";
 import "../scss/Search.scss";
-import getPokemonIndexFromStorage from "../utils/getPokemonIndexFromStorage";
+import getPokemonIndexFromSessionStorage from "../utils/getPokemonIndexFromSessionStorage";
 
 export interface SearchProps {
   backToLastHomeState: number;
@@ -19,7 +19,7 @@ export default function Search({
   let history = useHistory();
 
   const handleSearchIndex = async () => {
-    const pokemonIndex = await getPokemonIndexFromStorage(search);
+    const pokemonIndex = await getPokemonIndexFromSessionStorage(search);
     setSearchIndex(pokemonIndex);
     setSearch("");
   };

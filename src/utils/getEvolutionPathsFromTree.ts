@@ -6,7 +6,7 @@ import {
   SimplePokemonWithEvolutionDetail,
 } from "../types/SimplePokemonWithEvolutionDetail";
 
-export function getEvolutionPathsFromTree(
+export default function getEvolutionPathsFromTree(
   pokemonEvolutionTree: PokemonEvolutionTreeNode,
   previousPokemon: evolutionPath = []
 ): evolutionPath[] {
