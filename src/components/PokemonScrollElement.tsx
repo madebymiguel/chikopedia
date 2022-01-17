@@ -12,7 +12,7 @@ export interface PokemonScrollElementProps {
   index: number;
   livingDex: boolean;
   active: number;
-  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+  handlePokemonScrollPosition: (index: number) => void;
 }
 
 export default function PokemonScrollElement({
@@ -20,7 +20,7 @@ export default function PokemonScrollElement({
   index,
   livingDex,
   active,
-  setCurrentIndex,
+  handlePokemonScrollPosition,
 }: PokemonScrollElementProps) {
   const livingDexStorage = getLivingDexSetFromSessionStorage();
 
@@ -51,7 +51,7 @@ export default function PokemonScrollElement({
       <div
         className="scroll-element-content"
         onClick={() => {
-          setCurrentIndex(index);
+          handlePokemonScrollPosition(index);
         }}
       >
         <span className="pokemon-index">#{formatIndex(index)}</span>

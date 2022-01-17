@@ -5,7 +5,11 @@ import ArrowUpward from "../assets/arrow-upward.svg";
 import ArrowDownward from "../assets/arrow-downward.svg";
 import "../scss/PokemonScroll.scss";
 import { SimplePokemon } from "../types/SimplePokemon";
-import { MAX_POKEMON } from "../variables/globalVariables";
+import getPokemonScrollPositionFromSessionStorage from "../utils/getPokemonScrollPositionFromSessionStorage";
+import {
+  MAX_POKEMON,
+  POKEMON_SCROLL_POSITION,
+} from "../variables/globalVariables";
 
 export interface PokemonScrollProps {
   allPokemon: SimplePokemon[];
@@ -30,7 +34,13 @@ export default function PokemonScroll({
   const MAX_SCROLL_POKEMON = 7;
 
   // use history to keep track of user's latest pokemon
-  const [currentIndex, setCurrentIndex] = useState(1);
+  const pokemonScrollPosition = getPokemonScrollPositionFromSessionStorage();
+  const [currentIndex, setCurrentIndex] = useState(pokemonScrollPosition);
+
+  const handlePokemonScrollPosition = (index: number) => {
+    sessionStorage.setItem(POKEMON_SCROLL_POSITION, JSON.stringify(index));
+    setCurrentIndex(index);
+  };
 
   const currentSprite = allPokemon[currentIndex - 1].sprite;
 
@@ -56,7 +66,7 @@ export default function PokemonScroll({
           index={pokemonObject.id}
           livingDex={livingDex}
           active={currentIndex}
-          setCurrentIndex={setCurrentIndex}
+          handlePokemonScrollPosition={handlePokemonScrollPosition}
         />
       );
     });
@@ -81,7 +91,9 @@ export default function PokemonScroll({
               src={ArrowUpward}
               alt="up-arrow"
               className="arrow-image"
-              onClick={() => setCurrentIndex(currentIndex - MAX_SCROLL_POKEMON)}
+              onClick={() =>
+                handlePokemonScrollPosition(currentIndex - MAX_SCROLL_POKEMON)
+              }
             />
           )}
         </div>
@@ -94,7 +106,9 @@ export default function PokemonScroll({
               src={ArrowDownward}
               alt="down-arrow"
               className="arrow-image"
-              onClick={() => setCurrentIndex(currentIndex + MAX_SCROLL_POKEMON)}
+              onClick={() =>
+                handlePokemonScrollPosition(currentIndex + MAX_SCROLL_POKEMON)
+              }
             />
           )}
         </div>
