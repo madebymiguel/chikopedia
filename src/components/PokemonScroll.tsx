@@ -29,7 +29,8 @@ export default function PokemonScroll({
 
   const MAX_SCROLL_POKEMON = 7;
 
-  const [currentIndex, setCurrentIndex] = useState(870);
+  // use history to keep track of user's latest pokemon
+  const [currentIndex, setCurrentIndex] = useState(1);
 
   const currentSprite = allPokemon[currentIndex - 1].sprite;
 

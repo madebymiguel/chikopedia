@@ -5,6 +5,7 @@
   grid-area: main;
 
   width: 100%;
+  height: 70vh;
   display: grid;
   grid-template-columns: 1fr 5rem 1fr;
   grid-template-areas: "sprite ... carousel";
@@ -51,11 +52,15 @@
 
     .prev {
       grid-area: prev;
+      // position: absolute;
       justify-self: center;
+      align-self: flex-end;
     }
 
     .next {
       grid-area: next;
+      // position: absolute;
+      align-self: flex-start;
       justify-self: center;
     }
 
