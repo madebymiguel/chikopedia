@@ -1,6 +1,8 @@
 @import "_variables";
 @import "_mixins";
 
+$red: #ff0000;
+
 $level3-width: 85%;
 $level2-width: 90%;
 $level1-width: 95%;
@@ -22,8 +24,14 @@ $level3-left: 30%;
   align-items: center;
   text-align: center;
   cursor: pointer;
-
+  transform: translate(0px, 0px);
+  transition: all 0.333333s ease-out;
   transition: border 0.4s;
+
+  &:hover {
+    transform: translate(0px, -4px);
+    box-shadow: 0 5px 10px -3px $box-shadow-grey;
+  }
 
   .pokeball-container {
     padding-left: 8px;
@@ -39,7 +47,7 @@ $level3-left: 30%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-left: 80px;
+    padding-left: 70px;
 
     .pokemon-index {
       @include font($font-serif, 1rem, bold);
@@ -54,7 +62,7 @@ $level3-left: 30%;
   &.level0 {
     width: $level0-width;
     margin-left: $level0-left;
-    border: 2px red solid;
+    border: 2px solid $red;
   }
 
   &.level1 {

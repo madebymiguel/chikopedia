@@ -85,7 +85,9 @@ export default function PokemonScroll({
             />
           )}
         </div>
+
         <div className="pokemon-scroll">{pokemonScrollItems}</div>
+
         <div className="next">
           {currentIndex < MAX_POKEMON - MAX_SCROLL_POKEMON - 1 && (
             <img
