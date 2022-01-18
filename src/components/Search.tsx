@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import SearchIcon from "../assets/search-icon.svg";
 import "../scss/Search.scss";
@@ -14,8 +14,8 @@ export default function Search({
   setBackButton,
 }: SearchProps) {
   const [search, setSearch] = useState<string>("");
-
   const [searchIndex, setSearchIndex] = useState<number>(0);
+
   let history = useHistory();
 
   const handleSearchIndex = async () => {
@@ -27,6 +27,7 @@ export default function Search({
   useEffect(() => {
     if (searchIndex !== 0) {
       history.push(`/pokemon/${searchIndex}`);
+      setSearchIndex(0);
     }
   }, [searchIndex]);
 
