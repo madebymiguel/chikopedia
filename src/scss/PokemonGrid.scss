@@ -17,3 +17,11 @@
     justify-content: center;
   }
 }
+
+@media only screen and (max-width: 650px) {
+  .pokemon-grid-container {
+    .pokemon-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}

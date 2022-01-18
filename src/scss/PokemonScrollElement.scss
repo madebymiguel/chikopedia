@@ -80,3 +80,29 @@ $level3-left: 30%;
     margin-left: $level3-left;
   }
 }
+
+@media only screen and (max-width: 650px) {
+  .scroll-element-container {
+    $new-width: 50%;
+
+    &.level0 {
+      width: $new-width;
+      margin-left: 0px;
+    }
+
+    &.level1 {
+      width: $new-width;
+      margin-left: 0px;
+    }
+
+    &.level2 {
+      width: $new-width;
+      margin-left: 0px;
+    }
+
+    &.level3 {
+      width: $new-width;
+      margin-left: 0px;
+    }
+  }
+}
