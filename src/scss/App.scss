@@ -20,15 +20,3 @@ body {
     grid-gap: 16px;
   }
 }
-
-@media only screen and (max-width: 650px) {
-  body {
-    #page {
-      grid-template-columns: auto;
-      grid-template-areas:
-        "header"
-        "main"
-        "footer";
-    }
-  }
-}
