@@ -4,13 +4,78 @@
 .pokemon-scroll-container {
   grid-area: main;
 
-  .pokemon-scroll {
+  width: 100%;
+  height: 80vh;
+  display: grid;
+  grid-template-columns: 1fr 6rem 1fr;
+  grid-template-areas: "sprite .... carousel";
+
+  .sprite {
+    grid-area: sprite;
     width: 100%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+
+    .sprite-image {
+      object-fit: cover;
+      width: 100%;
+      min-width: 20rem;
+      background-color: $smoked-white;
+      border-radius: 16px;
+      transform: translate(0px, 0px);
+      transition: all 0.333333s ease-out;
+
+      &:hover {
+        box-shadow: 0 10px 15px -3px $box-shadow-grey;
+        transform: translate(0px, -8px);
+      }
+    }
+  }
+
+  .pokemon-scroll-carousel {
+    grid-area: carousel;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-areas:
+      "prev"
+      "elements"
+      "next";
 
     .title {
       @include font($font-sans, 2rem, normal);
+    }
+
+    .pokemon-scroll {
+      grid-area: elements;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .prev {
+      grid-area: prev;
+      position: absolute;
+      top: 11rem;
+      justify-self: center;
+      cursor: pointer;
+    }
+
+    .next {
+      grid-area: next;
+      position: absolute;
+      bottom: 11rem;
+      justify-self: center;
+      cursor: pointer;
+    }
+
+    .arrow-image {
+      width: 3rem;
+      height: 3rem;
     }
   }
 }

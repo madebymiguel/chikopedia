@@ -1,6 +1,6 @@
 import { LIVING_DEX_STATUS_KEY } from "../variables/globalVariables";
 
-export function getLivingDexStatus() {
+export default function getLivingDexStatusFromSessionStorage() {
   const serializedLivingDexStatus = sessionStorage.getItem(
     LIVING_DEX_STATUS_KEY
   );

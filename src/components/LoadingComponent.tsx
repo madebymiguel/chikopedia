@@ -3,6 +3,8 @@ import "../scss/Loading.scss";
 
 export default function LoadingComponent() {
   return (
-    <img className="loading-img" src={redPokeball} alt="pokeball loading" />
+    <div className="loading-container">
+      <img className="loading-img" src={redPokeball} alt="pokeball loading" />
+    </div>
   );
 }

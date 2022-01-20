@@ -5,14 +5,14 @@ import "../scss/Menu.scss";
 
 export interface MenuProps {
   pokedexStyle: string;
-  setPokedexStyle: React.Dispatch<React.SetStateAction<string>>;
+  handlePokedexStyle: (style: string) => void;
   livingDex: boolean;
   onToggleLivingDex: () => void;
 }
 
 export default function Menu({
   pokedexStyle,
-  setPokedexStyle,
+  handlePokedexStyle,
   livingDex,
   onToggleLivingDex,
 }: MenuProps) {
@@ -45,7 +45,7 @@ export default function Menu({
       <DropDownMenu menu={menu} setMenu={setMenu} />
       <MenuContent
         pokedexStyle={pokedexStyle}
-        setPokedexStyle={setPokedexStyle}
+        handlePokedexStyle={handlePokedexStyle}
         livingDex={livingDex}
         onToggleLivingDex={onToggleLivingDex}
         menu={menu}

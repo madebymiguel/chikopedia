@@ -31,6 +31,7 @@ $darker-salmon-color: #ee6161;
     border-radius: 8px;
     background-color: $salmon-color;
     border: none;
+    cursor: pointer;
 
     &:active {
       background-color: $darker-salmon-color;

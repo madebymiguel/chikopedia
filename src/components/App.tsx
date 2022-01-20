@@ -6,24 +6,30 @@ import Credits from "./Credits";
 import PokemonGrid from "./PokemonGrid";
 import PokemonScroll from "./PokemonScroll";
 import CarouselWithQuery from "./CarouselWithQuery";
+import LoadingComponent from "./LoadingComponent";
 import getAllPokemon from "../apis/getAllPokemon";
 import "../scss/App.scss";
 import "../scss/Header.scss";
-import { getLivingDexStatus } from "../utils/getLivingDexStatus";
-import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
+import getLivingDexStatusFromSessionStorage from "../utils/getLivingDexStatusFromSessionStorage";
 import sortPokemon from "../utils/sortPokemon";
 import replacePokemonNamesFromArray from "../utils/replacePokemonNamesFromArray";
 import simplifyPokemonArray from "../utils/simplifyPokemonArray";
+import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
 import useEvolutionChainSessionStorage from "../utils/useEvolutionChainSessionStorage";
+import getPokedexStyleFromSessionStorage from "../utils/getPokedexStyleFromSessionStorage";
 import {
   LIVING_DEX_STATUS_KEY,
+  POKEDEX_STYLE_KEY,
   POKEMON_LIMIT,
 } from "../variables/globalVariables";
 
 export default function App() {
-  const [pokedexStyle, setPokedexStyle] = useState<string>("grid");
-  const livingDexStatus = getLivingDexStatus();
+  const pokedexStyleStatus = getPokedexStyleFromSessionStorage();
+  const [pokedexStyle, setPokedexStyle] = useState<string>(pokedexStyleStatus);
+
+  const livingDexStatus = getLivingDexStatusFromSessionStorage();
   const [livingDex, setLivingDex] = useState<boolean>(livingDexStatus);
+
   const [isFetchingPokemon, setIsFetchingPokemon] = useState<boolean>(false);
 
   const [allSimplePokemon, setPokemonStorage] = useSimplePokemonSessionStorage(
@@ -38,7 +44,6 @@ export default function App() {
   // useEffect stays at App so that we can make loading screen for both option of scroll and grid
   useEffect(() => {
     if (allSimplePokemon.length === 0) {
-      setIsFetchingPokemon(true);
       getAllPokemon(POKEMON_LIMIT).then((data) => {
         const sortedPokemonData = sortPokemon(data);
         const simplifiedPokemonArray = simplifyPokemonArray(sortedPokemonData);
@@ -46,8 +51,10 @@ export default function App() {
           simplifiedPokemonArray
         );
         setPokemonStorage(fixedSimplifiedPokemon);
-        setIsFetchingPokemon(false);
+        setIsFetchingPokemon(true);
       });
+    } else {
+      setIsFetchingPokemon(true);
     }
   }, []);
 
@@ -55,6 +62,11 @@ export default function App() {
     const swap = !livingDex;
     sessionStorage.setItem(LIVING_DEX_STATUS_KEY, JSON.stringify(swap));
     setLivingDex(swap);
+  };
+
+  const handlePokedexStyle = (style: string) => {
+    sessionStorage.setItem(POKEDEX_STYLE_KEY, JSON.stringify(style));
+    setPokedexStyle(style);
   };
 
   const handleBackButton = () => {
@@ -79,7 +91,7 @@ export default function App() {
           />
           <Menu
             pokedexStyle={pokedexStyle}
-            setPokedexStyle={setPokedexStyle}
+            handlePokedexStyle={handlePokedexStyle}
             livingDex={livingDex}
             onToggleLivingDex={handleToggleLivingDex}
           />
@@ -87,17 +99,21 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             {pokedexStyle === "grid" ? (
-              <PokemonGrid
-                livingDex={livingDex}
-                allPokemon={allSimplePokemon}
-                isLoading={isFetchingPokemon}
-              />
-            ) : (
+              isFetchingPokemon ? (
+                <PokemonGrid
+                  livingDex={livingDex}
+                  allPokemon={allSimplePokemon}
+                />
+              ) : (
+                <LoadingComponent />
+              )
+            ) : isFetchingPokemon ? (
               <PokemonScroll
                 livingDex={livingDex}
                 allPokemon={allSimplePokemon}
-                isLoading={isFetchingPokemon}
               />
+            ) : (
+              <LoadingComponent />
             )}
           </Route>
           <Route

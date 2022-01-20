@@ -2,7 +2,9 @@ import { fetchPokemon } from "../apis/fetchPokemon";
 import { SimplePokemon } from "../types/SimplePokemon";
 import fuzzySearchFromSessionStorage from "./fuzzySearchFromSessionStorage";
 
-export default async function getPokemonIndexFromStorage(search: string) {
+export default async function getPokemonIndexFromSessionStorage(
+  search: string
+) {
   if (search !== "") {
     const isString = isNaN(parseInt(search));
     const stored = sessionStorage.getItem("allSimplePokemon");
@@ -15,6 +17,7 @@ export default async function getPokemonIndexFromStorage(search: string) {
       if (filteredStoredData.length > 0) {
         return filteredStoredData[0].id;
       } else {
+        // Might put this code block back if we do lazy loading
         // const pokemonData = isString
         //   ? await fetchPokemon(search.toLowerCase())
         //   : await fetchPokemon(search);

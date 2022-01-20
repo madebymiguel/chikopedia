@@ -9,14 +9,14 @@ import { Pokemon } from "../types/pokemon/Pokemon";
 import { PokemonSpecies } from "../types/pokemonSpecies/PokemonSpecies";
 import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
 import { PokemonEvolutionNameTreeNode } from "../types/PokemonEvolutionNameTreeNode";
-import { simplifyEvolutionChain } from "../utils/simplifyEvolutionChain";
+import simplifyEvolutionChain from "../utils/simplifyEvolutionChain";
 import simplifyPokemon from "../utils/simplifyPokemon";
-import { getLivingDexSet } from "../utils/getLivingDexSet";
+import getLivingDexSetFromSessionStorage from "../utils/getLivingDexSetFromSessionStorage";
 import replacePokemonName from "../utils/replacePokemonName";
-import addToAllSimplePokemon from "../utils/addToAllSimplePokemon";
-import getSimplePokemonFromSessionStorage from "../utils/getPokemonFromSessionStorage";
+import addSimplePokemonToSessionStorage from "../utils/addSimplePokemonToSessionStorage";
+import getSimplePokemonFromSessionStorage from "../utils/getSimplePokemonFromSessionStorage";
 import getEvolutionChainFromSessionStorage from "../utils/getEvolutionChainFromSessionStorage";
-import addToEvolutionChainStorage from "../utils/addToEvolutionChainStorage";
+import addEvolutionChainToSessionStorage from "../utils/addEvolutionChainToSessionStorage";
 
 export interface MatchParams {
   pokemonId: number;
@@ -43,7 +43,7 @@ export default function CarouselWithQuery({
 
   const [finishedFetching, setFinishedFetching] = useState(false);
 
-  const livingDexStorage = getLivingDexSet();
+  const livingDexStorage = getLivingDexSetFromSessionStorage();
   const [pokeball, setPokeball] = useState(
     livingDexStorage[pokemonId] ? redPokeball : greyPokeball
   );
@@ -96,13 +96,16 @@ export default function CarouselWithQuery({
           const pokemonEvolutionTree: PokemonEvolutionTreeNode =
             await fetchPokemonFromEvolutionChain(evolutionChainRoot);
 
-          addToEvolutionChainStorage(pokemonEvolutionId, pokemonEvolutionTree);
+          addEvolutionChainToSessionStorage(
+            pokemonEvolutionId,
+            pokemonEvolutionTree
+          );
           setEvolutionChain(pokemonEvolutionTree);
         }
       });
 
       if (simplePokemonInStorage === null) {
-        addToAllSimplePokemon(simplifiedPokemon);
+        addSimplePokemonToSessionStorage(simplifiedPokemon);
       }
       setFinishedFetching(true);
     });

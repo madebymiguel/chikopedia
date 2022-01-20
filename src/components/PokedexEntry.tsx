@@ -11,7 +11,7 @@ import { PokemonStat } from "../types/pokemon/Stat";
 import { PokemonAbility } from "../types/pokemon/Ability";
 import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
-import { handlePokeballColorChange } from "../utils/handlePokeballColorChange";
+import handlePokeballColorChange from "../utils/handlePokeballColorChange";
 import formatIndex from "../utils/formatIndex";
 import formatGeneration from "../utils/formatGeneration";
 import removeDash from "../utils/removeDash";
