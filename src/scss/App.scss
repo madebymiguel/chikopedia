@@ -20,3 +20,11 @@ body {
     grid-gap: 16px;
   }
 }
+
+@media only screen and (max-width: 750px) {
+  body {
+    #page {
+      min-width: 37.5rem;
+    }
+  }
+}
