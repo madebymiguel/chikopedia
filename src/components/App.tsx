@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+  useHistory,
+} from "react-router-dom";
 import Search from "./Search";
 import Menu from "./Menu";
 import Credits from "./Credits";
@@ -39,7 +45,8 @@ export default function App() {
   const [evolutionChainStorage, setEvolutionChainStorage] =
     useEvolutionChainSessionStorage([]);
 
-  const [backToLastHomeState, setbackToLastHomeState] = useState<number>(-1);
+  const [backToLastHomeState, setbackToLastHomeState] = useState<number>(0);
+  // let history = useHistory();
 
   // useEffect stays at App so that we can make loading screen for both option of scroll and grid
   useEffect(() => {
@@ -70,11 +77,14 @@ export default function App() {
   };
 
   const handleBackButton = () => {
+    console.log("handle", backToLastHomeState);
     history.go(backToLastHomeState);
-    setbackToLastHomeState(-1);
+
+    setbackToLastHomeState(0);
   };
 
   const setBackButton = (lastState: number) => {
+    console.log("set", backToLastHomeState);
     setbackToLastHomeState(lastState - 1);
   };
 
@@ -82,7 +92,11 @@ export default function App() {
     <Router>
       <div id="page">
         <header id="header">
-          <Link className="title-link" to="/">
+          <Link
+            className="title-link"
+            to="/"
+            onClick={() => setbackToLastHomeState(0)}
+          >
             <h1 className="title">Chikopedia</h1>
           </Link>
           <Search
@@ -103,6 +117,8 @@ export default function App() {
                 <PokemonGrid
                   livingDex={livingDex}
                   allPokemon={allSimplePokemon}
+                  backToLastHomeState={backToLastHomeState}
+                  setBackButton={setBackButton}
                 />
               ) : (
                 <LoadingComponent />
@@ -111,6 +127,8 @@ export default function App() {
               <PokemonScroll
                 livingDex={livingDex}
                 allPokemon={allSimplePokemon}
+                backToLastHomeState={backToLastHomeState}
+                setBackButton={setBackButton}
               />
             ) : (
               <LoadingComponent />

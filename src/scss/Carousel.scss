@@ -13,7 +13,6 @@ $red: #ff0000;
     "prev pokedex-entry next";
 
   width: 100%;
-  position: relative;
 
   .back-to-main {
     grid-area: back-to-main;
@@ -44,23 +43,19 @@ $red: #ff0000;
     padding-right: 20px;
     padding-bottom: 20px;
     margin-bottom: 20px;
-    width: 6.25rem;
+    width: 100%;
     min-width: 50rem;
+    max-width: 50rem;
   }
 
   .prev {
     grid-area: prev;
-    position: absolute;
-    top: 28rem;
-    margin-left: -45px;
-    width: 3rem;
-    height: 3rem;
+    margin-top: 30rem;
   }
 
   .next {
     grid-area: next;
-    position: absolute;
-    top: 28rem;
+    margin-top: 30rem;
   }
 
   .nav-buttons {
@@ -70,6 +65,29 @@ $red: #ff0000;
     .arrow-image {
       width: 3rem;
       height: 3rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .carousel-container {
+    .carousel-content {
+      padding-left: 0px;
+      padding-right: 0px;
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+@media only screen and (min-width: 760px) and (max-width: 930px) {
+  .carousel-container {
+    .carousel-content {
+      padding-left: 0px;
+      padding-right: 0px;
+      min-width: 40rem;
+      max-width: 40rem;
     }
   }
 }

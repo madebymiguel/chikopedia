@@ -80,3 +80,51 @@ $level3-left: 30%;
     margin-left: $level3-left;
   }
 }
+
+@media only screen and (max-width: 650px) {
+  .scroll-element-container {
+    $new-width: 100%;
+
+    &.level0 {
+      width: $new-width;
+      margin-left: 0px;
+    }
+
+    &.level1 {
+      width: $new-width;
+      margin-left: 0px;
+    }
+
+    &.level2 {
+      width: $new-width;
+      margin-left: 0px;
+    }
+
+    &.level3 {
+      width: $new-width;
+      margin-left: 0px;
+    }
+  }
+}
+
+@media only screen and (min-width: 650px) and (max-width: 850px) {
+  .scroll-element-container {
+    $new-width: 80%;
+
+    &.level0 {
+      width: $new-width;
+    }
+
+    &.level1 {
+      width: $new-width;
+    }
+
+    &.level2 {
+      width: $new-width;
+    }
+
+    &.level3 {
+      width: $new-width;
+    }
+  }
+}

@@ -13,6 +13,8 @@ export interface PokemonGridItemProps {
   index: number;
   image: string;
   livingDex: boolean;
+  backToLastHomeState: number;
+  setBackButton: (val: number) => void;
 }
 
 export default function PokemonGridItem({
@@ -20,6 +22,8 @@ export default function PokemonGridItem({
   index,
   image,
   livingDex,
+  backToLastHomeState,
+  setBackButton,
 }: PokemonGridItemProps) {
   const livingDexStorage = getLivingDexSetFromSessionStorage();
 
@@ -47,7 +51,11 @@ export default function PokemonGridItem({
           />
         )}
       </div>
-      <Link to={`/pokemon/${index}`} className="link">
+      <Link
+        to={`/pokemon/${index}`}
+        onClick={() => setBackButton(backToLastHomeState)}
+        className="link"
+      >
         <img className="pokemon-sprite" src={image} alt={name} />
         <h2 className="pokemon-name">{upperCaseFirstLetter(name)}</h2>
       </Link>

@@ -5,7 +5,7 @@
   grid-area: main;
 
   width: 100%;
-  height: 80vh;
+  height: 85vh;
   display: grid;
   grid-template-columns: 1fr 6rem 1fr;
   grid-template-areas: "sprite .... carousel";
@@ -55,27 +55,58 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      margin: 0px;
+      padding: 0px;
     }
 
     .prev {
       grid-area: prev;
-      position: absolute;
-      top: 11rem;
       justify-self: center;
+      align-self: end;
       cursor: pointer;
     }
 
     .next {
       grid-area: next;
-      position: absolute;
-      bottom: 11rem;
       justify-self: center;
+      align-self: flex-start;
       cursor: pointer;
+      margin-bottom: 40px;
     }
 
     .arrow-image {
       width: 3rem;
       height: 3rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .pokemon-scroll-container {
+    grid-template-columns: auto;
+    grid-template-areas:
+      "sprite"
+      "carousel";
+
+    .sprite {
+      justify-content: center;
+    }
+
+    .pokemon-scroll-carousel {
+      margin-top: 20px;
+    }
+  }
+}
+
+@media only screen and (min-width: 650px) and (max-width: 850px) {
+  .pokemon-scroll-container {
+    grid-template-columns: 1fr 1rem 1.5fr;
+    grid-template-areas: "sprite .... carousel";
+
+    .sprite {
+      .sprite-image {
+        min-width: 15rem;
+      }
     }
   }
 }

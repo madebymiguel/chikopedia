@@ -14,11 +14,15 @@ import {
 export interface PokemonScrollProps {
   allPokemon: SimplePokemon[];
   livingDex: boolean;
+  backToLastHomeState: number;
+  setBackButton: (val: number) => void;
 }
 
 export default function PokemonScroll({
   allPokemon,
   livingDex,
+  backToLastHomeState,
+  setBackButton,
 }: PokemonScrollProps) {
   // display 7 pokemon list (one main, 3 prev and 3 next pokemon)
   // show only the main pokemon sprite
@@ -80,6 +84,7 @@ export default function PokemonScroll({
             src={currentSprite}
             className="sprite-image"
             alt="pokemon-sprite"
+            onClick={() => setBackButton(backToLastHomeState)}
           ></img>
         </Link>
       </div>
