@@ -13,6 +13,7 @@ import PokemonGrid from "./PokemonGrid";
 import PokemonScroll from "./PokemonScroll";
 import CarouselWithQuery from "./CarouselWithQuery";
 import LoadingComponent from "./LoadingComponent";
+import ChikoritaLeaf from "../assets/chikorita-leaf.svg";
 import getAllPokemon from "../apis/getAllPokemon";
 import "../scss/App.scss";
 import "../scss/Header.scss";
@@ -97,7 +98,16 @@ export default function App() {
             to="/"
             onClick={() => setbackToLastHomeState(0)}
           >
-            <h1 className="title">Chikopedia</h1>
+            <div className="title-container">
+              <img
+                src={ChikoritaLeaf}
+                alt="chikorita-leaf"
+                className="title-image"
+              />
+              {window.innerWidth > 600 ? (
+                <h1 className="title">Chikopedia</h1>
+              ) : null}
+            </div>
           </Link>
           <Search
             backToLastHomeState={backToLastHomeState}

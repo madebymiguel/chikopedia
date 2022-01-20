@@ -20,8 +20,24 @@
     text-decoration: none;
     color: $black;
 
-    .title {
-      margin: 0px;
+    .title-container {
+      display: flex;
+      flex-direction: row;
+
+      .title-image {
+        width: 3rem;
+        padding-right: 4px;
+        transform: translate(0px, 0px);
+        transition: all 0.333333s ease-out;
+      }
+
+      &:hover {
+        transform: translate(0px, -4px);
+      }
+
+      .title {
+        margin: 0px;
+      }
     }
 
     &:focus,
