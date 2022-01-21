@@ -78,14 +78,12 @@ export default function App() {
   };
 
   const handleBackButton = () => {
-    console.log("handle", backToLastHomeState);
     history.go(backToLastHomeState);
 
     setbackToLastHomeState(0);
   };
 
   const setBackButton = (lastState: number) => {
-    console.log("set", backToLastHomeState);
     setbackToLastHomeState(lastState - 1);
   };
 
