@@ -1,8 +1,10 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import PokemonScrollElement from "./PokemonScrollElement";
-import ArrowUpward from "../assets/arrow-upward.svg";
 import ArrowDownward from "../assets/arrow-downward.svg";
+import ArrowUpward from "../assets/arrow-upward.svg";
+import ArrowBottom from "../assets/go-bottom.svg";
+import ArrowTop from "../assets/go-top.svg";
 import "../scss/PokemonScroll.scss";
 import { SimplePokemon } from "../types/SimplePokemon";
 import getPokemonScrollPositionFromSessionStorage from "../utils/getPokemonScrollPositionFromSessionStorage";
@@ -91,30 +93,54 @@ export default function PokemonScroll({
 
       <div className="pokemon-scroll-carousel">
         <div className="prev">
-          {currentIndex > MAX_SCROLL_POKEMON && (
-            <img
-              src={ArrowUpward}
-              alt="up-arrow"
-              className="arrow-image"
-              onClick={() =>
-                handlePokemonScrollPosition(currentIndex - MAX_SCROLL_POKEMON)
-              }
-            />
+          {currentIndex > 1 && (
+            <div className="arrow-container">
+              <img
+                src={ArrowUpward}
+                alt="up-arrow"
+                className="arrow-image prev-next"
+                title="Previous"
+                onClick={() =>
+                  handlePokemonScrollPosition(
+                    Math.max(1, currentIndex - MAX_SCROLL_POKEMON)
+                  )
+                }
+              />
+              <img
+                src={ArrowTop}
+                alt="top-arrow"
+                className="arrow-image"
+                title="Go to First Pokemon"
+                onClick={() => handlePokemonScrollPosition(1)}
+              />
+            </div>
           )}
         </div>
 
         <div className="pokemon-scroll">{pokemonScrollItems}</div>
 
         <div className="next">
-          {currentIndex < MAX_POKEMON - MAX_SCROLL_POKEMON - 1 && (
-            <img
-              src={ArrowDownward}
-              alt="down-arrow"
-              className="arrow-image"
-              onClick={() =>
-                handlePokemonScrollPosition(currentIndex + MAX_SCROLL_POKEMON)
-              }
-            />
+          {currentIndex < MAX_POKEMON && (
+            <div className="arrow-container">
+              <img
+                src={ArrowDownward}
+                alt="down-arrow"
+                className="arrow-image prev-next"
+                title="Next"
+                onClick={() =>
+                  handlePokemonScrollPosition(
+                    Math.min(MAX_POKEMON, currentIndex + MAX_SCROLL_POKEMON)
+                  )
+                }
+              />
+              <img
+                src={ArrowBottom}
+                alt="arrow-bottom"
+                className="arrow-image"
+                title="Go to Last Pokemon"
+                onClick={() => handlePokemonScrollPosition(MAX_POKEMON)}
+              />
+            </div>
           )}
         </div>
       </div>

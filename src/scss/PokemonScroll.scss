@@ -61,22 +61,31 @@
 
     .prev {
       grid-area: prev;
-      justify-self: center;
+      justify-self: flex-end;
       align-self: end;
-      cursor: pointer;
     }
 
     .next {
       grid-area: next;
-      justify-self: center;
+      justify-self: flex-end;
       align-self: flex-start;
-      cursor: pointer;
       margin-bottom: 40px;
+    }
+
+    .arrow-container {
+      display: flex;
+      justify-content: flex-end;
+      // flex-direction: column;
+
+      .prev-next {
+        margin-right: 5rem;
+      }
     }
 
     .arrow-image {
       width: 3rem;
       height: 3rem;
+      cursor: pointer;
     }
   }
 }
