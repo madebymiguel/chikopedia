@@ -40,8 +40,8 @@ export default function findOsaDistance(
       if (
         searchIndex > 1 &&
         targetIndex > 1 &&
-        search[searchIndex - 1] === target[targetIndex - 2] &&
-        search[searchIndex - 2] === target[targetIndex - 1]
+        searchChar === target[targetIndex - 2] &&
+        search[searchIndex - 2] === targetChar
       ) {
         const currentChar = distanceArray[searchIndex][targetIndex];
         const transposition =
