@@ -19,7 +19,9 @@ export default function Search({
   let history = useHistory();
 
   const handleSearchIndex = async () => {
-    const pokemonIndex = await getPokemonIndexFromSessionStorage(search);
+    const pokemonIndex = await getPokemonIndexFromSessionStorage(
+      search.toLowerCase()
+    );
     setSearchIndex(pokemonIndex);
     setSearch("");
   };
