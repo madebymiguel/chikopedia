@@ -51,7 +51,12 @@ export default function Carousel({
       <div className="prev" onClick={() => setBackButton(backToLastHomeState)}>
         {pokemonId > 1 && (
           <Link to={`/pokemon/${pokemonId - 1}`} className="nav-buttons">
-            <img src={ArrowBack} alt="back-arrow" className="arrow-image" />
+            <img
+              src={ArrowBack}
+              alt="back-arrow"
+              className="arrow-image"
+              title="Previous Pokemon"
+            />
           </Link>
         )}
       </div>
@@ -118,6 +123,7 @@ export default function Carousel({
               src={ArrowForward}
               alt="forward-arrow"
               className="arrow-image"
+              title="Next Pokemon"
             />
           </Link>
         )}
