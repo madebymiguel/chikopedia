@@ -3,20 +3,18 @@ import PokemonStats from "./PokemonStats";
 import PokemonTypes from "./PokemonTypes";
 import PokemonAbilities from "./PokemonAbilities";
 import PokemonEvolutionChain from "./PokemonEvolutionChain";
-import MaleGenderIcon from "../assets/male-gender-icon.svg";
-import FemaleGenderIcon from "../assets/female-gender-icon.svg";
+import PokemonEggGroups from "./PokemonEggGroups";
 import "../scss/PokedexEntry.scss";
 import { PokemonType } from "../types/pokemon/Type";
 import { PokemonStat } from "../types/pokemon/Stat";
 import { PokemonAbility } from "../types/pokemon/Ability";
 import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
+import { PokemonSpeciesEggGroups } from "../types/pokemonSpecies/EggGroups";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 import handlePokeballColorChange from "../utils/handlePokeballColorChange";
+import removeDash from "../utils/removeDash";
 import formatIndex from "../utils/formatIndex";
 import formatGeneration from "../utils/formatGeneration";
-import removeDash from "../utils/removeDash";
-import { PokemonSpeciesEggGroups } from "../types/pokemonSpecies/EggGroups";
-import PokemonEggGroups from "./PokemonEggGroups";
 
 export interface PokedexEntryProps {
   //From Pokemon
@@ -42,11 +40,12 @@ export interface PokedexEntryProps {
   genera: string;
   evolutionChain: PokemonEvolutionTreeNode | null;
   baseHappiness: number;
+  // Extra
   pokeball: string;
   setPokeball: React.Dispatch<React.SetStateAction<string>>;
   livingDex: boolean;
   backToLastHomeState: number;
-  setBackButton: (val: number) => void;
+  handleBackButtonState: (val: number) => void;
 }
 
 export default function PokedexEntry({
@@ -75,7 +74,7 @@ export default function PokedexEntry({
   evolutionChain,
   baseHappiness,
   backToLastHomeState,
-  setBackButton,
+  handleBackButtonState,
 }: PokedexEntryProps) {
   return (
     // the description parts can be refactored into react component
@@ -188,41 +187,41 @@ export default function PokedexEntry({
 
       <div className="breeding-container">
         <h3 className="sub-title">Breeding</h3>
-        <>
-          <table className="table-formatter">
-            <tbody className="table-body-formatter">
-              <tr className="table-row-formatter">
-                <th className="table-header-formatter">Gender</th>
-                <td className="table-data-formatter">
-                  {genderRate !== -1 ? (
-                    <>
-                      <span>
-                        Male: {100 - Math.round((genderRate / 8) * 100)}%,{" "}
-                      </span>
-                      <span>
-                        Female: {Math.round((genderRate / 8) * 100)}%{" "}
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Genderless</span>
-                    </>
-                  )}
-                </td>
-              </tr>
-              <tr className="table-row-formatter">
-                <th className="table-header-formatter">Egg Group</th>
-                <td className="table-data-formatter">
-                  <PokemonEggGroups eggGroups={eggGroups} />
-                </td>
-              </tr>
-              <tr className="table-row-formatter">
-                <th className="table-header-formatter">Egg Cycle</th>
-                <td className="table-data-formatter">{eggCycle}</td>
-              </tr>
-            </tbody>
-          </table>
-        </>
+        <table className="table-formatter">
+          <tbody className="table-body-formatter">
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">Gender</th>
+              <td className="table-data-formatter">
+                {genderRate !== -1 ? (
+                  <>
+                    <span className="male">
+                      Male: {100 - Math.round((genderRate / 8) * 100)}%,{" "}
+                    </span>
+                    <span className="female">
+                      Female: {Math.round((genderRate / 8) * 100)}%
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span>Genderless</span>
+                  </>
+                )}
+              </td>
+            </tr>
+
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">Egg Group</th>
+              <td className="table-data-formatter">
+                <PokemonEggGroups eggGroups={eggGroups} />
+              </td>
+            </tr>
+
+            <tr className="table-row-formatter">
+              <th className="table-header-formatter">Egg Cycle</th>
+              <td className="table-data-formatter">{eggCycle}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div className="stat-container">
@@ -236,7 +235,7 @@ export default function PokedexEntry({
           <PokemonEvolutionChain
             evolutionChain={evolutionChain}
             backToLastHomeState={backToLastHomeState}
-            setBackButton={setBackButton}
+            handleBackButtonState={handleBackButtonState}
           />
         )}
       </div>

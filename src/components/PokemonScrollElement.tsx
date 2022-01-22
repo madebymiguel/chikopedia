@@ -1,11 +1,11 @@
+import { useState } from "react";
 import greyPokeball from "../assets/grey-pokeball.svg";
 import redPokeball from "../assets/red-pokeball.svg";
+import "../scss/PokemonScrollElement.scss";
 import upperCaseFirstLetter from "../utils/upperCaseFirstLetter";
 import handlePokeballColorChange from "../utils/handlePokeballColorChange";
 import getLivingDexSetFromSessionStorage from "../utils/getLivingDexSetFromSessionStorage";
 import formatIndex from "../utils/formatIndex";
-import { useState } from "react";
-import "../scss/PokemonScrollElement.scss";
 
 export interface PokemonScrollElementProps {
   name: string;

@@ -28,6 +28,7 @@ export default function PokemonStats({ stats }: PokemonStatProps) {
               );
             })}
           </tr>
+
           <tr>
             {stats.map((statJSON) => {
               return (

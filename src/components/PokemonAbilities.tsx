@@ -1,6 +1,6 @@
-import { PokemonAbility } from "../types/pokemon/Ability";
 import VisibilityOffIcon from "../assets/visibility-off-icon.svg";
 import "../scss/PokemonAbilities.scss";
+import { PokemonAbility } from "../types/pokemon/Ability";
 import removeDash from "../utils/removeDash";
 
 export interface PokemonAbilityProps {

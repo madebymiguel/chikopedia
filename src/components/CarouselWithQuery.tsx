@@ -22,22 +22,22 @@ export interface MatchParams {
   pokemonId: number;
   livingDex: boolean;
   backToLastHomeState: number;
-  handleBackButton: () => void;
-  setBackButton: (val: number) => void;
+  handleBackButtonReset: () => void;
+  handleBackButtonState: (val: number) => void;
 }
 
-// Intend parameter is pokemonID not pokvemonName
 export default function CarouselWithQuery({
   pokemonId,
   livingDex,
   backToLastHomeState,
-  handleBackButton,
-  setBackButton,
+  handleBackButtonReset,
+  handleBackButtonState,
 }: MatchParams) {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpecies | null>(
     null
   );
+
   const [evolutionChain, setEvolutionChain] =
     useState<PokemonEvolutionTreeNode | null>(null);
 
@@ -48,9 +48,7 @@ export default function CarouselWithQuery({
     livingDexStorage[pokemonId] ? redPokeball : greyPokeball
   );
 
-  // next step is to make session storage where key is pokemon id/name and value is simple evolution chain.
   useEffect(() => {
-    // how do we properly reset evolution chain every time we switch to different pokemon?
     setEvolutionChain(null);
 
     const simplePokemonInStorage =
@@ -121,9 +119,9 @@ export default function CarouselWithQuery({
       finishedFetching={finishedFetching}
       livingDex={livingDex}
       evolutionChain={evolutionChain}
-      handleBackButton={handleBackButton}
+      handleBackButtonReset={handleBackButtonReset}
       backToLastHomeState={backToLastHomeState}
-      setBackButton={setBackButton}
+      handleBackButtonState={handleBackButtonState}
     />
   );
 }

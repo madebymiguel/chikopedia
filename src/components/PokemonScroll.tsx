@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import PokemonScrollElement from "./PokemonScrollElement";
 import ArrowDownward from "../assets/arrow-downward.svg";
@@ -7,63 +7,30 @@ import ArrowBottom from "../assets/go-bottom.svg";
 import ArrowTop from "../assets/go-top.svg";
 import "../scss/PokemonScroll.scss";
 import { SimplePokemon } from "../types/SimplePokemon";
-import getPokemonScrollPositionFromSessionStorage from "../utils/getPokemonScrollPositionFromSessionStorage";
-import {
-  MAX_POKEMON,
-  POKEMON_SCROLL_POSITION,
-} from "../variables/globalVariables";
+import { MAX_POKEMON } from "../variables/globalVariables";
 
 export interface PokemonScrollProps {
-  allPokemon: SimplePokemon[];
+  pokemonInScroll: SimplePokemon[];
+  currentIndex: number;
+  currentSprite: string;
+  maxScrollPokemon: number;
+  handlePokemonScrollPosition: (index: number) => void;
   livingDex: boolean;
   backToLastHomeState: number;
-  setBackButton: (val: number) => void;
+  handleBackButtonState: (val: number) => void;
 }
 
 export default function PokemonScroll({
-  allPokemon,
+  pokemonInScroll,
+  currentIndex,
+  currentSprite,
+  maxScrollPokemon,
+  handlePokemonScrollPosition,
   livingDex,
   backToLastHomeState,
-  setBackButton,
+  handleBackButtonState,
 }: PokemonScrollProps) {
-  // display 7 pokemon list (one main, 3 prev and 3 next pokemon)
-  // show only the main pokemon sprite
-  // arrow will switch the main pokemon as well as the pokemon previous and next to main
-
-  // moveUp
-  // moveDown
-  // generateItem
-
-  // need to keep track of index
-  // for loop should look index - 3 to index + 3
-
-  const MAX_SCROLL_POKEMON = 7;
-
-  // use history to keep track of user's latest pokemon
-  const pokemonScrollPosition = getPokemonScrollPositionFromSessionStorage();
-  const [currentIndex, setCurrentIndex] = useState(pokemonScrollPosition);
-
-  const handlePokemonScrollPosition = (index: number) => {
-    sessionStorage.setItem(POKEMON_SCROLL_POSITION, JSON.stringify(index));
-    setCurrentIndex(index);
-  };
-
-  const currentSprite = allPokemon[currentIndex - 1].sprite;
-
   const pokemonScrollItems = useMemo(() => {
-    const pokemonInScroll: SimplePokemon[] = [];
-
-    for (
-      let i = currentIndex - Math.round(MAX_SCROLL_POKEMON / 2);
-      i < currentIndex + Math.floor(MAX_SCROLL_POKEMON / 2);
-      i++
-    ) {
-      if (i >= 0 && i <= MAX_POKEMON - 1) {
-        const currentPokemon = allPokemon[i];
-        pokemonInScroll.push(currentPokemon);
-      }
-    }
-
     return pokemonInScroll.map((pokemonObject: SimplePokemon) => {
       return (
         <PokemonScrollElement
@@ -76,7 +43,7 @@ export default function PokemonScroll({
         />
       );
     });
-  }, [allPokemon, currentIndex]);
+  }, [pokemonInScroll, currentIndex]);
 
   return (
     <div className="pokemon-scroll-container">
@@ -86,7 +53,7 @@ export default function PokemonScroll({
             src={currentSprite}
             className="sprite-image"
             alt="pokemon-sprite"
-            onClick={() => setBackButton(backToLastHomeState)}
+            onClick={() => handleBackButtonState(backToLastHomeState)}
           ></img>
         </Link>
       </div>
@@ -102,7 +69,7 @@ export default function PokemonScroll({
                 title="Previous"
                 onClick={() =>
                   handlePokemonScrollPosition(
-                    Math.max(1, currentIndex - MAX_SCROLL_POKEMON)
+                    Math.max(1, currentIndex - maxScrollPokemon)
                   )
                 }
               />
@@ -129,7 +96,7 @@ export default function PokemonScroll({
                 title="Next"
                 onClick={() =>
                   handlePokemonScrollPosition(
-                    Math.min(MAX_POKEMON, currentIndex + MAX_SCROLL_POKEMON)
+                    Math.min(MAX_POKEMON, currentIndex + maxScrollPokemon)
                   )
                 }
               />

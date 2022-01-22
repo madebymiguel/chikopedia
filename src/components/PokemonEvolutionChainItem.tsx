@@ -7,7 +7,7 @@ export interface PokemonEvolutionChainItemProps {
   index: number;
   image: string;
   backToLastHomeState: number;
-  setBackButton: (val: number) => void;
+  handleBackButtonState: (val: number) => void;
 }
 
 export default function PokemonEvolutionChainItem({
@@ -15,12 +15,12 @@ export default function PokemonEvolutionChainItem({
   index,
   image,
   backToLastHomeState,
-  setBackButton,
+  handleBackButtonState,
 }: PokemonEvolutionChainItemProps) {
   return (
     <Link
       to={`/pokemon/${index}`}
-      onClick={() => setBackButton(backToLastHomeState)}
+      onClick={() => handleBackButtonState(backToLastHomeState)}
       className="link"
     >
       <div className="chain-item-container">

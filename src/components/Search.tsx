@@ -6,12 +6,12 @@ import getPokemonIndexFromSessionStorage from "../utils/getPokemonIndexFromSessi
 
 export interface SearchProps {
   backToLastHomeState: number;
-  setBackButton: (val: number) => void;
+  handleBackButtonState: (val: number) => void;
 }
 
 export default function Search({
   backToLastHomeState,
-  setBackButton,
+  handleBackButtonState,
 }: SearchProps) {
   const [search, setSearch] = useState<string>("");
   const [searchIndex, setSearchIndex] = useState<number>(0);
@@ -34,28 +34,26 @@ export default function Search({
   }, [searchIndex]);
 
   return (
-    <>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSearchIndex();
-          setBackButton(backToLastHomeState);
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSearchIndex();
+        handleBackButtonState(backToLastHomeState);
+      }}
+      className="search"
+    >
+      <input
+        placeholder="Search your Pokemon by Name or ID!"
+        type="text"
+        id="search-input"
+        value={search}
+        onChange={(e) => {
+          setSearch(e.target.value);
         }}
-        className="search"
-      >
-        <input
-          placeholder="Search your Pokemon by Name or ID!"
-          type="text"
-          id="search-input"
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-        ></input>
-        <button id="search-button" type="submit">
-          <img src={SearchIcon} alt="search-icon" />
-        </button>
-      </form>
-    </>
+      ></input>
+      <button id="search-button" type="submit">
+        <img src={SearchIcon} alt="search-icon" />
+      </button>
+    </form>
   );
 }

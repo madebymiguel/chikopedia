@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PokedexEntry from "./PokedexEntry";
+import LoadingComponent from "./LoadingComponent";
 import ArrowBack from "../assets/arrow-back.svg";
 import ArrowForward from "../assets/arrow-forward.svg";
 import "../scss/Carousel.scss";
 import { Pokemon } from "../types/pokemon/Pokemon";
 import { PokemonSpecies } from "../types/pokemonSpecies/PokemonSpecies";
 import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
-import { MAX_POKEMON } from "../variables/globalVariables";
 import { PokemonSpeciesGenera } from "../types/pokemonSpecies/Genera";
 import { PokemonSpeciesFlavorTextEntries } from "../types/pokemonSpecies/FlavorTextEntries";
-import LoadingComponent from "./LoadingComponent";
+import { MAX_POKEMON } from "../variables/globalVariables";
 
 export interface CarouselProps {
   pokemon: Pokemon | null;
@@ -21,9 +21,9 @@ export interface CarouselProps {
   evolutionChain: PokemonEvolutionTreeNode | null;
   finishedFetching: boolean;
   livingDex: boolean;
-  handleBackButton: () => void;
+  handleBackButtonReset: () => void;
   backToLastHomeState: number;
-  setBackButton: (val: number) => void;
+  handleBackButtonState: (val: number) => void;
 }
 
 export default function Carousel({
@@ -35,9 +35,9 @@ export default function Carousel({
   evolutionChain,
   finishedFetching,
   livingDex,
-  handleBackButton,
+  handleBackButtonReset,
   backToLastHomeState,
-  setBackButton,
+  handleBackButtonState,
 }: CarouselProps) {
   return (
     <div className="carousel-container">
@@ -45,10 +45,13 @@ export default function Carousel({
         type="button"
         value="Go Back"
         className="back-to-main"
-        onClick={handleBackButton}
+        onClick={handleBackButtonReset}
       ></input>
 
-      <div className="prev" onClick={() => setBackButton(backToLastHomeState)}>
+      <div
+        className="prev"
+        onClick={() => handleBackButtonState(backToLastHomeState)}
+      >
         {pokemonId > 1 && (
           <Link to={`/pokemon/${pokemonId - 1}`} className="nav-buttons">
             <img
@@ -102,11 +105,12 @@ export default function Carousel({
                 ).genus
               }
               baseHappiness={pokemonSpecies.base_happiness}
+              // Extra
               pokeball={pokeball}
               setPokeball={setPokeball}
               livingDex={livingDex}
               backToLastHomeState={backToLastHomeState}
-              setBackButton={setBackButton}
+              handleBackButtonState={handleBackButtonState}
             />
           )
         ) : (
@@ -116,7 +120,10 @@ export default function Carousel({
         )}
       </div>
 
-      <div className="next" onClick={() => setBackButton(backToLastHomeState)}>
+      <div
+        className="next"
+        onClick={() => handleBackButtonState(backToLastHomeState)}
+      >
         {pokemonId < MAX_POKEMON && (
           <Link to={`/pokemon/${pokemonId + 1}`} className="nav-buttons">
             <img

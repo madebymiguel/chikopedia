@@ -45,10 +45,15 @@ A live demo is currently being hosted on [Heroku](https://chikopedia.herokuapp.c
 
 ## Features include:
 
-- Being able to search Pokemon by Pokemon Name or ID
+- Being able to search Pokemon by Name or ID
   - Implemented fuzzy search which allows typo correction
-- Seeing all of the Pokemon through the grid view
-- Pokemon are clickable through the grid and takes you to the Pokemon Pokedex Entry
-- In Pokedex Entry there is a Carousel feature that lets you go to previous or next Pokemon Pokedex Entry
-- In Menu there is a livingDex toggle that allows you to save the pokemon you caught in the grid view or the Pokedex Entry
-  - Grey pokeball means you don't have it and red means you do
+- Two Pokemon views:
+  - Grid: Pokemon are clickable through the grid items and takes you to the its Pokedex Entry
+  - Scroll: Pokemon are clickable through the sprite box and takes you to the its Pokedex Entry. Displays at most 7 Pokemon at a time. Single arrows takes you to the previos or next set of pokemon. The double arrows takes you to the first or last Pokemon. Clicking a Pokemon box displays that pokemon sprite.
+- In Pokedex Entry there is a Carousel feature that lets you go to previous or next Pokemon's Pokedex Entry
+- In the Menu there is:
+  - The ability to switch from Grid or Scroll view
+  - The ability toggle the livingDex ON or OFF:
+    - LivingDex allows you to save the Pokemon you caught
+    - If ON it diplays pokeball in Grid, Scroll and Pokedex Entry
+    - Grey pokeball means you don't have it and red means you do

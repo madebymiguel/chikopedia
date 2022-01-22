@@ -1,16 +1,10 @@
 import { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  useHistory,
-} from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Search from "./Search";
 import Menu from "./Menu";
 import Credits from "./Credits";
 import PokemonGrid from "./PokemonGrid";
-import PokemonScroll from "./PokemonScroll";
+import PokemonScrollWithQuery from "./PokemonScrollWithQuery";
 import CarouselWithQuery from "./CarouselWithQuery";
 import LoadingComponent from "./LoadingComponent";
 import ChikoritaLeaf from "../assets/chikorita-leaf.svg";
@@ -22,7 +16,6 @@ import sortPokemon from "../utils/sortPokemon";
 import replacePokemonNamesFromArray from "../utils/replacePokemonNamesFromArray";
 import simplifyPokemonArray from "../utils/simplifyPokemonArray";
 import useSimplePokemonSessionStorage from "../utils/useSimplePokemonSessionStorage";
-import useEvolutionChainSessionStorage from "../utils/useEvolutionChainSessionStorage";
 import getPokedexStyleFromSessionStorage from "../utils/getPokedexStyleFromSessionStorage";
 import {
   LIVING_DEX_STATUS_KEY,
@@ -38,18 +31,12 @@ export default function App() {
   const [livingDex, setLivingDex] = useState<boolean>(livingDexStatus);
 
   const [isFetchingPokemon, setIsFetchingPokemon] = useState<boolean>(false);
+  const [backToLastHomeState, setbackToLastHomeState] = useState<number>(0);
 
   const [allSimplePokemon, setPokemonStorage] = useSimplePokemonSessionStorage(
     []
   );
 
-  const [evolutionChainStorage, setEvolutionChainStorage] =
-    useEvolutionChainSessionStorage([]);
-
-  const [backToLastHomeState, setbackToLastHomeState] = useState<number>(0);
-  // let history = useHistory();
-
-  // useEffect stays at App so that we can make loading screen for both option of scroll and grid
   useEffect(() => {
     if (allSimplePokemon.length === 0) {
       getAllPokemon(POKEMON_LIMIT).then((data) => {
@@ -77,13 +64,12 @@ export default function App() {
     setPokedexStyle(style);
   };
 
-  const handleBackButton = () => {
+  const handleBackButtonReset = () => {
     history.go(backToLastHomeState);
-
     setbackToLastHomeState(0);
   };
 
-  const setBackButton = (lastState: number) => {
+  const handleBackButtonState = (lastState: number) => {
     setbackToLastHomeState(lastState - 1);
   };
 
@@ -109,7 +95,7 @@ export default function App() {
           </Link>
           <Search
             backToLastHomeState={backToLastHomeState}
-            setBackButton={setBackButton}
+            handleBackButtonState={handleBackButtonState}
           />
           <Menu
             pokedexStyle={pokedexStyle}
@@ -126,17 +112,17 @@ export default function App() {
                   livingDex={livingDex}
                   allPokemon={allSimplePokemon}
                   backToLastHomeState={backToLastHomeState}
-                  setBackButton={setBackButton}
+                  handleBackButtonState={handleBackButtonState}
                 />
               ) : (
                 <LoadingComponent />
               )
             ) : isFetchingPokemon ? (
-              <PokemonScroll
+              <PokemonScrollWithQuery
                 livingDex={livingDex}
                 allPokemon={allSimplePokemon}
                 backToLastHomeState={backToLastHomeState}
-                setBackButton={setBackButton}
+                handleBackButtonState={handleBackButtonState}
               />
             ) : (
               <LoadingComponent />
@@ -149,8 +135,8 @@ export default function App() {
                 pokemonId={+match.params.pokemonId}
                 livingDex={livingDex}
                 backToLastHomeState={backToLastHomeState}
-                handleBackButton={handleBackButton}
-                setBackButton={setBackButton}
+                handleBackButtonReset={handleBackButtonReset}
+                handleBackButtonState={handleBackButtonState}
               />
             )}
           />

@@ -5,21 +5,20 @@ import { evolutionPath } from "../types/SimplePokemonWithEvolutionDetail";
 export interface PokemonEvolutionChainRowProps {
   evolutionPath: evolutionPath;
   backToLastHomeState: number;
-  setBackButton: (val: number) => void;
+  handleBackButtonState: (val: number) => void;
 }
 
 export default function PokemonEvolutionChainRow({
   evolutionPath,
   backToLastHomeState,
-  setBackButton,
+  handleBackButtonState,
 }: PokemonEvolutionChainRowProps) {
-  // TODO: after we modify PokemonEvolutionTreeNode, we add evolution detail to arrow
   return (
     <div className="pokemon-chain-row">
       {evolutionPath.map((pokemonEvolutionObject) => {
         const pokemonObject = pokemonEvolutionObject.simplePokemon;
         const evolutionDetailArray = pokemonEvolutionObject.evolutionDetail;
-        const evolutionDetail = pokemonEvolutionObject.evolutionDetail[0];
+        const evolutionDetail = evolutionDetailArray[0];
         return (
           <div className="pokemon-chain-item">
             {evolutionDetail !== undefined && (
@@ -31,7 +30,7 @@ export default function PokemonEvolutionChainRow({
               index={pokemonObject.id}
               image={pokemonObject.sprite}
               backToLastHomeState={backToLastHomeState}
-              setBackButton={setBackButton}
+              handleBackButtonState={handleBackButtonState}
             />
           </div>
         );

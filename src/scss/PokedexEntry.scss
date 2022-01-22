@@ -142,8 +142,12 @@
     @extend .container-format;
     padding-left: 10px;
 
-    .gender-rate-icon {
-      width: 20px;
+    .male {
+      color: #3273dc;
+    }
+
+    .female {
+      color: #ff6bce;
     }
   }
 

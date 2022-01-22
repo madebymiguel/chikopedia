@@ -7,16 +7,13 @@ import getEvolutionPathsFromTree from "../utils/getEvolutionPathsFromTree";
 export interface PokemonEvolutionChainProps {
   evolutionChain: PokemonEvolutionTreeNode;
   backToLastHomeState: number;
-  setBackButton: (val: number) => void;
+  handleBackButtonState: (val: number) => void;
 }
 export default function PokemonEvolutionChain({
   evolutionChain,
   backToLastHomeState,
-  setBackButton,
+  handleBackButtonState,
 }: PokemonEvolutionChainProps) {
-  // use the name from chain of evolution chain to fetchPokemon to get pokemon sprite.
-  //
-  // TODO: Fix the bug where some pokemon fails to present the evolution paths, even when API seems normal
   const pokemonEvolutionPaths = getEvolutionPathsFromTree(evolutionChain);
   const pokemonChainItems = useMemo(() => {
     if (pokemonEvolutionPaths !== null) {
@@ -25,7 +22,7 @@ export default function PokemonEvolutionChain({
           <PokemonEvolutionChainRow
             evolutionPath={evolutionPath}
             backToLastHomeState={backToLastHomeState}
-            setBackButton={setBackButton}
+            handleBackButtonState={handleBackButtonState}
           />
         );
       });

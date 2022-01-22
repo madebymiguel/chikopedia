@@ -7,14 +7,14 @@ export interface PokemonGridProps {
   allPokemon: SimplePokemon[];
   livingDex: boolean;
   backToLastHomeState: number;
-  setBackButton: (val: number) => void;
+  handleBackButtonState: (val: number) => void;
 }
 
 export default function PokemonGrid({
   allPokemon,
   livingDex,
   backToLastHomeState,
-  setBackButton,
+  handleBackButtonState,
 }: PokemonGridProps) {
   const pokemonGridItems = useMemo(() => {
     return allPokemon.map((pokemonObject: SimplePokemon) => {
@@ -26,7 +26,7 @@ export default function PokemonGrid({
           image={pokemonObject.sprite}
           livingDex={livingDex}
           backToLastHomeState={backToLastHomeState}
-          setBackButton={setBackButton}
+          handleBackButtonState={handleBackButtonState}
         />
       );
     });
