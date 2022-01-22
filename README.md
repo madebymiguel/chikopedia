@@ -9,9 +9,7 @@ Created by:
 
 We, as pokemon lovers, are creating an application that mimics the pokedex, such that the users are able to search for pokemon information and to record the pokemon the users have caught so far.
 
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/bIml9aC3I8A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
+<img src="./src/assets/readme/chikopedia-intro.gif" alt="Chikopedia Intro" width="400" height="225"/>
 
 ## Setup
 
