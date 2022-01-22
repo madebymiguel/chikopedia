@@ -35,22 +35,16 @@
 
   .table-formatter {
     border-collapse: collapse;
-    // width: 100%; // uncomment if you want different format - 1
 
     .table-body-formatter {
       .table-row-formatter {
-        // border-bottom: 1px solid black; // uncomment if you want different format - 2
-
         .table-header-formatter {
-          // text-align: left; // uncomment if you want different format - 3
           text-align: right;
           padding: 4px;
-          // font-size: 20px;
           @include font($font-sans, 1.25rem, bold);
         }
 
         .table-data-formatter {
-          // text-align: right; // uncomment if you want different format - 4
           text-align: left;
           padding: 4px;
           @include font($font-sans, 1.125rem, normal);

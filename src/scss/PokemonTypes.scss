@@ -4,7 +4,6 @@
 .pokemon-type-container {
   display: flex;
   flex-direction: row;
-  // justify-content: flex-end; // uncomment if you want different format - 5
   justify-content: flex-start;
 
   .pokemon-type {
@@ -12,7 +11,6 @@
     color: $white;
     padding: 4px;
     border-radius: 8px;
-    // margin-left: 8px; // uncomment if you want different format - 6
     margin-right: 8px;
   }
 }
