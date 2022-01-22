@@ -5,6 +5,7 @@ const setEvolutionChainStorage = (value: evolutionChainMap) => {
   sessionStorage.setItem(EVOLUTION_CHAIN_KEY, JSON.stringify(value));
 };
 
+// Make custom hook for list of evolution storages
 export default function useEvolutionChainSessionStorage(
   evolutionChainArray: evolutionChainMap
 ): [evolutionChainMap, (value: evolutionChainMap) => void] {

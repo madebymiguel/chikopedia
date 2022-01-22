@@ -9,22 +9,22 @@ import { PokemonPastType } from "./PastType";
 import { PokemonSprites } from "./Sprites";
 
 export interface Pokemon {
-  abilities: PokemonAbility[]; // Ability[];
+  abilities: PokemonAbility[];
   base_experience: number;
-  forms: PokemonForm[]; // Form[];
-  game_indices: PokemonGameIndex[]; // GameIndex;
+  forms: PokemonForm[];
+  game_indices: PokemonGameIndex[];
   height: number;
-  held_items: PokemonHeldItem[]; // Item[];
+  held_items: PokemonHeldItem[];
   id: number;
   is_default: boolean;
   location_area_encounters: string;
-  moves: PokemonMove[]; //Move[]
+  moves: PokemonMove[];
   name: string;
   order: number;
   past_types: PokemonPastType[];
-  species: { name: string; url: string }; // Specie
-  sprites: PokemonSprites; // Sprite
-  stats: PokemonStat[]; // Stat[]
+  species: { name: string; url: string };
+  sprites: PokemonSprites;
+  stats: PokemonStat[];
   types: PokemonType[];
   weight: number;
 }

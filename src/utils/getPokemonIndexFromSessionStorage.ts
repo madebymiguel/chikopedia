@@ -1,7 +1,12 @@
-import { fetchPokemon } from "../apis/fetchPokemon";
-import { SimplePokemon } from "../types/SimplePokemon";
 import fuzzySearchFromSessionStorage from "./fuzzySearchFromSessionStorage";
+import { SimplePokemon } from "../types/SimplePokemon";
 
+// Return the specific index from the given search
+// Expected outcomes are by following:
+// 1) Exact match found in the storage
+// 2) Typo-corrected result found in the storage
+// 3) Predicted result that pokemon in the storage starts with the result
+// Return 0 if not found
 export default async function getPokemonIndexFromSessionStorage(
   search: string
 ) {
@@ -17,15 +22,6 @@ export default async function getPokemonIndexFromSessionStorage(
       if (filteredStoredData.length > 0) {
         return filteredStoredData[0].id;
       } else {
-        // Might put this code block back if we do lazy loading
-        // const pokemonData = isString
-        //   ? await fetchPokemon(search.toLowerCase())
-        //   : await fetchPokemon(search);
-        // console.log(pokemonData, "is pokemon searched");
-        // if (Object.keys(pokemonData).length > 0) {
-        //   return pokemonData.id;
-        // }
-        // fuzzy search will happen here (as search input is not found in either session storage or api)
         const result = isString ? fuzzySearchFromSessionStorage(search) : 0;
         return result;
       }

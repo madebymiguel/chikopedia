@@ -1,11 +1,12 @@
-import { EvolutionDetail } from "../types/evolutionChain/EvolutionDetail";
 import { PokemonEvolutionTreeNode } from "../types/PokemonEvolutionTreeNode";
 import { SimplePokemon } from "../types/SimplePokemon";
 import {
   evolutionPath,
   SimplePokemonWithEvolutionDetail,
 } from "../types/SimplePokemonWithEvolutionDetail";
+import { EvolutionDetail } from "../types/evolutionChain/EvolutionDetail";
 
+// Create list of possible evolution paths based on evolution chain
 export default function getEvolutionPathsFromTree(
   pokemonEvolutionTree: PokemonEvolutionTreeNode,
   previousPokemon: evolutionPath = []

@@ -1,5 +1,6 @@
 import { EvolutionDetail } from "../types/evolutionChain/EvolutionDetail";
 
+// Make evolution detail presentable to pokedex entry
 export default function simplifyEvolutionDetail(
   evolutionDetail: EvolutionDetail
 ): string[] {

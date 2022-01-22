@@ -1,3 +1,4 @@
+// Capitalize first letter of given string
 export default function upperCaseFirstLetter(word: string) {
   const space = " ";
   const indexOfSpace = word.indexOf(space);

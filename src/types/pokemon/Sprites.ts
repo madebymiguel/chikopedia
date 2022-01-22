@@ -1,5 +1,4 @@
 // https://github.com/PokeAPI/sprites#sprites
-//versions are not yet implemented because its very long and not needed right now
 export interface PokemonSprites {
   back_default: string;
   back_female: string | null;

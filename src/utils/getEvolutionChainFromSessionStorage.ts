@@ -1,11 +1,14 @@
 import getAllEvolutionChainFromSessionStorage from "./getAllEvolutionChainFromSessionStorage";
 import { evolutionChainMap } from "../types/evolutionChainMap";
 
-export default function getEvolutionChainFromSessionStorage(pokemonId: number) {
+// Return specific evolution chain based on given evolution id
+export default function getEvolutionChainFromSessionStorage(
+  evolutionId: number
+) {
   const evolutionChains: evolutionChainMap =
     getAllEvolutionChainFromSessionStorage();
 
-  const evolutionChain = evolutionChains[pokemonId];
+  const evolutionChain = evolutionChains[evolutionId];
 
   return evolutionChain;
 }

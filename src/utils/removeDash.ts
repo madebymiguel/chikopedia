@@ -1,5 +1,6 @@
 import upperCaseFirstLetter from "./upperCaseFirstLetter";
 
+// Replace dash with space
 export default function removeDash(word: string) {
   const splittedStringArray = word.split("-");
 

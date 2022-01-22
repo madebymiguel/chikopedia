@@ -1,4 +1,5 @@
-// using Damerau–Levenshtein distance algorithm
+// Using Damerau–Levenshtein distance algorithm
+// check wikipedia for the details: https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
 
 export default function findOsaDistance(
   search: string,

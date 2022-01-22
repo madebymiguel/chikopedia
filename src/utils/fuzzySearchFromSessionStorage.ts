@@ -1,6 +1,8 @@
-import { SimplePokemon } from "../types/SimplePokemon";
 import findOsaDistance from "./findOsaDistance";
+import { SimplePokemon } from "../types/SimplePokemon";
 
+// Using Damerau–Levenshtein distance algorithm
+// check wikipedia for the details: https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
 export default function fuzzySearchFromSessionStorage(search: string): number {
   const stored = sessionStorage.getItem("allSimplePokemon");
 

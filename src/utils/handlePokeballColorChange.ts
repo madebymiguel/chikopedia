@@ -9,6 +9,8 @@ export interface handlePokeballColorChangeProps {
   setPokeball: React.Dispatch<React.SetStateAction<string>>;
 }
 
+// Change the living dex status of specific pokemon
+// whenever pokeball is clicked for the specific pokemon
 export default function handlePokeballColorChange({
   pokeball,
   index,
