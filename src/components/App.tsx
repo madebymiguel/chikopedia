@@ -93,10 +93,12 @@ export default function App() {
               ) : null}
             </div>
           </Link>
+
           <Search
             backToLastHomeState={backToLastHomeState}
             handleBackButtonState={handleBackButtonState}
           />
+
           <Menu
             pokedexStyle={pokedexStyle}
             handlePokedexStyle={handlePokedexStyle}
@@ -128,6 +130,7 @@ export default function App() {
               <LoadingComponent />
             )}
           </Route>
+
           <Route
             path="/pokemon/:pokemonId"
             render={({ match }) => (
@@ -141,6 +144,7 @@ export default function App() {
             )}
           />
         </Switch>
+
         <Credits />
       </div>
     </Router>

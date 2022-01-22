@@ -43,6 +43,7 @@ export default function Menu({
   return (
     <div className="menu-container">
       <DropDownMenu menu={menu} setMenu={setMenu} />
+
       <MenuContent
         pokedexStyle={pokedexStyle}
         handlePokedexStyle={handlePokedexStyle}

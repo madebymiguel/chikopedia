@@ -73,6 +73,7 @@ export default function PokemonScroll({
                   )
                 }
               />
+
               <img
                 src={ArrowTop}
                 alt="top-arrow"
@@ -100,6 +101,7 @@ export default function PokemonScroll({
                   )
                 }
               />
+
               <img
                 src={ArrowBottom}
                 alt="arrow-bottom"

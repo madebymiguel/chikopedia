@@ -48,6 +48,7 @@ export default function PokemonScrollElement({
           />
         )}
       </div>
+
       <div
         className="scroll-element-content"
         onClick={() => {
@@ -55,6 +56,7 @@ export default function PokemonScrollElement({
         }}
       >
         <span className="pokemon-index">#{formatIndex(index)}</span>
+
         <h2 className="pokemon-name">{upperCaseFirstLetter(name)}</h2>
       </div>
     </div>

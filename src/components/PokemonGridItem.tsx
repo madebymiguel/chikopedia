@@ -57,6 +57,7 @@ export default function PokemonGridItem({
         className="link"
       >
         <img className="pokemon-sprite" src={image} alt={name} />
+
         <h2 className="pokemon-name">{upperCaseFirstLetter(name)}</h2>
       </Link>
     </div>

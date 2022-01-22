@@ -85,6 +85,7 @@ export default function PokedexEntry({
           {isLegendary && <span>Legendary</span>}
           {isMythical && <span>Mythical</span>}
         </div>
+
         <div className="pokeball-container">
           {livingDex && (
             <input

@@ -18,6 +18,7 @@ export default function ToggleSwitch({
         id={`react-switch-new`}
         type="checkbox"
       />
+
       <label
         className="switch-label"
         style={{ background: isToggled ? "#008800" : "#808080" }}

@@ -56,6 +56,7 @@ export default function MenuContent({
             isToggled={livingDex}
             handleToggle={onToggleLivingDex}
           />
+
           <span className="switch-label">Living Dex</span>
         </div>
       </div>

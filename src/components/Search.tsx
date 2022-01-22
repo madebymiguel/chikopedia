@@ -51,6 +51,7 @@ export default function Search({
           setSearch(e.target.value);
         }}
       ></input>
+
       <button id="search-button" type="submit">
         <img src={SearchIcon} alt="search-icon" />
       </button>

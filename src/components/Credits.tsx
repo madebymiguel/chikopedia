@@ -13,7 +13,9 @@ export default function Credits() {
         Chikopedia
         <img className="github-logo" src={githubLogo} alt="github-logo" />
       </a>
+
       <span> Created by: </span>
+
       <a
         className="link-formatter"
         href="https://github.com/madebymiguel"
@@ -22,6 +24,7 @@ export default function Credits() {
       >
         Miguel Mayorga,{" "}
       </a>
+
       <a
         className="link-formatter"
         href="http://github.com/warandstar"
