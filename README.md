@@ -9,7 +9,25 @@ Created by:
 
 We, as pokemon lovers, are creating an application that mimics the pokedex, such that the users are able to search for pokemon information and to record the pokemon the users have caught so far.
 
-<img src="./src/assets/readme/chikopedia-intro.gif" alt="Chikopedia Intro"/>
+<figure>
+<img src="./src/assets/readme/grid.PNG" alt="pokemon grid view" style="width:100%">
+<figcaption align = "center"><b>Pokemon Grid View</b></figcaption>
+</figure>
+
+<figure>
+<img src="./src/assets/readme/scroll.PNG" alt="pokemon scroll view" style="width:100%">
+<figcaption align = "center"><b>Pokemon Scroll View</b></figcaption>
+</figure>
+
+<figure>
+<img src="./src/assets/readme/entry.PNG" alt="pokemon entry view" style="width:100%">
+<figcaption align = "center"><b>Pokemon Entry View</b></figcaption>
+</figure>
+
+<figure>
+<img src="./src/assets/readme/menu.PNG" alt="" style="width:100%">
+<figcaption align = "center"><b>Menu</b></figcaption>
+</figure>
 
 ## Setup
 
