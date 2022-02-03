@@ -9,25 +9,17 @@ Created by:
 
 We, as pokemon lovers, are creating an application that mimics the pokedex, such that the users are able to search for pokemon information and to record the pokemon the users have caught so far.
 
-<figure>
-<img src="./src/assets/readme/grid.PNG" alt="pokemon grid view" style="width:auto">
-<figcaption style="text-align: center"><b>Pokemon Grid View</b></figcaption>
-</figure>
+![pokemon grid view](./src/assets/readme/grid.PNG)
+**Pokemon Grid View**
 
-<figure>
-<img src="./src/assets/readme/scroll.PNG" alt="pokemon scroll view" style="width:auto">
-<figcaption style="text-align: center"><b>Pokemon Scroll View</b></figcaption>
-</figure>
+![pokemon scroll view](./src/assets/readme/scroll.PNG)
+**Pokemon Scroll View**
 
-<figure>
-<img src="./src/assets/readme/entry.PNG" alt="pokemon entry view" style="width:auto">
-<figcaption style="text-align: center"><b>Pokemon Entry View</b></figcaption>
-</figure>
+![pokemon entry view](./src/assets/readme/entry.PNG)
+**Pokemon Entry View**
 
-<figure>
-<img src="./src/assets/readme/menu.PNG" alt="" style="width:auto">
-<figcaption style="text-align: center"><b>Menu</b></figcaption>
-</figure>
+![pokemon grid view](./src/assets/readme/menu.PNG)
+**Menu**
 
 ## Setup
 
