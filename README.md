@@ -38,7 +38,7 @@ npm i && npm start
 
 ## Live Demo
 
-A live demo is currently being hosted on [Heroku](https://chikopedia.herokuapp.com/).
+A live demo is currently being hosted on [Render](https://chikopedia.onrender.com/)
 
 ## Features include:
 
